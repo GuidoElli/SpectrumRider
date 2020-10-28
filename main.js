@@ -11,14 +11,14 @@ function main() {
     //camera
     camera_x = 0.0;
     camera_y = 20.0;
-    camera_z = 20.0;
+    camera_z = 200.0;
     camera_elev = -20.0;
     camera_angle = 0.0;
 
     //audio ground
-    audio_ground_scale_x = 40.0;
-    audio_ground_scale_y = 10.0;
-    audio_ground_scale_z = 50.0;
+    audio_ground_scale_x = 100.0;
+    audio_ground_scale_y = 15.0;
+    audio_ground_scale_z = 100.0;
     audio_ground_delta_z = 0.0;
 
     //define directional light

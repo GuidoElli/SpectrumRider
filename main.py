@@ -25,7 +25,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 
 
 # Initialization
-mp3 = AudioSegment.from_mp3('nnn.mp3')
+mp3 = AudioSegment.from_mp3('ppp.mp3')
 _, path = tempfile.mkstemp()
 mp3.export(path, format="wav")
 del mp3
@@ -34,11 +34,11 @@ if audio.ndim == 2:
 	audio = audio[:, 0]
 
 # Parameters
-n_bands = 7
-bands_borders = np.array([20, 1000, 2000, 4000, 6000, 9000, 12000, 20000])
-# bands_borders = np.array([20, 600, 2000, 4000, 10000, 20000])
+n_bands = 5
+# bands_borders = np.array([20, 1000, 2000, 4000, 6000, 9000, 12000, 20000])
+bands_borders = np.array([20, 600, 2000, 4000, 10000, 20000])
 upsample_freq = 4
-win_length_time = 0.1
+win_length_time = 0.2
 upsample_time = 4
 
 # program
@@ -61,17 +61,17 @@ for b in range(n_bands):
 
 # interpolate
 print("Interpolating...")
-grid_x, grid_y = np.mgrid[0: 1.00000001: 1.0 / ((n_frames - 1) * upsample_time), 0:1.0000000001:1.0 / ((n_bands - 1) * upsample_freq)]
+grid_x, grid_y = np.mgrid[0: 1.0000000001: 1.0 / ((n_frames - 1) * upsample_time), 0:1.0000000001:1.0 / ((n_bands - 1) * upsample_freq)]
 data_values = z_init_matrix.reshape(-1, 1)
-range_x = np.arange(0, 1.0000001, 1 / (n_frames - 1))
-range_y = np.arange(0, 1.0000001, 1 / (n_bands - 1))
+range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
+range_y = np.arange(0, 1.0000000001, 1 / (n_bands - 1))
 data_points = np.zeros((len(data_values), 2))
 for i in tqdm(range(len(range_x))):
 	for j in range(len(range_y)):
 		data_points[i * len(range_y) + j, 0] = range_x[i]
 		data_points[i * len(range_y) + j, 1] = range_y[j]
 interp_data = griddata(data_points, data_values, (grid_x, grid_y), method='cubic')
-interp_data = interp_data[:, :, 0]
+interp_data = interp_data[:interp_data.shape[0]-1, :, 0]
 
 # compute vertices, indices and normals
 print("Computing vertices...")

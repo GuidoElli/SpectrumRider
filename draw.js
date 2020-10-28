@@ -9,7 +9,7 @@ function draw() {
     var viewMatrix = utils.MakeView(camera_x, camera_y, camera_z, camera_elev, camera_angle);
     
     //matrix
-    var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, 200.0);
+    var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, 1000.0);
     var audio_ground_world_matrix = utils.MakeWorld(
         0.0, 0.0, audio_ground_delta_z,  
         0.0, 0.0, 0.0,   
