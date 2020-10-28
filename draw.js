@@ -9,12 +9,12 @@ function draw() {
     var viewMatrix = utils.MakeView(camera_x, camera_y, camera_z, camera_elev, camera_angle);
     
     //matrix
-    var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, 1000.0);
+    
+    var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
     var audio_ground_world_matrix = utils.MakeWorld(
         0.0, 0.0, audio_ground_delta_z,  
         0.0, 0.0, 0.0,   
         audio_ground_scale_x, audio_ground_scale_y, audio_ground_scale_z);
-
 
     var lightDirMatrix = utils.invertMatrix(utils.transposeMatrix(viewMatrix));
     var worldViewMatrix = utils.multiplyMatrices(viewMatrix, audio_ground_world_matrix);
@@ -35,8 +35,9 @@ function draw() {
     gl.uniform3fv(lightColorHandle, directionalLightColor);
     gl.uniform3fv(lightDirectionHandle, directionalLight);
 
-    gl.bindVertexArray(vao);
-    gl.drawElements(gl.TRIANGLES, audio_ground_ind.length, gl.UNSIGNED_SHORT, 0 );
-
+    for(let i = 0; i < audio_ground_vert.length; ++i){
+        gl.bindVertexArray(audio_ground_vao[i]);
+        gl.drawElements(gl.TRIANGLES, audio_ground_ind[i].length, gl.UNSIGNED_SHORT, 0 );
+    }
     window.requestAnimationFrame(draw);
 }

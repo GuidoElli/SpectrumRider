@@ -1,5 +1,4 @@
-function move(){
-    
+function move() {
     current_time = (new Date).getTime();
     audio_ground_delta_z += (current_time-last_move_time) * 0.001 * audio_ground_scale_z;
     
