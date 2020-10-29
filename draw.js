@@ -1,15 +1,14 @@
 function draw() {
 
     move();
-    
-    gl.clearColor(0.85, 0.85, 0.85, 1.0);
+
+    gl.clearColor(0.1, 0.1, 0.1, 0.1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Audio Ground
     var viewMatrix = utils.MakeView(camera_x, camera_y, camera_z, camera_elev, camera_angle);
     
     //matrix
-    
     var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
     var audio_ground_world_matrix = utils.MakeWorld(
         0.0, 0.0, audio_ground_delta_z,  
