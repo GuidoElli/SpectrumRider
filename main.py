@@ -24,8 +24,8 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 	return y
 
 
-# Initialization
-mp3 = AudioSegment.from_mp3('ppp.mp3')
+# %% Initialization
+mp3 = AudioSegment.from_mp3('Turn It Around.mp3')
 _, path = tempfile.mkstemp()
 mp3.export(path, format="wav")
 del mp3
@@ -33,22 +33,23 @@ audio, fs = sf.read(path)
 if audio.ndim == 2:
 	audio = audio[:, 0]  # Keep only left channel
 
-# Parameters
-n_bands = 7
-bands_borders = np.array([20, 400, 1000, 2500, 5000, 9000, 12000, 20000])
+# %% Parameters
+n_bands = 6
+bands_borders = np.array([20, 140, 300, 800, 4000, 12000, 20000])
 # bands_borders = np.array([20, 800, 2000, 5000, 10000, 20000])
 upsample_freq = 5
-win_length_time = 0.1
+win_length_time = 0.08
 upsample_time = 5
+sanity = 1.5
 
-# program
+# %% program
 print("Computing audio spectrum...")
 win_length_samples = int(win_length_time * fs)
 n_frames = int(len(audio) / win_length_samples) - 1
 z_init_matrix = np.zeros((n_frames, n_bands))
 z_matrix = np.zeros((n_frames * upsample_time, (n_bands - 1) * upsample_freq + 1))
 audio_length_time = len(audio) / fs
-for f in range(n_frames):
+for f in tqdm(range(n_frames)):
 	frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 	for b in range(n_bands):
 		lowcut = bands_borders[b]
@@ -57,9 +58,10 @@ for f in range(n_frames):
 		rms = np.sqrt(sum(np.power(filtered_frame, 2)))
 		z_init_matrix[f, b] = rms
 for b in range(n_bands):
-	z_init_matrix[:, b] = np.sqrt(z_init_matrix[:, b] / z_init_matrix[:, b].max())
+	z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / z_init_matrix[:, b].max(), sanity)
 
-# interpolate
+
+# %% interpolate
 grid_x, grid_y = np.mgrid[0: 1.0000000001: 1.0 / ((n_frames - 1) * upsample_time), 0:1.0000000001:1.0 / ((n_bands - 1) * upsample_freq)]
 data_values = z_init_matrix.reshape(-1, 1)
 range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
@@ -73,8 +75,7 @@ for i in range(len(range_x)):
 interp_data = griddata(data_points, data_values, (grid_x, grid_y), method='cubic')
 interp_data = interp_data[:interp_data.shape[0]-1, :, 0]
 
-
-# compute vertices, indices and normals
+# %% compute vertices, indices and normals
 print("Computing vertices, indices and normals...")
 max_vertices_per_block = 40000
 current_block = 0
@@ -88,11 +89,10 @@ is_last_row = False
 last_row_vertices = ""
 last_row_normals = ""
 past_blocks_vertices = 0
-for i in range(interp_data.shape[0]):
+for i in tqdm(range(interp_data.shape[0])):
 	for j in range(interp_data.shape[1]):
 		current_vertex = i * interp_data.shape[1] + j
-
-		# vertex
+		# %% vertex
 		vertices += "{0:.5f}, {1:.5f}, {2:.5f}".format(
 			grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0]*len(audio)/fs)
 		if is_last_block_row:
@@ -102,8 +102,7 @@ for i in range(interp_data.shape[0]):
 			vertices += ","
 			if is_last_block_row:
 				last_row_vertices += ","
-
-		# index
+		# %% index
 		if (not is_last_row) & (j != interp_data.shape[1]-1):
 			indices += " {0:d}, {1:d}, {2:d},".format(
 				current_vertex - past_blocks_vertices,
@@ -115,8 +114,7 @@ for i in range(interp_data.shape[0]):
 				current_vertex - past_blocks_vertices + interp_data.shape[1] + 1)
 			if j != interp_data.shape[1]-2:
 				indices += ","
-
-		# normal
+		# %% normal
 		left = np.array([0, 0, 0])
 		left2 = np.array([0, 0, 0])
 		forth = np.array([0, 0, 0])
@@ -140,7 +138,6 @@ for i in range(interp_data.shape[0]):
 			normals += ","
 			if is_last_block_row:
 				last_row_normals += ","
-
 	if is_last_block_row:
 		is_last_block_row = False
 		if not is_last_row:
@@ -171,11 +168,8 @@ for i in range(interp_data.shape[0]):
 		vertices += ","
 		normals += ","
 		indices += ","
-
 audio_ground_definition = vertices+indices+normals
 # Write files
 print("Writing...")
 vert_file = open("audio_ground.js", "w")
 vert_file.write(audio_ground_definition)
-
-a = 0  # breakpoint
