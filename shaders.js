@@ -22,14 +22,14 @@ in vec3 position;
 in vec3 fsNormal;
 out vec4 outColor;
 
-uniform vec3 lightDirection; 
+uniform vec3 lightDirection;
 uniform vec3 lightColor; 
 uniform mat4 lightDirMatrix;       
 
 void main() {
     vec3 nNormal = normalize(fsNormal);
     vec3 lDir = mat3(lightDirMatrix) * lightDirection; 
-    vec3 color = vec3(position.y, position.y/2.0+0.5, position.y/2.0);
+    vec3 color = vec3(position.y, position.y, position.y);
     vec3 lambertColor = color * lightColor * max(-dot(lDir,nNormal), 0.0);
     outColor = vec4(clamp(lambertColor, 0.0, 1.0), 1.0);
 }`;
