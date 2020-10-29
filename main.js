@@ -1,44 +1,4 @@
 function main() {
-    
-    //to do in python
-    pattern_power = [];
-    pattern_bass = [];
-    pattern_mid = [];
-    pattern_high = [];
-    song_duration = undefined;
-
-
-    //audio ground
-    audio_ground_scale_x = 160.0;
-    audio_ground_scale_y = 30.0;
-    audio_ground_scale_z = 200.0;
-    audio_ground_delta_z = 0.0;
-
-    //scene
-    seconds_to_see = 8;
-
-    //camera
-    camera_x = 0.0;
-    camera_y = 32.0;
-    camera_z = 90.0;
-    camera_elev = -23.0;
-    camera_angle = 0.0;
-
-    //directional light
-    dirLightAlpha = -utils.degToRad(20.0);
-    dirLightBeta  = -utils.degToRad(45.0);
-    directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
-              Math.sin(dirLightAlpha),
-              Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
-              ];
-    directionalLightColor = [0.1, 1.0, 1.0];
-
-    current_time = (new Date).getTime();
-    last_move_time = current_time;
-
-
-
-
 
     // program
     gl = canvas.getContext("webgl2");
@@ -85,40 +45,85 @@ function main() {
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(audio_ground_ind[i]), gl.STATIC_DRAW); 
     }
 
-    song = document.getElementById("song");
-
-    document.addEventListener("keydown" ,function(e) { // TODO
-        switch (e.keyCode) {
-            case 38:
-                camera_y += 5;
-                break;
-            case 40:
-                camera_y -= 5;
-                break;
-            case 39:
-                camera_x += 5;
-                break;
-            case 37:
-                camera_x -= 5;
-                break;
-        }
-    })
-
     draw();
 }
 
+
+
+//to do in python
+var pattern_power = [];
+var pattern_bass = [];
+var pattern_mid = [];
+var pattern_high = [];
+var song_duration = undefined;
+
+
+//audio ground
+var audio_ground_scale_x = 200.0;
+var audio_ground_scale_y = 35.0;
+var audio_ground_scale_z = 240.0;
+var audio_ground_delta_z = 0.0;
+
+//scene
+var seconds_to_see = 8;
+
+//camera
+var camera_x = 0.0;
+var camera_y = 37.0;
+var camera_z = 1.1 * audio_ground_scale_z;
+var camera_elev = -25.0;
+var camera_angle = 0.0;
+
+//directional light
+var dirLightAlpha = -utils.degToRad(70.0);
+var dirLightBeta  = -utils.degToRad(30.0);
+var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
+          Math.sin(dirLightAlpha),
+          Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
+          ];
+var directionalLightColor = [0.7, 1.0, 0.7];
+
+
+// key controls
+document.addEventListener("keydown" ,function(e) { // TODO
+    switch (e.keyCode) {
+        case 38:
+            camera_y += 5;
+            break;
+        case 40:
+            camera_y -= 5;
+            break;
+        case 39:
+            camera_x += 5;
+            break;
+        case 37:
+            camera_x -= 5;
+            break;
+    }
+})
+
+
+var song_begun = false;
+var start_time;
+var audio = document.getElementById("song");
+
 let start_button = document.getElementById("start_button");
+start_button.addEventListener("mouseup", function(){
+    audio.load();
+    audio.play();
+    audio.ontimeupdate = function () {
+        if(!song_begun){
+            song_begun = true;
+            start_time = (new Date).getTime();
+        }
+    }
 
-start_button.addEventListener("mouseup", function(){ // will be a start button
-
-    document.documentElement.requestFullscreen().then(() => {
-        canvas = document.getElementById("c");
-        canvas.width = screen.width;
-        canvas.height = screen.height;
-        canvas.style.display = "block";
-        app_section = document.getElementById("app_section");
-        app_section.style.display = "none";
-        main();
-    });
-
+    document.documentElement.requestFullscreen();
+    canvas = document.getElementById("c");
+    canvas.width = screen.width;
+    canvas.height = screen.height;
+    canvas.style.display = "block";
+    app_section = document.getElementById("app_section");
+    app_section.style.display = "none";
+    main();
 })

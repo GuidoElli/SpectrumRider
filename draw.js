@@ -11,8 +11,8 @@ function draw() {
     //matrix
     var perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
     var audio_ground_world_matrix = utils.MakeWorld(
-        0.0, 0.0, audio_ground_delta_z,  
-        0.0, 0.0, 0.0,   
+        0.0, 0.0, audio_ground_delta_z,
+        0.0, 0.0, 0.0,
         audio_ground_scale_x, audio_ground_scale_y, audio_ground_scale_z);
 
     var lightDirMatrix = utils.invertMatrix(utils.transposeMatrix(viewMatrix));
