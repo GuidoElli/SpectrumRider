@@ -25,7 +25,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 
 
 # %% Initialization
-mp3 = AudioSegment.from_mp3('Turn It Around.mp3')
+mp3 = AudioSegment.from_mp3('letsfuck.mp3')
 _, path = tempfile.mkstemp()
 mp3.export(path, format="wav")
 del mp3
@@ -34,16 +34,16 @@ if audio.ndim == 2:
 	audio = audio[:, 0]  # Keep only left channel
 
 # %% Parameters
-n_bands = 6
-bands_borders = np.array([20, 140, 300, 800, 4000, 12000, 20000])
+n_bands = 5
+bands_borders = np.array([20, 140, 500, 1000, 4000, 20000])
 # bands_borders = np.array([20, 800, 2000, 5000, 10000, 20000])
 upsample_freq = 5
-win_length_time = 0.08
+win_length_time = 0.1
 upsample_time = 5
-sanity = 1.5
+sanity = 1.7
 
 # %% program
-print("Computing audio spectrum...")
+print("\nComputing audio spectrum...")
 win_length_samples = int(win_length_time * fs)
 n_frames = int(len(audio) / win_length_samples) - 1
 z_init_matrix = np.zeros((n_frames, n_bands))
@@ -67,7 +67,7 @@ data_values = z_init_matrix.reshape(-1, 1)
 range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
 range_y = np.arange(0, 1.0000000001, 1 / (n_bands - 1))
 data_points = np.zeros((len(data_values), 2))
-print("Interpolating...")
+print("\nInterpolating...")
 for i in range(len(range_x)):
 	for j in range(len(range_y)):
 		data_points[i * len(range_y) + j, 0] = range_x[i]
@@ -76,7 +76,7 @@ interp_data = griddata(data_points, data_values, (grid_x, grid_y), method='cubic
 interp_data = interp_data[:interp_data.shape[0]-1, :, 0]
 
 # %% compute vertices, indices and normals
-print("Computing vertices, indices and normals...")
+print("\nComputing vertices, indices and normals...")
 max_vertices_per_block = 40000
 current_block = 0
 vertices = "var audio_ground_vert = [];\naudio_ground_vert[{0:d}] = [".format(current_block)
@@ -168,8 +168,26 @@ for i in tqdm(range(interp_data.shape[0])):
 		vertices += ","
 		normals += ","
 		indices += ","
-audio_ground_definition = vertices+indices+normals
+
+info = "var n_vertex_per_row = {0:d};\n".format(interp_data.shape[1])
+info += "var n_rows = {0:d};\n".format(interp_data.shape[0])
+info += "var n_vertex = {0:d};\n".format(interp_data.shape[0]*interp_data.shape[1])
+info += "var y_map = [[ "
+for i in range(interp_data.shape[0]):
+	for j in range(interp_data.shape[1]):
+		info += "{0:.6f}".format(interp_data[i][j])
+		if j != interp_data.shape[1]-1:
+			info += ", "
+	if i != interp_data.shape[0] - 1:
+		info += "], ["
+	else:
+		info += "]];\n"
+info += "var song_duration_seconds = {0:.2f};".format(len(audio) / fs)
+info += "var vertex_fs = {0:.4f};".format(interp_data.shape[0] / (len(audio) / fs))
+
+
+song_data = vertices + indices + normals + info
 # Write files
-print("Writing...")
-vert_file = open("audio_ground.js", "w")
-vert_file.write(audio_ground_definition)
+print("\nWriting...")
+vert_file = open("song_data.js", "w")
+vert_file.write(song_data)
