@@ -1,64 +1,3 @@
-
-//to do in python
-var pattern_power = [];
-var pattern_bass = [];
-var pattern_mid = [];
-var pattern_high = [];
-var song_duration = undefined;
-var audio_ground_shape = [36, 17];
-
-
-//audio ground
-var audio_ground_scale_x = 200.0;
-var audio_ground_scale_y = 35.0;
-var audio_ground_scale_z = 240.0;
-
-//scene
-var seconds_to_see = 6;
-
-//camera
-var camera_x = 0.0;
-var camera_x_min = -audio_ground_scale_x/2 * 0.95;
-var camera_x_max = audio_ground_scale_x/2 * 0.95;
-
-var camera_y = audio_ground_scale_y+2+1e-10;
-var camera_y_min = audio_ground_scale_y;
-var camera_y_max = audio_ground_scale_y/2 * 0.95;
-
-var camera_z_offset = 0.1 * audio_ground_scale_z;
-var camera_z = 0.0;
-
-var camera_elev = -25.0;
-var camera_angle = 0.0;
-
-//directional light
-var dirLightAlpha = -utils.degToRad(70.0);
-var dirLightBeta  = -utils.degToRad(30.0);
-var directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
-          Math.sin(dirLightAlpha),
-          Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
-          ];
-var directionalLightColor = [0.7, 1.0, 0.7];
-
-// key controls
-document.addEventListener("keydown" ,function(e) { // TODO
-    switch (e.keyCode) {
-        case 38:
-            camera_y += 5;
-            break;
-        case 40:
-            camera_y -= 5;
-            break;
-        case 39:
-            camera_x += 5;
-            break;
-        case 37:
-            camera_x -= 5;
-            break;
-    }
-})
-
-
 let canvas = document.getElementById("c");
 let synchronized = false;
 let song_begun = false;
@@ -79,7 +18,7 @@ start_button.addEventListener("mouseup", function(){
     })
 })
 
-song.ontimeupdate = function (event) {
+song.ontimeupdate = function () {
     let current = (new Date).getTime();
     if(!song_begun){
         song_start_time = current;
@@ -91,8 +30,6 @@ song.ontimeupdate = function (event) {
         }
     }
 }
-
-
 
 // program
 let gl = canvas.getContext("webgl2");

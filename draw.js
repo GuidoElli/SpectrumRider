@@ -7,7 +7,7 @@ function draw() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Audio Ground
-    let viewMatrix = utils.MakeView(camera_x, camera_y, camera_z_offset + camera_z, camera_elev, camera_angle);
+    let viewMatrix = utils.MakeView(player_pos_x, player_pos_y, camera_z, camera_elev, camera_angle);
 
     //matrix
     let perspectiveMatrix = utils.MakePerspective(65, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
