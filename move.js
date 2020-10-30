@@ -34,21 +34,15 @@ function move() {
                 player_vel_x *= 0.9
             }
 
-            // compute new position and velocity
-            if(!touching_ground){
-                player_vel_y += -gravity * delta_t / 1000;
-                player_pos_y += player_vel_y * delta_t / 1000;
-            }
+
             player_vel_x += player_force_x * delta_t / 1000;
-            player_pos_x += player_vel_x * delta_t / 1000;
-
-
-            //boundary control
             if(player_vel_x > player_max_vel_x){
                 player_vel_x = player_max_vel_x;
             }else if(player_vel_x < -player_max_vel_x){
                 player_vel_x = -player_max_vel_x;
             }
+
+            player_pos_x += player_vel_x * delta_t / 1000;
             if(player_pos_x > player_max_pos_x){
                 player_pos_x = player_max_pos_x;
                 player_vel_x = 0.0;
@@ -57,21 +51,23 @@ function move() {
                 player_vel_x = 0.0;
             }
 
+            // compute new position and velocity
+            if(!touching_ground){
+                player_vel_y += -gravity * delta_t / 1000;
+                player_pos_y += player_vel_y * delta_t / 1000;
+            }
+
             let x_index_cont = (player_pos_x / audio_ground_scale_x + 0.5) * n_vertex_per_row;
             let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * n_rows;
             let x_index = Math.round(x_index_cont);
-            let z_index_forth = Math.ceil(z_index_cont);
             let z_index_back = Math.floor(z_index_cont);
-            if(z_index_forth === z_index_back){
-                z_index_forth = z_index_back + 1;
-            }
-            let alpha = z_index_forth - z_index_cont;
-            let beta = z_index_cont - z_index_back;
-            let y0 = y_map[z_index_back][x_index] * audio_ground_scale_y;
-            let y1 = y_map[z_index_forth][x_index] * audio_ground_scale_y;
-            let y_cont = y0 * alpha + y1 * beta;
-            let y_vel = (y1 - y0) * vertex_fs;
 
+            let next_y = [];
+            next_y[0] = y_map[z_index_back][x_index] * audio_ground_scale_y;
+            next_y[1] = y_map[z_index_back+1][x_index] * audio_ground_scale_y;
+            next_y[2] = y_map[z_index_back+2][x_index] * audio_ground_scale_y;
+            next_y[3] = y_map[z_index_back+3][x_index] * audio_ground_scale_y;
+            let new_max_diff = Math.max(next_y[1] - next_y[0], next_y[2] - next_y[1], next_y[3] - next_y[2]);
             if(z_index_back !== last_z_index || x_index !== last_x_index){
                 last_z_index = z_index_back;
                 last_x_index = x_index;
@@ -81,19 +77,19 @@ function move() {
             }
             if(touching_ground){
                 if(new_vert){
-                    if(y1 - y0 > max_y_diff + 1e-10){ // encountered a steeper path
-                        max_y_diff = y1 - y0;
+                    if(new_max_diff > max_y_diff + 1e-10){ // encountered a steeper path
+                        max_y_diff = new_max_diff;
                     }else{
                         touching_ground = false;
-                        player_vel_y = y_vel;
+                        player_vel_y = max_y_diff * vertex_fs;
                     }
                 }
-                player_pos_y = y1;
+                player_pos_y = next_y[1];
             }else{
-                if(player_pos_y < y_cont - 1e-5){
+                if(player_pos_y < next_y[1] - 1e-5){
                     touching_ground = true;
-                    player_pos_y = y_cont;
-                    max_y_diff = y1 - y0;
+                    player_pos_y = next_y[1];
+                    max_y_diff = new_max_diff;
                 }
             }
 
@@ -101,7 +97,7 @@ function move() {
 
 
             camera_x = player_pos_x;
-            camera_y = audio_ground_scale_y * 1.5 + (player_pos_y - audio_ground_scale_y)*0.5; // TODO chasing camera
+            camera_y = audio_ground_scale_y * 1.5 + (player_pos_y - audio_ground_scale_y)*0.8; // TODO chasing camera
 
             last_update_time = current_time;
     }

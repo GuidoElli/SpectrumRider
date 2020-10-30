@@ -6,9 +6,9 @@
 // let audio_ground_shape = [36, 17];
 
 //audio ground
-let audio_ground_scale_x = 250.0;
-let audio_ground_scale_y = 40.0;
-let audio_ground_scale_z = 500.0;
+let audio_ground_scale_x = 400.0;
+let audio_ground_scale_y = 80.0;
+let audio_ground_scale_z = 700.0;
 
 //scene
 let seconds_to_see = 10;
@@ -37,10 +37,10 @@ let camera_angle = 0.0;
 
 //enviroment
 let gravity = 600; // unitary mass (no acceleration parameters)
-let x_force = 15000;
+let x_force = 30 * audio_ground_scale_x;
 
 //player
-let player_max_vel_x = .0008 * audio_ground_scale_x;
+let player_max_vel_x = .8 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.95;
 let player_force_x = 0.0;
 let player_vel_x = 0.0;

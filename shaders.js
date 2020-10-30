@@ -35,16 +35,16 @@ void main() {
     vec3 lambertColor;
     
     float currentZ = -totSeconds * currentSongPercentage;
-    float currentTimeLineWidth = .03;
-    float shadeIn = .03;
-    float shadeOut = .25;
+    float currentTimeLineWidth = .01;
+    float shadeIn = .02;
+    float shadeOut = .2;
     float factor;
-    if(position.z > currentZ + currentTimeLineWidth * 0.5){
-    	  factor = (position.z - currentZ + currentTimeLineWidth * 0.5) / shadeOut;
+    if(position.z > currentZ + currentTimeLineWidth * 0.2){
+    	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / shadeOut;
 		  factor = clamp(factor, 0.0, 1.0);
         outColor = vec4(1.0-factor, 1.0-factor, 1.0-factor, 1.0);
-    }else if(position.z < currentZ - currentTimeLineWidth * 0.5){
-    	  factor = -(position.z - currentZ + currentTimeLineWidth * 0.5) / shadeIn;
+    }else if(position.z < currentZ - currentTimeLineWidth * 0.8){
+    	  factor = -(position.z - currentZ + currentTimeLineWidth * 0.8) / shadeIn;
 		  factor = clamp(factor, 0.0, 1.0);
         outColor = vec4(factor, factor, factor, 1.0);
         color = vec3(factor * position.y + (1.0-factor), factor * position.y + (1.0-factor), factor * position.y + (1.0-factor));
