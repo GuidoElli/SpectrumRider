@@ -2,17 +2,24 @@
 info = "var n_vertex_per_row = {0:d};\n".format(interp_data.shape[1])
 info += "var n_vertex_rows = {0:d};\n".format(interp_data.shape[0])
 info += "var n_vertex = {0:d};\n".format(interp_data.shape[0]*interp_data.shape[1])
+
+to add:
+- song_duration_seconds
+- vertex_fs (how many rows in 1 second)
+- y_map = [[0, 1, 2, ... , n-1], [n, n+1, ... , 2n-1], ..., [...]];
+- xz_map = [[-0.5, -0.493, ... ], ..., [...]] grid
 */
 
 
 let current_time = 0;
 let elapsed_time = 0;
+let last_update_time = 0;
 
-let gravity = .1;
-let x_force = .7;
+let gravity = .0004;
+let x_force = .003;
 
 //player
-let player_max_vel_x = .01 * audio_ground_scale_x;
+let player_max_vel_x = .0008 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2;
 
 let player_force_x = 0.0;
@@ -21,7 +28,7 @@ let player_pos_x = 0.0;
 let k_friction = 0.1;
 let player_force_y = -gravity;
 let player_vel_y = 0.0;
-let player_pos_y = audio_ground_scale_y * 2.4;
+let player_pos_y = audio_ground_scale_y * 2.0;
 
 //keyboard
 let up_pressed = false;
@@ -42,6 +49,12 @@ function move() {
     if(synchronized) {
         current_time = (new Date).getTime();
         elapsed_time = current_time-song_start_time;
+        let delta_t;
+        if (last_update_time){
+            delta_t = current_time - last_update_time;
+        }else{
+            delta_t = 0;
+        }
 
         //camera
         camera_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
@@ -59,10 +72,10 @@ function move() {
             player_force_y = -gravity;
 
             // compute new position and velocity
-            player_vel_x += player_force_x;
-            player_pos_x += player_vel_x;
-            player_vel_y += player_force_y;
-            player_pos_y += player_vel_y;
+            player_vel_x += player_force_x * delta_t;
+            player_pos_x += player_vel_x * delta_t;
+            player_vel_y += player_force_y * delta_t;
+            player_pos_y += player_vel_y * delta_t;
 
             //boundary control
             if(player_vel_x > player_max_vel_x){
@@ -85,6 +98,7 @@ function move() {
             // find 4 vertices and normals
             //
 
+            last_update_time = current_time;
     }else{
         camera_z = camera_z_offset;
     }
