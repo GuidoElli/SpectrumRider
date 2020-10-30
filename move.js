@@ -1,48 +1,13 @@
 /*
 info = "var n_vertex_per_row = {0:d};\n".format(interp_data.shape[1])
-info += "var n_vertex_rows = {0:d};\n".format(interp_data.shape[0])
+info += "var n_rows = {0:d};\n".format(interp_data.shape[0])
 info += "var n_vertex = {0:d};\n".format(interp_data.shape[0]*interp_data.shape[1])
 
 to add:
 - song_duration_seconds
 - vertex_fs (how many rows in 1 second)
 - y_map = [[0, 1, 2, ... , n-1], [n, n+1, ... , 2n-1], ..., [...]];
-- xz_map = [[-0.5, -0.493, ... ], ..., [...]] grid
 */
-
-
-let current_time = 0;
-let elapsed_time = 0;
-let last_update_time = 0;
-
-let gravity = .0004;
-let x_force = .003;
-
-//player
-let player_max_vel_x = .0008 * audio_ground_scale_x;
-let player_max_pos_x = audio_ground_scale_x / 2;
-
-let player_force_x = 0.0;
-let player_vel_x = 0.0;
-let player_pos_x = 0.0;
-let k_friction = 0.1;
-let player_force_y = -gravity;
-let player_vel_y = 0.0;
-let player_pos_y = audio_ground_scale_y * 2.0;
-
-//keyboard
-let up_pressed = false;
-let down_pressed = false;
-let right_pressed = false;
-let left_pressed = false;
-
-
-function vertex_at_pos(i) {
-
-}
-function normal_at_pos(i) {
-
-}
 
 
 function move() {
@@ -55,9 +20,8 @@ function move() {
         }else{
             delta_t = 0;
         }
+        current_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
 
-        //camera
-        camera_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
 
         //player
             //compute force
@@ -69,13 +33,15 @@ function move() {
                 player_force_x = 0.0;
                 player_vel_x *= 0.9
             }
-            player_force_y = -gravity;
 
             // compute new position and velocity
-            player_vel_x += player_force_x * delta_t;
-            player_pos_x += player_vel_x * delta_t;
-            player_vel_y += player_force_y * delta_t;
-            player_pos_y += player_vel_y * delta_t;
+            if(!touching_ground){
+                player_vel_y += -gravity * delta_t / 1000;
+                player_pos_y += player_vel_y * delta_t / 1000;
+            }
+            player_vel_x += player_force_x * delta_t / 1000;
+            player_pos_x += player_vel_x * delta_t / 1000;
+
 
             //boundary control
             if(player_vel_x > player_max_vel_x){
@@ -90,17 +56,54 @@ function move() {
                 player_pos_x = -player_max_pos_x;
                 player_vel_x = 0.0;
             }
-            if(player_pos_y < 0){
-                player_pos_y = -player_pos_y;
-                player_vel_y = -player_vel_y;
+
+            let x_index_cont = (player_pos_x / audio_ground_scale_x + 0.5) * n_vertex_per_row;
+            let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * n_rows;
+            let x_index = Math.round(x_index_cont);
+            let z_index_forth = Math.ceil(z_index_cont);
+            let z_index_back = Math.floor(z_index_cont);
+            if(z_index_forth === z_index_back){
+                z_index_forth = z_index_back + 1;
+            }
+            let alpha = z_index_forth - z_index_cont;
+            let beta = z_index_cont - z_index_back;
+            let y0 = y_map[z_index_back][x_index] * audio_ground_scale_y;
+            let y1 = y_map[z_index_forth][x_index] * audio_ground_scale_y;
+            let y_cont = y0 * alpha + y1 * beta;
+            let y_vel = (y1 - y0) * vertex_fs;
+
+            if(z_index_back !== last_z_index || x_index !== last_x_index){
+                last_z_index = z_index_back;
+                last_x_index = x_index;
+                new_vert = true;
+            }else{
+                new_vert = false;
+            }
+            if(touching_ground){
+                if(new_vert){
+                    if(y1 - y0 > max_y_diff + 1e-10){ // encountered a steeper path
+                        max_y_diff = y1 - y0;
+                    }else{
+                        touching_ground = false;
+                        player_vel_y = y_vel;
+                    }
+                }
+                player_pos_y = y1;
+            }else{
+                if(player_pos_y < y_cont - 1e-5){
+                    touching_ground = true;
+                    player_pos_y = y_cont;
+                    max_y_diff = y1 - y0;
+                }
             }
 
-            // find 4 vertices and normals
-            //
+
+
+
+            camera_x = player_pos_x;
+            camera_y = audio_ground_scale_y * 1.5 + (player_pos_y - audio_ground_scale_y)*0.5; // TODO chasing camera
 
             last_update_time = current_time;
-    }else{
-        camera_z = camera_z_offset;
     }
 }
 

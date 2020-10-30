@@ -576,3 +576,4 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 	}
 
 }
+

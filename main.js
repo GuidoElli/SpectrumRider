@@ -39,38 +39,137 @@ gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 gl.clearColor(0.0, 0.0, 0.0, 0.0);
 gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 gl.enable(gl.DEPTH_TEST);
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+gl.enable(gl.BLEND);
 
-let vertexShader = utils.createShader(gl, gl.VERTEX_SHADER, audio_ground_vs);
-let fragmentShader = utils.createShader(gl, gl.FRAGMENT_SHADER, audio_ground_fs);
-let audio_ground_program = utils.createProgram(gl, vertexShader, fragmentShader);
+
+
+
+
+// Audio Ground
+let vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, audio_ground_vs);
+let fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, audio_ground_fs);
+let audio_ground_program = utils.createProgram(gl, vertex_shader, fragment_shader);
 gl.useProgram(audio_ground_program);
 
-let positionAttributeLocation = gl.getAttribLocation(audio_ground_program, "inPosition");
-let normalAttributeLocation = gl.getAttribLocation(audio_ground_program, "inNormal");
-let matrixLocation = gl.getUniformLocation(audio_ground_program, "matrix");
-let lightDirectionHandle = gl.getUniformLocation(audio_ground_program, 'lightDirection');
-let lightColorHandle = gl.getUniformLocation(audio_ground_program, 'lightColor');
-let normalMatrixPositionHandle = gl.getUniformLocation(audio_ground_program, 'nMatrix');
-let lightDirMatrixPositionHandle = gl.getUniformLocation(audio_ground_program, 'lightDirMatrix');
+let audio_ground_position_attribute = gl.getAttribLocation(audio_ground_program, 'inPosition');
+let audio_ground_normal_attribute = gl.getAttribLocation(audio_ground_program, 'inNormal');
+let audio_ground_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'matrix');
+let audio_ground_light_direction_uniform = gl.getUniformLocation(audio_ground_program, 'lightDirection');
+let audio_ground_light_color_uniform = gl.getUniformLocation(audio_ground_program, 'lightColor');
+let audio_ground_normal_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'nMatrix');
+let audio_ground_light_dir_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'lightDirMatrix');
+let audio_ground_tot_seconds_uniform = gl.getUniformLocation(audio_ground_program, 'totSeconds');
+let audio_ground_current_song_percentage_uniform = gl.getUniformLocation(audio_ground_program, 'currentSongPercentage');
 
 let audio_ground_vao = [];
+let audio_ground_position_buffer = [];
+let audio_ground_normal_buffer = [];
+let audio_ground_index_buffer = [];
 for(let i = 0; i < audio_ground_vert.length; ++i){
+
     audio_ground_vao[i] = gl.createVertexArray();
     gl.bindVertexArray(audio_ground_vao[i]);
 
-    let positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    audio_ground_position_buffer[i] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, audio_ground_position_buffer[i]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(audio_ground_vert[i]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(positionAttributeLocation);
-    gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(audio_ground_position_attribute);
+    gl.vertexAttribPointer(audio_ground_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
-    let normalBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+    audio_ground_normal_buffer[i] = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, audio_ground_normal_buffer[i]);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(audio_ground_norm[i]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(normalAttributeLocation);
-    gl.vertexAttribPointer(normalAttributeLocation, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(audio_ground_normal_attribute);
+    gl.vertexAttribPointer(audio_ground_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
-    let indexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    audio_ground_index_buffer[i] = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, audio_ground_index_buffer[i]);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(audio_ground_ind[i]), gl.STATIC_DRAW);
 }
+
+
+
+
+// Player
+let player_vert = [0.0, 1.0, 0.0];
+let player_norm = [0.0, 1.0, 0.0];
+///// Creates vertices
+let k = 3;
+for(let j = 1; j < 18; j++) {
+    for(let i = 0; i < 36; i++) {
+        let x = Math.sin(i*10.0/180.0*Math.PI) * Math.sin(j*10.0/180.0*Math.PI);
+        let y = Math.cos(j*10.0/180.0*Math.PI);
+        let z = Math.cos(i*10.0/180.0*Math.PI) * Math.sin(j*10.0/180.0*Math.PI);
+        player_norm[k] = x;
+        player_vert[k++] = x;
+        player_norm[k] = y;
+        player_vert[k++] = y+1;
+        player_norm[k] = z;
+        player_vert[k++] = z+1;
+    }
+}
+let lastVert = k;
+player_norm[k] = 0.0;
+player_vert[k++] = 0.0;
+player_norm[k] = -1.0;
+player_vert[k++] = -1.0;
+player_norm[k] = 0.0;
+player_vert[k++] = 0.0;
+////// Creates indices
+let player_ind = [];
+k = 0;
+///////// Lateral part
+for(let i = 0; i < 36; i++) {
+    for(let j = 1; j < 17; j++) {
+        player_ind[k++] = i + (j-1) * 36 + 1;
+        player_ind[k++] = i + j * 36 + 1;
+        player_ind[k++] = (i + 1) % 36 + (j-1) * 36 + 1;
+        player_ind[k++] = (i + 1) % 36 + (j-1) * 36 + 1;
+        player_ind[k++] = i + j * 36 + 1;
+        player_ind[k++] = (i + 1) % 36 + j * 36 + 1;
+    }
+}
+//////// Upper Cap
+for(let i = 0; i < 36; i++) {
+    player_ind[k++] = 0;
+    player_ind[k++] = i + 1;
+    player_ind[k++] = (i + 1) % 36 + 1;
+}
+//////// Lower Cap
+for(let i = 0; i < 36; i++) {
+    player_ind[k++] = lastVert;
+    player_ind[k++] = (i + 1) % 36 + 541;
+    player_ind[k++] = i + 541;
+}
+
+
+
+vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
+fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
+let player_program = utils.createProgram(gl, vertex_shader, fragment_shader);
+gl.useProgram(player_program);
+
+let player_position_attribute = gl.getAttribLocation(player_program, 'inPosition');
+let player_normal_attribute = gl.getAttribLocation(player_program, 'inNormal');
+let player_matrix_uniform = gl.getUniformLocation(player_program, 'matrix');
+let player_normal_matrix_uniform = gl.getUniformLocation(player_program, 'nMatrix');
+
+let player_vao = gl.createVertexArray();
+gl.bindVertexArray(player_vao);
+
+let player_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(player_position_attribute);
+gl.vertexAttribPointer(player_position_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let player_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, player_normal_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(player_normal_attribute);
+gl.vertexAttribPointer(player_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let player_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, player_index_buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
