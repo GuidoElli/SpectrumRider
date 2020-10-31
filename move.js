@@ -23,11 +23,11 @@ function move() {
         current_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
 
         if (elapsed_time/1000 > song_duration_seconds - 0.2){
-            alert("You Won!");
             return;
         }else if(elapsed_time/1000 < 0.2){
             return;
         }
+
         //player
         //compute force
         if(left_pressed && !right_pressed) {
