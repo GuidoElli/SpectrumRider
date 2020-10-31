@@ -22,10 +22,10 @@ function move() {
         }
         current_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
 
-        if (elapsed_time/1000 > song_duration_seconds - 0.4){
+        if (elapsed_time/1000 > song_duration_seconds - 0.2){
             alert("You Won!");
             return;
-        }else if(elapsed_time/1000 < 0.4){
+        }else if(elapsed_time/1000 < 0.2){
             return;
         }
         //player
@@ -85,7 +85,7 @@ function move() {
                          next_y[0] - current_y > next_y[1] - next_y[0]){
                     touching_ground = false;
                     just_landed = true;
-                    player_vel_y = last_max_diff * vertex_fs;
+                    player_vel_y = last_max_diff * vertex_sample_rate;
                     player_pos_y = current_y * alpha + next_y[0] * beta;
                 }else{
                     player_pos_y = current_y * alpha + next_y[0] * beta;
