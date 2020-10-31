@@ -5,12 +5,12 @@ function draw() {
 
     current_song_percentage = elapsed_time / song_duration_seconds * .001;
 
-    gl.clearColor(0.1, 0.1, 0.1, 0.2);
+    gl.clearColor(0.0, 0.0, 0.0, 0.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // view/perspective
     let view_matrix = utils.MakeView(camera_x, camera_y, current_z + camera_z_offset, camera_elev, camera_angle);
-    let perspective_matrix = utils.MakePerspective(55, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
+    let perspective_matrix = utils.MakePerspective(60, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
     let light_dir_matrix = utils.invertMatrix(utils.transposeMatrix(view_matrix));
 
     // Audio Ground

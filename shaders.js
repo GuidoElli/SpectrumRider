@@ -37,7 +37,7 @@ void main() {
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
     float shadeIn = .02;
-    float shadeOut = .2;
+    float shadeOut = .13;
     float factor;
     if(position.z > currentZ + currentTimeLineWidth * 0.2){
     	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / shadeOut;
@@ -48,8 +48,8 @@ void main() {
 		  factor = clamp(factor, 0.0, 1.0);
         outColor = vec4(factor, factor, factor, 1.0);
         color = vec3(factor * position.y + (1.0-factor), factor * position.y + (1.0-factor), factor * position.y + (1.0-factor));
-		  lambertColor = color * lightColor * max(-dot(lDir,nNormal), 0.0);
-		  outColor = vec4(clamp(lambertColor, 0.0, 1.0), 1.0);
+		  //lambertColor = color * lightColor * max(-dot(lDir,nNormal), 0.0);
+		  outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
     }else{
         outColor = vec4(1.0, 1.0, 1.0, 1.0);
     }
@@ -77,5 +77,5 @@ in vec3 fsNormal;
 out vec4 outColor;
 
 void main() {
-	 outColor = vec4(0.0, 1.0, 0.0, 1.0);
+	 outColor = vec4(0.6, 0.0, 0.9, 1.0);
 }`;

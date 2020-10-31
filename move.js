@@ -22,7 +22,12 @@ function move() {
         }
         current_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
 
-
+        if (elapsed_time/1000 > song_duration_seconds - 0.4){
+            alert("You Won!");
+            return;
+        }else if(elapsed_time/1000 < 0.4){
+            return;
+        }
         //player
         //compute force
         if(left_pressed && !right_pressed) {
@@ -31,12 +36,7 @@ function move() {
             player_force_x = x_force;
         }else{
             player_force_x = 0.0;
-            player_vel_x *= 0.9
-        }
-        if(!up_pressed && down_pressed) {
-            player_force_y = -down_force;
-        }else{
-            player_force_y = -gravity;
+            player_vel_x *= 0.7;
         }
 
         // x
@@ -102,15 +102,18 @@ function move() {
                     touching_ground = true;
                     player_pos_y = next_y[0] * alpha + next_y[1] * beta;
                 }else{ //still in the air
-                    if(up_pressed){
+                    if(up_pressed && !down_pressed){
                         if(player_vel_y < -max_vel_y_up_button){
-                            player_vel_y += up_force * delta_t / 1000;
+                            player_force_y = up_force;
                         }else{
-                            player_vel_y += -gravity * delta_t / 1000;
+                            player_force_y = -gravity;
                         }
+                    }else if(down_pressed && !up_pressed){
+                        player_force_y = -down_force;
                     }else{
-                        player_vel_y += -gravity * delta_t / 1000;
+                        player_force_y = -gravity;
                     }
+                    player_vel_y += player_force_y * delta_t / 1000;
                     player_pos_y += player_vel_y * delta_t / 1000;
                 }
             }
@@ -119,10 +122,9 @@ function move() {
         last_max_diff = new_max_diff;
 
 
-
-
         camera_x = player_pos_x;
-        camera_y = audio_ground_scale_y * 1.5 + (player_pos_y - audio_ground_scale_y)*0.8; // TODO chasing camera
+        let coeff = player_pos_y/camera_y_min + 1 / (player_pos_y/camera_y_min + 1);
+        camera_y = camera_y_min * coeff;
 
         last_update_time = current_time;
     }
