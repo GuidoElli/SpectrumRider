@@ -68,6 +68,7 @@ let last_z_index = 0;
 let last_x_index = 0;
 let new_vert = false;
 let last_max_diff = 0;
+let just_landed = false;
 
 
 //directional light

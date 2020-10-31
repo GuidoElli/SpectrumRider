@@ -84,7 +84,9 @@ function move() {
                          next_y[0] - current_y < current_y - prev_y[0] &&
                          next_y[0] - current_y > next_y[1] - next_y[0]){
                     touching_ground = false;
+                    just_landed = true;
                     player_vel_y = last_max_diff * vertex_fs;
+                    player_pos_y = current_y * alpha + next_y[0] * beta;
                 }else{
                     player_pos_y = current_y * alpha + next_y[0] * beta;
                 }
@@ -92,21 +94,27 @@ function move() {
                 player_pos_y = current_y * alpha + next_y[0] * beta;
             }
         }else{ // not on ground
-            if(player_pos_y < next_y[1] - 1e-5){ //now on ground
-                touching_ground = true;
-                player_pos_y = next_y[0] * alpha + next_y[1] * beta;
-            }else{ //still in the air
-                if(up_pressed){
-                    if(player_vel_y < -max_vel_y_up_button){
-                        player_vel_y += up_force * delta_t / 1000;
+            if(just_landed){
+                player_pos_y += player_vel_y * delta_t / 1000;
+                just_landed = false;
+            }else{
+                if(player_pos_y < next_y[1] - 1e-5 && !just_landed){ //now on ground
+                    touching_ground = true;
+                    player_pos_y = next_y[0] * alpha + next_y[1] * beta;
+                }else{ //still in the air
+                    if(up_pressed){
+                        if(player_vel_y < -max_vel_y_up_button){
+                            player_vel_y += up_force * delta_t / 1000;
+                        }else{
+                            player_vel_y += -gravity * delta_t / 1000;
+                        }
                     }else{
                         player_vel_y += -gravity * delta_t / 1000;
                     }
-                }else{
-                    player_vel_y += -gravity * delta_t / 1000;
+                    player_pos_y += player_vel_y * delta_t / 1000;
                 }
-                player_pos_y += player_vel_y * delta_t / 1000;
             }
+
         }
         last_max_diff = new_max_diff;
 
