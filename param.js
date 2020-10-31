@@ -6,9 +6,9 @@
 // let audio_ground_shape = [36, 17];
 
 //audio ground
-let audio_ground_scale_x = 400.0;
-let audio_ground_scale_y = 80.0;
-let audio_ground_scale_z = 700.0;
+let audio_ground_scale_x = 600.0;
+let audio_ground_scale_y = 100.0;
+let audio_ground_scale_z = 800.0;
 
 //scene
 let seconds_to_see = 10;
@@ -36,8 +36,11 @@ let camera_angle = 0.0;
 
 
 //enviroment
-let gravity = 600; // unitary mass (no acceleration parameters)
+let gravity = 1500; // unitary mass (no acceleration parameters)
 let x_force = 30 * audio_ground_scale_x;
+let down_force = gravity * 9.0;
+let max_vel_y_up_button = 100.0;
+let up_force = gravity * 0.3;
 
 //player
 let player_max_vel_x = .8 * audio_ground_scale_x;
@@ -46,6 +49,7 @@ let player_force_x = 0.0;
 let player_vel_x = 0.0;
 let player_pos_x = 0.0;
 let k_friction = 0.1;
+let player_force_y = 0.0;
 let player_vel_y = 0.0;
 let player_pos_y = audio_ground_scale_y * 1.1;
 
@@ -57,11 +61,14 @@ let down_pressed = false;
 let right_pressed = false;
 let left_pressed = false;
 
+//motion
 let touching_ground = false;
-let max_y_diff = 0.0;
+let last_y_diff = 0.0;
 let last_z_index = 0;
 let last_x_index = 0;
 let new_vert = false;
+let last_max_diff = 0;
+
 
 //directional light
 let dirLightAlpha = -utils.degToRad(70.0);
