@@ -25,7 +25,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 
 
 # %% Initialization
-mp3 = AudioSegment.from_mp3('letsfuck.mp3')
+mp3 = AudioSegment.from_mp3('believer.mp3')
 _, path = tempfile.mkstemp()
 mp3.export(path, format="wav")
 del mp3
@@ -38,12 +38,12 @@ n_bands = 5
 bands_borders = np.array([20, 140, 500, 1000, 4000, 20000])
 # bands_borders = np.array([20, 800, 2000, 5000, 10000, 20000])
 upsample_freq = 5
-win_length_time = 0.1
+win_length_time = 0.07
 upsample_time = 5
-sanity = 1.7
+sanity = 1.5
 
 # %% program
-print("\nComputing audio spectrum...")
+print("\nAnalyzing Audio (1 of 2)...")
 win_length_samples = int(win_length_time * fs)
 n_frames = int(len(audio) / win_length_samples) - 1
 z_init_matrix = np.zeros((n_frames, n_bands))
@@ -67,7 +67,7 @@ data_values = z_init_matrix.reshape(-1, 1)
 range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
 range_y = np.arange(0, 1.0000000001, 1 / (n_bands - 1))
 data_points = np.zeros((len(data_values), 2))
-print("\nInterpolating...")
+print("\nComputing surface (2 of 2)...")
 for i in range(len(range_x)):
 	for j in range(len(range_y)):
 		data_points[i * len(range_y) + j, 0] = range_x[i]
@@ -76,7 +76,6 @@ interp_data = griddata(data_points, data_values, (grid_x, grid_y), method='cubic
 interp_data = interp_data[:interp_data.shape[0]-1, :, 0]
 
 # %% compute vertices, indices and normals
-print("\nComputing vertices, indices and normals...")
 max_vertices_per_block = 40000
 current_block = 0
 vertices = "var audio_ground_vert = [];\naudio_ground_vert[{0:d}] = [".format(current_block)
@@ -93,10 +92,10 @@ for i in tqdm(range(interp_data.shape[0])):
 	for j in range(interp_data.shape[1]):
 		current_vertex = i * interp_data.shape[1] + j
 		# %% vertex
-		vertices += "{0:.5f}, {1:.5f}, {2:.5f}".format(
+		vertices += "{0:.7f}, {1:.7f}, {2:.7f}".format(
 			grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0]*len(audio)/fs)
 		if is_last_block_row:
-			last_row_vertices += "{0:.5f}, {1:.5f}, {2:.5f}".format(
+			last_row_vertices += "{0:.7f}, {1:.7f}, {2:.7f}".format(
 				grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0] * len(audio) / fs)
 		if j != interp_data.shape[1]-1:
 			vertices += ","
@@ -183,7 +182,7 @@ for i in range(interp_data.shape[0]):
 	else:
 		info += "]];\n"
 info += "var song_duration_seconds = {0:.2f};".format(len(audio) / fs)
-info += "var vertex_fs = {0:.4f};".format(interp_data.shape[0] / (len(audio) / fs))
+info += "var vertex_sample_rate = {0:.4f};".format(interp_data.shape[0] / (len(audio) / fs))
 
 
 song_data = vertices + indices + normals + info

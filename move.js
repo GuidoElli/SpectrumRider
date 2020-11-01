@@ -57,7 +57,7 @@ function move() {
 
         // compute surface (based on vertex y-coordinate of 2 near consecutive vertices)
         let x_index_cont = (player_pos_x / audio_ground_scale_x + 0.5) * n_vertex_per_row;
-        let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * n_rows;
+        let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * n_rows * correction_coeff;
         let x_index = Math.round(x_index_cont);
         let z_index_back = Math.floor(z_index_cont);
         let current_y = y_map[z_index_back][x_index] * audio_ground_scale_y;
@@ -121,8 +121,8 @@ function move() {
         }
         last_max_diff = new_max_diff;
 
-
-        camera_x = player_pos_x;
+        let camera_x_old = camera_x;
+        camera_x += (player_pos_x - camera_x_old) * 0.1;
         let coeff = player_pos_y/camera_y_min + 1 / (player_pos_y/camera_y_min + 1);
         camera_y = camera_y_min * coeff;
 

@@ -23,11 +23,9 @@ song.ontimeupdate = function () {
     if(!song_begun){
         song_start_time = current;
         song_begun = true;
-    }else{
-        if(!synchronized){
-            synchronized = true;
-            song_start_time = current - song.currentTime * 1000;
-        }
+    }else if(!synchronized){
+        synchronized = true;
+        song_start_time = current - song.currentTime * 1000;
     }
 }
 
@@ -102,9 +100,9 @@ for(let j = 1; j < 18; j++) {
         player_norm[k] = x;
         player_vert[k++] = x;
         player_norm[k] = y;
-        player_vert[k++] = y+1;
+        player_vert[k++] = y;
         player_norm[k] = z;
-        player_vert[k++] = z+1;
+        player_vert[k++] = z;
     }
 }
 let lastVert = k;

@@ -3,14 +3,14 @@ function draw() {
 
     move();
 
-    current_song_percentage = elapsed_time / song_duration_seconds * .001;
+    current_song_percentage = elapsed_time / song_duration_seconds * .001 * correction_coeff;
 
     gl.clearColor(0.0, 0.0, 0.0, 0.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // view/perspective
-    let view_matrix = utils.MakeView(camera_x, camera_y, current_z + camera_z_offset, camera_elev, camera_angle);
-    let perspective_matrix = utils.MakePerspective(60, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
+    let view_matrix = utils.MakeView(camera_x, camera_y, current_z * correction_coeff + camera_z_offset, camera_elev, camera_angle);
+    let perspective_matrix = utils.MakePerspective(camera_fov, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
     let light_dir_matrix = utils.invertMatrix(utils.transposeMatrix(view_matrix));
 
     // Audio Ground
@@ -42,7 +42,7 @@ function draw() {
     gl.useProgram(player_program);
     gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
     let player_world_matrix = utils.MakeWorld(
-       player_pos_x, player_pos_y, current_z,
+       player_pos_x, player_pos_y + player_y_offset, current_z * correction_coeff,
        0.0, 0.0, 0.0,
        player_scale, player_scale, player_scale);
     let player_world_view_matrix = utils.multiplyMatrices(view_matrix, player_world_matrix);
