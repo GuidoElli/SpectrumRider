@@ -22,23 +22,20 @@ in vec3 position;
 in vec3 fsNormal;
 out vec4 outColor;
 
-uniform vec3 lightDirection;
-uniform vec3 lightColor;
-uniform mat4 lightDirMatrix;
 uniform float totSeconds;
 uniform float currentSongPercentage;
+uniform float bassIntensity;
+uniform float midIntensity;
+uniform float highIntensity;
 
 void main() {
     vec3 nNormal = normalize(fsNormal);
-    vec3 lDir = mat3(lightDirMatrix) * lightDirection;
-    vec3 color;
-    vec3 lambertColor;
-    
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
     float shadeIn = .02;
     float shadeOut = .13;
     float factor;
+    
     if(position.z > currentZ + currentTimeLineWidth * 0.2){
     	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / shadeOut;
 		  factor = clamp(factor, 0.0, 1.0);
@@ -46,9 +43,10 @@ void main() {
     }else if(position.z < currentZ - currentTimeLineWidth * 0.8){
     	  factor = -(position.z - currentZ + currentTimeLineWidth * 0.8) / shadeIn;
 		  factor = clamp(factor, 0.0, 1.0);
-        outColor = vec4(factor, factor, factor, 1.0);
-        color = vec3(factor * position.y + (1.0-factor), factor * position.y + (1.0-factor), factor * position.y + (1.0-factor));
-		  //lambertColor = color * lightColor * max(-dot(lDir,nNormal), 0.0);
+		  float red = factor * position.y * (0.5 + 0.3 * bassIntensity + 0.2 * midIntensity + 0.4 * highIntensity) + (1.0-factor);
+		  float green = factor * position.y * (0.5 + 0.3 * bassIntensity + 0.4 * midIntensity + 0.1 * highIntensity) + (1.0-factor);
+		  float blue = factor * position.y * (0.5 + 0.3 * bassIntensity + 0.1 * midIntensity + 0.4 * highIntensity) + (1.0-factor);
+        vec3 color = vec3(red, green, blue);
 		  outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
     }else{
         outColor = vec4(1.0, 1.0, 1.0, 1.0);

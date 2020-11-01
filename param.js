@@ -1,11 +1,6 @@
-//to do in python
-// let pattern_bass = [];
-// let pattern_mid = [];
-// let pattern_high = [];
-// let audio_ground_shape = [36, 17];
 
 //audio ground
-let audio_ground_scale_x = 800.0;
+let audio_ground_scale_x = 1300.0;
 let audio_ground_scale_y = 180.0;
 let audio_ground_scale_z = 1700.0;
 
@@ -34,6 +29,10 @@ let camera_elev = -25.0;
 let camera_angle = 0.0;
 
 
+//lights
+let current_bass_light = 0.0;
+let current_mid_light = 0.0;
+let current_high_light = 0.0;
 
 
 //enviroment
@@ -44,7 +43,7 @@ let max_vel_y_up_button = 340.0;
 let up_force = gravity * 1.4;
 
 //player
-let player_max_vel_x = 1.2 * audio_ground_scale_x;
+let player_max_vel_x = 0.8 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.95;
 let player_force_x = 0.0;
 let player_vel_x = 0.0;

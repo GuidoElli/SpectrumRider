@@ -51,12 +51,12 @@ gl.useProgram(audio_ground_program);
 let audio_ground_position_attribute = gl.getAttribLocation(audio_ground_program, 'inPosition');
 let audio_ground_normal_attribute = gl.getAttribLocation(audio_ground_program, 'inNormal');
 let audio_ground_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'matrix');
-let audio_ground_light_direction_uniform = gl.getUniformLocation(audio_ground_program, 'lightDirection');
-let audio_ground_light_color_uniform = gl.getUniformLocation(audio_ground_program, 'lightColor');
 let audio_ground_normal_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'nMatrix');
-let audio_ground_light_dir_matrix_uniform = gl.getUniformLocation(audio_ground_program, 'lightDirMatrix');
 let audio_ground_tot_seconds_uniform = gl.getUniformLocation(audio_ground_program, 'totSeconds');
 let audio_ground_current_song_percentage_uniform = gl.getUniformLocation(audio_ground_program, 'currentSongPercentage');
+let audio_ground_bass_light_uniform = gl.getUniformLocation(audio_ground_program, 'bassIntensity');
+let audio_ground_mid_light_uniform = gl.getUniformLocation(audio_ground_program, 'midIntensity');
+let audio_ground_high_light_uniform = gl.getUniformLocation(audio_ground_program, 'highIntensity');
 
 let audio_ground_vao = [];
 let audio_ground_position_buffer = [];
