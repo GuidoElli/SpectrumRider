@@ -1,7 +1,7 @@
 
 //audio ground
 let audio_ground_scale_x = 1300.0;
-let audio_ground_scale_y = 180.0;
+let audio_ground_scale_y = 230.0;
 let audio_ground_scale_z = 1700.0;
 
 //scene
