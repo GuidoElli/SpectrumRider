@@ -48,11 +48,12 @@ void main() {
     float shadeOut = .13;
     float factor;
     
-	 float h = (noise(position.z/20.0));
-	 float s = 0.75;
-	 float v = clamp( nNormal.z + bassIntensity*0.3, 0.0, 1.0);
+	 float h = (noise(position.z/15.0));
+	 float s = 0.65;
+	 float v = clamp( nNormal.z + pow(bassIntensity, 2.0)*0.5, 0.0, 1.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	
+	 // current line
     if(position.z > currentZ + currentTimeLineWidth * 0.2){ 						//past
     	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / shadeOut;
 		  factor = clamp(factor, 0.0, 1.0);
@@ -66,7 +67,7 @@ void main() {
 		      clamp(factor * color.b + (1.0-factor), 0.0, 1.0),
 		      1.0);
     }else{   														  //current line
-        outColor = vec4(1, 1.0, 1.0, 1.0);
+        outColor = vec4(1.0, 1.0, 1.0, 1.0);
     }
 }
 `;

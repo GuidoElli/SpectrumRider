@@ -12,6 +12,10 @@ to add:
 // let pattern_mid = [];
 // let pattern_high = [];
 // let audio_ground_shape = [36, 17];
+
+
+Objects:
+
 */
 
 
@@ -119,7 +123,6 @@ function update() {
                 player_pos_y += player_vel_y * delta_t / 1000;
             }
         }
-
     }
     last_max_diff = new_max_diff;
 
@@ -138,8 +141,8 @@ function update() {
 
 
     //colors
-    let white_coeff = 0.3;
-    gl_clear_color.r = white_coeff + (0.7 - white_coeff) * current_bass_light;
+    let white_coeff = 0.05;
+    gl_clear_color.r = white_coeff + (0.8 - white_coeff) * Math.pow(current_bass_light, 2.0);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
 
