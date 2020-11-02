@@ -137,6 +137,12 @@ function update() {
     camera_y = camera_y_min * coeff;
 
 
+    //colors
+    let white_coeff = 0.3;
+    gl_clear_color.r = white_coeff + (0.7 - white_coeff) * current_bass_light;
+    gl_clear_color.g = gl_clear_color.r
+    gl_clear_color.b = gl_clear_color.r
+
     last_update_time = current_time;
 
 }

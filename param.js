@@ -7,7 +7,7 @@ let audio_ground_scale_z = 1700.0;
 //scene
 let correction_coeff = 1 + 0.2 / 270;
 
-let seconds_to_see = 15;
+let seconds_to_see = 12.0;
 let current_z = 0.0;
 let current_song_percentage = 0.0;
 let current_time = 0;
@@ -72,11 +72,9 @@ let last_max_diff = 0;
 let just_landed = false;
 
 
-//directional light
-let dirLightAlpha = -utils.degToRad(70.0);
-let dirLightBeta  = -utils.degToRad(30.0);
-let directionalLight = [Math.cos(dirLightAlpha) * Math.cos(dirLightBeta),
-    Math.sin(dirLightAlpha),
-    Math.cos(dirLightAlpha) * Math.sin(dirLightBeta)
-];
-let directionalLightColor = [0.7, 1.0, 0.7];
+// colors
+let gl_clear_color = {
+    r: 0.0,
+    g: 0.0,
+    b: 0.0
+}

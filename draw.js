@@ -6,7 +6,7 @@ function draw() {
 
         current_song_percentage = elapsed_time / song_duration_seconds * .001 * correction_coeff;
 
-        gl.clearColor(0.0, 0.0, 0.0, 0.0);
+        gl.clearColor(gl_clear_color.r, gl_clear_color.g, gl_clear_color.b, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         // view/perspective
