@@ -78,7 +78,7 @@ function update() {
     let y_curr = y_map[z_index][x_index] * audio_ground_scale_y;
     let y_prev = [];
     let y_next = [];
-    let range = 5;
+    let range = 4;
     //compute path
     for(let i = 1; i <= range; i++){
         if(left_pressed && !right_pressed) {
@@ -139,6 +139,9 @@ function update() {
                y_next[0] - y_curr < y_curr - y_prev[0]){
                 touching_ground = false;
                 player_vel_y = last_max_diff * vertex_sample_rate;
+                if(player_vel_y > player_max_vel_y_up){
+                    player_vel_y = player_max_vel_y_up;
+                }
                 player_pos_y += player_vel_y * delta_t / 1000;
             }else{
                 player_pos_y = y_cont;

@@ -1,7 +1,7 @@
 
 //audio ground
 let audio_ground_scale_x = 3.5;
-let audio_ground_scale_y = 0.5;
+let audio_ground_scale_y = 0.7;
 let audio_ground_scale_z = 4.5;
 
 //scene
@@ -17,7 +17,7 @@ let last_update_time = 0;
 //camera
 let camera_x = 0.0;
 
-let camera_y_min = audio_ground_scale_y * 1.3;
+let camera_y_min = audio_ground_scale_y * 0.8;
 let camera_y = camera_y_min;
 
 let camera_z_offset = 0.9;
@@ -35,14 +35,15 @@ let current_high_light = 0.0;
 
 //enviroment
 let gravity = 9; // unitary mass (no acceleration parameters)
-let x_force = 10 * audio_ground_scale_x;
+let x_force = 20 * audio_ground_scale_x;
 let down_force = gravity * 7.0;
 let max_vel_y_up_button = 1.5 * audio_ground_scale_y;
 let up_force = gravity * 1.4;
 
 //player
 let player_max_vel_x = 1.05 * audio_ground_scale_x;
-let player_max_pos_x = audio_ground_scale_x / 2 * 0.99;
+let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
+let player_max_vel_y_up = 15 * audio_ground_scale_y;
 
 let player_force_x = 0.0;
 let player_vel_x = 0.0;

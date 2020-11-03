@@ -12,7 +12,6 @@ function draw() {
         // view/perspective
         let view_matrix = utils.MakeView(camera_x, camera_y, current_z * correction_coeff + camera_z_offset, camera_elev, camera_angle);
         let perspective_matrix = utils.MakePerspective(camera_fov, gl.canvas.width/gl.canvas.height, 0.1, seconds_to_see * audio_ground_scale_z);
-        let light_dir_matrix = utils.invertMatrix(utils.transposeMatrix(view_matrix));
 
         // Audio Ground
         gl.useProgram(audio_ground_program);
@@ -22,7 +21,7 @@ function draw() {
            audio_ground_scale_x, audio_ground_scale_y, audio_ground_scale_z);
         let audio_ground_world_view_matrix = utils.multiplyMatrices(view_matrix, audio_ground_world_matrix);
         let audio_ground_projection_matrix = utils.multiplyMatrices(perspective_matrix, audio_ground_world_view_matrix);
-        let audio_ground_normal_matrix = utils.invertMatrix(utils.transposeMatrix(audio_ground_world_view_matrix));
+        let audio_ground_normal_matrix = utils.invertMatrix(utils.transposeMatrix(audio_ground_world_matrix));
 
         gl.uniformMatrix4fv(audio_ground_matrix_uniform, gl.FALSE, utils.transposeMatrix(audio_ground_projection_matrix));
         gl.uniformMatrix4fv(audio_ground_normal_matrix_uniform, gl.FALSE, utils.transposeMatrix(audio_ground_normal_matrix));

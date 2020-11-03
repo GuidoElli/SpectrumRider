@@ -50,7 +50,7 @@ void main() {
     
 	 float h = (noise(position.z/15.0)*0.9 + pow(bassIntensity, 2.0)*0.1);
 	 float s = 0.65;
-	 float v = clamp( abs(1.0-nNormal.y) + pow(bassIntensity, 2.0)*0.7, 0.0, 1.0);
+	 float v = 0.2 + clamp( pow(abs(1.0-nNormal.y), 0.5)*0.7 + pow(bassIntensity, 2.0)*0.7, 0.0, 0.8);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	
 	 // current line
