@@ -45,12 +45,12 @@ void main() {
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
     float shadeIn = .02;
-    float shadeOut = .13;
+    float shadeOut = .09;
     float factor;
     
-	 float h = (noise(position.z/15.0));
+	 float h = (noise(position.z/15.0)*0.9 + pow(bassIntensity, 2.0)*0.1);
 	 float s = 0.65;
-	 float v = clamp( nNormal.z + pow(bassIntensity, 2.0)*0.7, 0.0, 1.0);
+	 float v = clamp( abs(1.0-nNormal.y) + pow(bassIntensity, 2.0)*0.7, 0.0, 1.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	
 	 // current line
