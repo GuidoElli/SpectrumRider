@@ -17,8 +17,12 @@ to add:
 Objects:
 
 */
+//keyboard
+let up_pressed = false;
+let down_pressed = false;
+let right_pressed = false;
+let left_pressed = false;
 
-//motion
 let touching_ground = false;
 let last_z_index = 0;
 let last_x_index = 0;
@@ -26,6 +30,12 @@ let new_vert = false;
 let last_max_diff = 0;
 let just_landed = false;
 
+let player_force_x = 0.0;
+let player_vel_x = 0.0;
+let player_pos_x = 0.0;
+let player_force_y = 0.0;
+let player_vel_y = 0.0;
+let player_pos_y = audio_ground_scale_y * 1.1;
 
 function update() {
     current_time = (new Date).getTime();
@@ -179,13 +189,15 @@ function update() {
 
 
     //camera
+
     let camera_x_old = camera_x;
     let camera_x_target = player_pos_x;
     camera_x += (camera_x_target - camera_x_old) * 0.2;
 
     let camera_y_old = camera_y;
     let camera_y_target = camera_y_min * (player_pos_y/camera_y_min + 1 / (player_pos_y/camera_y_min + 1));
-    camera_y += (camera_y_target - camera_y_old) * 0.5;
+    camera_y += (camera_y_target - camera_y_old) * 0.4;
+    camera_z_offset = camera_z_offset_min + (camera_y - camera_y_min) * 0.5;
 
 
     //colors
