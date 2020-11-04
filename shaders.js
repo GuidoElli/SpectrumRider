@@ -48,9 +48,9 @@ void main() {
     float shadeOut = .13;
     float factor;
     
-	 float h = (noise(position.z/15.0)*1.5 + pow(bassIntensity, 2.0)*0.1 + pow(midIntensity, 2.0)*0.2 + pow(highIntensity, 2.0)*0.2);
-	 float s = 0.75;
-	 float v = 0.2 + clamp( pow(abs(1.0-nNormal.y), 0.5)*0.8 + pow(bassIntensity, 2.0)*0.6 + pow(midIntensity, 2.0)*0.1 + pow(highIntensity, 2.0)*0.1, 0.0, 0.8);
+	 float h = noise(position.z/20.0);
+	 float s = 0.6 + clamp( pow(bassIntensity, 2.0)*0.1 + pow(midIntensity, 2.0)*0.2 + pow(highIntensity, 2.0)*0.2, 0.0, 0.4);
+	 float v = 0.2 + clamp( pow(abs(1.0-nNormal.y), 0.5)*0.8 + pow(bassIntensity, 2.0)*0.6 + pow(midIntensity, 2.0)*0.15 + pow(highIntensity, 2.0)*0.15, 0.0, 0.8);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	
 	 // current line
@@ -71,6 +71,16 @@ void main() {
     }
 }
 `;
+
+
+
+
+
+
+
+
+
+
 
 let player_vs = `#version 300 es
 
@@ -110,7 +120,61 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = 0.75;
+	 float h = sin(nNormal.z*2.0)*0.3 * sin(nNormal.x*2.0)*0.3;
+	 float s = 1.0;
+	 float v = clamp( nNormal.z, 0.0, 1.0);
+	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
+	 outColor = vec4(color, 1.0);
+}`;
+
+
+
+
+
+
+
+
+
+
+let coin_vs = `#version 300 es
+
+in vec3 inPosition;
+in vec3 inNormal;
+out vec3 fsNormal;
+out vec3 position;
+
+uniform mat4 matrix;
+uniform mat4 nMatrix;     //matrix to transform normals
+
+void main() {
+    fsNormal = mat3(nMatrix) * normalize(inNormal); 
+    gl_Position = matrix * vec4(inPosition, 1.0);
+    position = inPosition;
+}`;
+
+let coin_fs = `#version 300 es
+
+precision mediump float;
+
+in vec3 fsNormal;
+in vec3 position;
+out vec4 outColor;
+
+vec3 hsv2rgb_smooth( in vec3 c ){
+vec3 rgb = clamp( abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0, 0.0, 1.0 );
+rgb = rgb*rgb*(3.0-2.0*rgb); // cubic smoothing
+return c.z * mix( vec3(1.0), rgb, c.y);
+}
+float rand(float n){return fract(sin(n) * 43758.5453123);}
+float noise(float p){
+float fl = floor(p);
+  float fc = fract(p);
+return mix(rand(fl), rand(fl + 1.0), fc);
+}
+
+void main() {
+	 vec3 nNormal = normalize(fsNormal);
+	 float h = 0.2;
 	 float s = 1.0;
 	 float v = clamp( nNormal.z, 0.0, 1.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);

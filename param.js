@@ -7,7 +7,7 @@ let audio_ground_scale_z = 4.5;
 //scene
 let correction_coeff = 1 + 0.2 / 270;
 
-let seconds_to_see = 10;
+let seconds_to_see = 6;
 let current_z = 0;
 let current_song_percentage = 0;
 let current_time = 0;
@@ -40,12 +40,26 @@ let gravity = 9; // unitary mass (no acceleration parameters)
 let x_force = 20 * audio_ground_scale_x;
 let down_force = gravity * 7.0;
 let max_vel_y_up_button = 2 * audio_ground_scale_y;
-let up_force = gravity * 1.4;
+let up_force = gravity * 4.5;
 let player_max_vel_x = 1.05 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
 let player_max_vel_y_up = 10 * audio_ground_scale_y;
-let player_scale = audio_ground_scale_x * 0.017;
+let player_scale = audio_ground_scale_x * 0.021;
 let player_y_offset = player_scale * 2;
+
+let touching_ground = false;
+let last_z_index = 0;
+let last_x_index = 0;
+let new_vert = false;
+let last_max_diff = 0;
+let just_landed = false;
+
+let player_force_x = 0.0;
+let player_vel_x = 0.0;
+let player_pos_x = 0.0;
+let player_force_y = 0.0;
+let player_vel_y = 0.0;
+let player_pos_y = audio_ground_scale_y * 1.1;
 
 
 // colors
@@ -55,5 +69,15 @@ let gl_clear_color = {
     b: 0.0
 }
 
+//keyboard
+let up_pressed = false;
+let down_pressed = false;
+let right_pressed = false;
+let left_pressed = false;
+
+
 
 // objects
+let coin_scale = 0.1;
+let coin_take_min_distance = 0.9;
+let taken_coins = new Array(coins_ground_pos.length).fill(false); //TODO false

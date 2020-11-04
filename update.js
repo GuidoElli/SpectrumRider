@@ -17,25 +17,7 @@ to add:
 Objects:
 
 */
-//keyboard
-let up_pressed = false;
-let down_pressed = false;
-let right_pressed = false;
-let left_pressed = false;
 
-let touching_ground = false;
-let last_z_index = 0;
-let last_x_index = 0;
-let new_vert = false;
-let last_max_diff = 0;
-let just_landed = false;
-
-let player_force_x = 0.0;
-let player_vel_x = 0.0;
-let player_pos_x = 0.0;
-let player_force_y = 0.0;
-let player_vel_y = 0.0;
-let player_pos_y = audio_ground_scale_y * 1.1;
 
 function update() {
     current_time = (new Date).getTime();
@@ -202,9 +184,25 @@ function update() {
 
     //colors
     let white_coeff = 0.05;
-    gl_clear_color.r = white_coeff + (0.7 - white_coeff) * Math.pow(current_bass_light, 2.0);
+    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(current_bass_light, 2.0);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
+
+
+
+    //objects
+    for(let i = 0; i < coins_ground_pos.length; i++){
+        let current_coin = coins_ground_pos[i];
+        let dx = current_coin[0]*audio_ground_scale_x - player_pos_x;
+        let dy = current_coin[1]*audio_ground_scale_y - player_pos_y;
+        let dz = current_coin[2]*audio_ground_scale_z - current_z;
+        let diff = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2))
+        if(diff < coin_take_min_distance){
+            taken_coins[i] = true;
+        }
+    }
+
+
 
     last_update_time = current_time;
 

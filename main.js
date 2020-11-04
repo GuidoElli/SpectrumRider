@@ -43,9 +43,9 @@ gl.enable(gl.DEPTH_TEST);
 
 
 // Audio Ground
-let vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, audio_ground_vs);
-let fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, audio_ground_fs);
-let audio_ground_program = utils.createProgram(gl, vertex_shader, fragment_shader);
+let audio_ground_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, audio_ground_vs);
+let audio_ground_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, audio_ground_fs);
+let audio_ground_program = utils.createProgram(gl, audio_ground_vertex_shader, audio_ground_fragment_shader);
 gl.useProgram(audio_ground_program);
 
 let audio_ground_position_attribute = gl.getAttribLocation(audio_ground_program, 'inPosition');
@@ -139,11 +139,9 @@ for(let i = 0; i < 36; i++) {
     player_ind[k++] = i + 541;
 }
 
-
-
-vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
-fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
-let player_program = utils.createProgram(gl, vertex_shader, fragment_shader);
+let player_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
+let player_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
+let player_program = utils.createProgram(gl, player_vertex_shader, player_fragment_shader);
 gl.useProgram(player_program);
 
 let player_position_attribute = gl.getAttribLocation(player_program, 'inPosition');
@@ -168,4 +166,38 @@ gl.vertexAttribPointer(player_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let player_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, player_index_buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+
+
+
+
+//objects
+//coins on ground
+let coin_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_vs);
+let coin_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, coin_fs);
+let coin_program = utils.createProgram(gl, coin_vertex_shader, coin_fragment_shader);
+gl.useProgram(coin_program);
+
+let coin_position_attribute = gl.getAttribLocation(coin_program, 'inPosition');
+let coin_normal_attribute = gl.getAttribLocation(coin_program, 'inNormal');
+let coin_matrix_uniform = gl.getUniformLocation(coin_program, 'matrix');
+let coin_normal_matrix_uniform = gl.getUniformLocation(coin_program, 'nMatrix');
+
+let coin_vao = gl.createVertexArray();
+gl.bindVertexArray(coin_vao);
+
+let coin_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.enableVertexAttribArray(coin_position_attribute);
+gl.vertexAttribPointer(coin_position_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let coin_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, coin_normal_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(coin_normal_attribute);
+gl.vertexAttribPointer(coin_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let coin_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);

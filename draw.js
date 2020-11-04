@@ -55,6 +55,28 @@ function draw() {
         gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
         gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
 
+
+        //coins
+        gl.useProgram(coin_program);
+        for(let i = 0; i < coins_ground_pos.length; ++i){
+            let current_coin = coins_ground_pos[i];
+            if(!taken_coins[i] && current_coin[2]*audio_ground_scale_z < current_z+1 && current_coin[2]*audio_ground_scale_z > current_z - seconds_to_see*audio_ground_scale_z){
+                gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer[i]);
+                let coin_world_matrix = utils.MakeWorld(
+                   current_coin[0]*audio_ground_scale_x, (current_coin[1]+0.03)*audio_ground_scale_y, current_coin[2]*audio_ground_scale_z*correction_coeff,
+                   0.0, 0.0, 0.0,
+                   coin_scale, coin_scale, coin_scale);
+                let coin_world_view_matrix = utils.multiplyMatrices(view_matrix, coin_world_matrix);
+                let coin_projection_matrix = utils.multiplyMatrices(perspective_matrix, coin_world_view_matrix);
+                let coin_normal_matrix = utils.invertMatrix(utils.transposeMatrix(coin_world_matrix));
+                gl.uniformMatrix4fv(coin_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_projection_matrix));
+                gl.uniformMatrix4fv(coin_normal_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_normal_matrix));
+
+                gl.bindVertexArray(coin_vao);
+                gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
+                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+            }
+        }
     }
 
     window.requestAnimationFrame(draw);
