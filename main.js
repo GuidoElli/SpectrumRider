@@ -172,32 +172,32 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DR
 
 
 //objects
-//coins on ground
-let coin_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_vs);
-let coin_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, coin_fs);
-let coin_program = utils.createProgram(gl, coin_vertex_shader, coin_fragment_shader);
-gl.useProgram(coin_program);
+//tokens on ground
+let token_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, token_vs);
+let token_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, token_fs);
+let token_program = utils.createProgram(gl, token_vertex_shader, token_fragment_shader);
+gl.useProgram(token_program);
 
-let coin_position_attribute = gl.getAttribLocation(coin_program, 'inPosition');
-let coin_normal_attribute = gl.getAttribLocation(coin_program, 'inNormal');
-let coin_matrix_uniform = gl.getUniformLocation(coin_program, 'matrix');
-let coin_normal_matrix_uniform = gl.getUniformLocation(coin_program, 'nMatrix');
+let token_position_attribute = gl.getAttribLocation(token_program, 'inPosition');
+let token_normal_attribute = gl.getAttribLocation(token_program, 'inNormal');
+let token_matrix_uniform = gl.getUniformLocation(token_program, 'matrix');
+let token_normal_matrix_uniform = gl.getUniformLocation(token_program, 'nMatrix');
 
-let coin_vao = gl.createVertexArray();
-gl.bindVertexArray(coin_vao);
+let token_vao = gl.createVertexArray();
+gl.bindVertexArray(token_vao);
 
-let coin_position_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
+let token_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, token_position_buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
-gl.enableVertexAttribArray(coin_position_attribute);
-gl.vertexAttribPointer(coin_position_attribute, 3, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(token_position_attribute);
+gl.vertexAttribPointer(token_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
-let coin_normal_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, coin_normal_buffer);
+let token_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, token_normal_buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
-gl.enableVertexAttribArray(coin_normal_attribute);
-gl.vertexAttribPointer(coin_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(token_normal_attribute);
+gl.vertexAttribPointer(token_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
-let coin_index_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
+let token_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, token_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);

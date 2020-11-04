@@ -136,7 +136,7 @@ void main() {
 
 
 
-let coin_vs = `#version 300 es
+let token_vs = `#version 300 es
 
 in vec3 inPosition;
 in vec3 inNormal;
@@ -152,7 +152,7 @@ void main() {
     position = inPosition;
 }`;
 
-let coin_fs = `#version 300 es
+let token_fs = `#version 300 es
 
 precision mediump float;
 

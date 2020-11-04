@@ -76,6 +76,6 @@ let left_pressed = false;
 
 
 // objects
-let coin_scale = 0.1;
-let coin_take_min_distance = 0.9;
-let taken_coins = new Array(coins_ground_pos.length).fill(false); //TODO false
+let token_scale = 0.1;
+let token_take_min_distance = 0.9;
+let taken_tokens = new Array(tokens_00.length).fill(false); //TODO false

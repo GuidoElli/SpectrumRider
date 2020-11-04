@@ -191,14 +191,14 @@ function update() {
 
 
     //objects
-    for(let i = 0; i < coins_ground_pos.length; i++){
-        let current_coin = coins_ground_pos[i];
-        let dx = current_coin[0]*audio_ground_scale_x - player_pos_x;
-        let dy = current_coin[1]*audio_ground_scale_y - player_pos_y;
-        let dz = current_coin[2]*audio_ground_scale_z - current_z*correction_coeff;
+    for(let i = 0; i < tokens_00.length; i++){
+        let current_token = tokens_00[i];
+        let dx = current_token[0]*audio_ground_scale_x - player_pos_x;
+        let dy = current_token[1]*audio_ground_scale_y - player_pos_y;
+        let dz = current_token[2]*audio_ground_scale_z - current_z*correction_coeff;
         let diff = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2))
-        if(diff < coin_take_min_distance){
-            taken_coins[i] = true;
+        if(diff < token_take_min_distance){
+            taken_tokens[i] = true;
         }
     }
 
