@@ -148,7 +148,7 @@ function update() {
         }else{ //still in the air
             if(up_pressed && !down_pressed){
                 if(player_vel_y < -max_vel_y_up_button){
-                    player_force_y = up_force;
+                    player_force_y = up_force * (-max_vel_y_up_button - player_vel_y);
                 }else{
                     player_force_y = -gravity;
                 }
@@ -195,7 +195,7 @@ function update() {
         let current_coin = coins_ground_pos[i];
         let dx = current_coin[0]*audio_ground_scale_x - player_pos_x;
         let dy = current_coin[1]*audio_ground_scale_y - player_pos_y;
-        let dz = current_coin[2]*audio_ground_scale_z - current_z;
+        let dz = current_coin[2]*audio_ground_scale_z - current_z*correction_coeff;
         let diff = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2))
         if(diff < coin_take_min_distance){
             taken_coins[i] = true;
@@ -223,6 +223,8 @@ document.addEventListener("keydown" ,function(e) { // TODO
             break;
         case 37: // left
             left_pressed = true;
+            break;
+        default:
             break;
     }
 })

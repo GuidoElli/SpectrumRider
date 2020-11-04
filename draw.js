@@ -31,10 +31,14 @@ function draw() {
         gl.uniform1f(audio_ground_tot_seconds_uniform, song_duration_seconds);
         gl.uniform1f(audio_ground_current_song_percentage_uniform, current_song_percentage);
 
+        let current_block = Math.floor(audio_ground_vert.length * current_song_percentage);
+
         for(let i = 0; i < audio_ground_vert.length; ++i){
-            gl.bindVertexArray(audio_ground_vao[i]);
-            gl.bindBuffer(gl.ARRAY_BUFFER, audio_ground_position_buffer[i]);
-            gl.drawElements(gl.TRIANGLES, audio_ground_ind[i].length, gl.UNSIGNED_SHORT, 0 );
+            if(i >= current_block-1 && i <= current_block+1){
+                gl.bindVertexArray(audio_ground_vao[i]);
+                gl.bindBuffer(gl.ARRAY_BUFFER, audio_ground_position_buffer[i]);
+                gl.drawElements(gl.TRIANGLES, audio_ground_ind[i].length, gl.UNSIGNED_SHORT, 0 );
+            }
         }
 
 
@@ -63,7 +67,7 @@ function draw() {
             if(!taken_coins[i] && current_coin[2]*audio_ground_scale_z < current_z+1 && current_coin[2]*audio_ground_scale_z > current_z - seconds_to_see*audio_ground_scale_z){
                 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer[i]);
                 let coin_world_matrix = utils.MakeWorld(
-                   current_coin[0]*audio_ground_scale_x, (current_coin[1]+0.03)*audio_ground_scale_y, current_coin[2]*audio_ground_scale_z*correction_coeff,
+                   current_coin[0]*audio_ground_scale_x, (current_coin[1]+0.07)*audio_ground_scale_y, current_coin[2]*audio_ground_scale_z,
                    0.0, 0.0, 0.0,
                    coin_scale, coin_scale, coin_scale);
                 let coin_world_view_matrix = utils.multiplyMatrices(view_matrix, coin_world_matrix);
