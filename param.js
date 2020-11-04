@@ -5,7 +5,7 @@ let audio_ground_scale_y = 0.7;
 let audio_ground_scale_z = 4.5;
 
 //scene
-let correction_coeff = 1 + 0.2 / 270;
+let correction_coeff = 1 + 0.17 / 270;
 
 let seconds_to_see = 6;
 let current_z = 0;
@@ -25,7 +25,7 @@ let camera_z_offset_max = 1.7;
 let camera_z_offset = 0.9;
 let camera_fov = 70;
 
-let camera_elev = -25.0;
+let camera_elev = -22.0;
 let camera_angle = 0.0;
 
 
@@ -43,8 +43,8 @@ let max_vel_y_up_button = 2 * audio_ground_scale_y;
 let up_force = gravity * 4.5;
 let player_max_vel_x = 1.05 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
-let player_max_vel_y_up = 10 * audio_ground_scale_y;
-let player_scale = audio_ground_scale_x * 0.021;
+let player_max_vel_y_up = 12 * audio_ground_scale_y;
+let player_scale = audio_ground_scale_x * 0.025;
 let player_y_offset = player_scale * 2;
 
 let touching_ground = false;
@@ -52,7 +52,6 @@ let last_z_index = 0;
 let last_x_index = 0;
 let new_vert = false;
 let last_max_diff = 0;
-let just_landed = false;
 
 let player_force_x = 0.0;
 let player_vel_x = 0.0;
@@ -74,7 +73,6 @@ let up_pressed = false;
 let down_pressed = false;
 let right_pressed = false;
 let left_pressed = false;
-
 
 
 // objects
