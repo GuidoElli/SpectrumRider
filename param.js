@@ -17,11 +17,11 @@ let last_update_time = 0;
 //camera
 let camera_x = 0.0;
 
-let camera_y_min = audio_ground_scale_y * 1.2;
+let camera_y_min = audio_ground_scale_y * 1.5;
 let camera_y = camera_y_min;
 
 let camera_z_offset_min = 1.3;
-let camera_z_offset_max = 1.7;
+let camera_z_offset_max = 1.9;
 let camera_z_offset = 0.9;
 let camera_fov = 70;
 
@@ -43,6 +43,7 @@ let max_vel_y_up_button = 2 * audio_ground_scale_y;
 let up_force = gravity * 4.5;
 let player_max_vel_x = 1.05 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
+let player_max_pos_y = audio_ground_scale_y * 20;
 let player_max_vel_y_up = 12 * audio_ground_scale_y;
 let player_scale = audio_ground_scale_x * 0.025;
 let player_y_offset = player_scale * 2;
