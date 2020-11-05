@@ -60,24 +60,24 @@ function draw() {
         gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
 
 
-        //tokens
-        gl.useProgram(token_program);
-        for(let i = 0; i < tokens_00.length; ++i){
-            let current_token = tokens_00[i];
-            if(!taken_tokens[i] && current_token[2]*audio_ground_scale_z < current_z+1 && current_token[2]*audio_ground_scale_z > current_z - seconds_to_see*audio_ground_scale_z){
-                gl.bindBuffer(gl.ARRAY_BUFFER, token_position_buffer[i]);
-                let token_world_matrix = utils.MakeWorld(
-                   current_token[0]*audio_ground_scale_x, (current_token[1]+0.07)*audio_ground_scale_y, current_token[2]*audio_ground_scale_z,
-                   0.0, 0.0, 0.0,
-                   token_scale, token_scale, token_scale);
-                let token_world_view_matrix = utils.multiplyMatrices(view_matrix, token_world_matrix);
-                let token_projection_matrix = utils.multiplyMatrices(perspective_matrix, token_world_view_matrix);
-                let token_normal_matrix = utils.invertMatrix(utils.transposeMatrix(token_world_matrix));
-                gl.uniformMatrix4fv(token_matrix_uniform, gl.FALSE, utils.transposeMatrix(token_projection_matrix));
-                gl.uniformMatrix4fv(token_normal_matrix_uniform, gl.FALSE, utils.transposeMatrix(token_normal_matrix));
+        //items
+        gl.useProgram(coin_ground_program);
+        for(let i = 0; i < coins_ground.length; ++i){
+            let coin = coins_ground[i];
+            if(coin.is_visible()){
+                gl.bindBuffer(gl.ARRAY_BUFFER, coin_ground_position_buffer[i]);
+                let coin_ground_world_matrix = utils.MakeWorld(
+                   coin.position_x, coin.position_y, coin.position_z,
+                   0.0, coin.current_y_rotation, 0.0,
+                   coin.scale, coin.scale, coin.scale);
+                let coin_ground_world_view_matrix = utils.multiplyMatrices(view_matrix, coin_ground_world_matrix);
+                let coin_ground_projection_matrix = utils.multiplyMatrices(perspective_matrix, coin_ground_world_view_matrix);
+                let coin_ground_normal_matrix = utils.invertMatrix(utils.transposeMatrix(coin_ground_world_matrix));
+                gl.uniformMatrix4fv(coin_ground_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_ground_projection_matrix));
+                gl.uniformMatrix4fv(coin_ground_normal_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_ground_normal_matrix));
 
-                gl.bindVertexArray(token_vao);
-                gl.bindBuffer(gl.ARRAY_BUFFER, token_position_buffer);
+                gl.bindVertexArray(coin_ground_vao);
+                gl.bindBuffer(gl.ARRAY_BUFFER, coin_ground_position_buffer);
                 gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
             }
         }

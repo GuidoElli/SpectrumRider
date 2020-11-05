@@ -77,6 +77,4 @@ let left_pressed = false;
 
 
 // objects
-let token_scale = 0.1;
-let token_take_min_distance = 0.9;
-let taken_tokens = new Array(tokens_00.length).fill(false); //TODO false
+let taken_items = new Array(items_00.length).fill(false); //TODO false

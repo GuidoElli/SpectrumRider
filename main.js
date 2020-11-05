@@ -1,3 +1,20 @@
+let coins_ground = [];
+for(let i = 0; i < items_00.length; i++){
+    coins_ground[i] = new Coin_ground(items_00[i][0], items_00[i][1], items_00[i][2]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 let canvas = document.getElementById("c");
 let synchronized = false;
 let song_begun = false;
@@ -8,7 +25,6 @@ start_button.addEventListener("mouseup", function(){
     song.load();
     song.play().then(function () {
         song_begun = true;
-        song_start_time = (new Date).getTime();
     });
     canvas.style.display = "block";
     let menu = document.getElementById("menu");
@@ -21,11 +37,10 @@ start_button.addEventListener("mouseup", function(){
 song.ontimeupdate = function () {
     let current = (new Date).getTime();
     if(!song_begun){
-        song_start_time = current;
         song_begun = true;
     }else if(!synchronized){
-        synchronized = true;
         song_start_time = current - song.currentTime * 1000;
+        synchronized = true;
     }
 }
 
@@ -172,32 +187,32 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DR
 
 
 //objects
-//tokens on ground
-let token_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, token_vs);
-let token_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, token_fs);
-let token_program = utils.createProgram(gl, token_vertex_shader, token_fragment_shader);
-gl.useProgram(token_program);
+//coins on ground
+let coin_ground_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_ground_vs);
+let coin_ground_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, coin_ground_fs);
+let coin_ground_program = utils.createProgram(gl, coin_ground_vertex_shader, coin_ground_fragment_shader);
+gl.useProgram(coin_ground_program);
 
-let token_position_attribute = gl.getAttribLocation(token_program, 'inPosition');
-let token_normal_attribute = gl.getAttribLocation(token_program, 'inNormal');
-let token_matrix_uniform = gl.getUniformLocation(token_program, 'matrix');
-let token_normal_matrix_uniform = gl.getUniformLocation(token_program, 'nMatrix');
+let coin_ground_position_attribute = gl.getAttribLocation(coin_ground_program, 'inPosition');
+let coin_ground_normal_attribute = gl.getAttribLocation(coin_ground_program, 'inNormal');
+let coin_ground_matrix_uniform = gl.getUniformLocation(coin_ground_program, 'matrix');
+let coin_ground_normal_matrix_uniform = gl.getUniformLocation(coin_ground_program, 'nMatrix');
 
-let token_vao = gl.createVertexArray();
-gl.bindVertexArray(token_vao);
+let coin_ground_vao = gl.createVertexArray();
+gl.bindVertexArray(coin_ground_vao);
 
-let token_position_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, token_position_buffer);
+let coin_ground_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, coin_ground_position_buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
-gl.enableVertexAttribArray(token_position_attribute);
-gl.vertexAttribPointer(token_position_attribute, 3, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(coin_ground_position_attribute);
+gl.vertexAttribPointer(coin_ground_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
-let token_normal_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, token_normal_buffer);
+let coin_ground_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, coin_ground_normal_buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
-gl.enableVertexAttribArray(token_normal_attribute);
-gl.vertexAttribPointer(token_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(coin_ground_normal_attribute);
+gl.vertexAttribPointer(coin_ground_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
-let token_index_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, token_index_buffer);
+let coin_ground_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_ground_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);

@@ -237,14 +237,14 @@ for i in range(n_rows):
 		pattern_high += "];"
 
 
-# TOKENS POSITION
+# itemS POSITION
 start = 50  # vertex to start on
 stop = 50  # stop before n vertices
 
 # Level 0: on ground
-tokens_0_rows_space = upsample_time * 2
+items_0_rows_space = upsample_time * 2
 # obj 0
-tokens_00 = "\nvar tokens_00 = ["
+items_00 = "\nvar items_00 = ["
 pos_x = 0
 vel_x = 0
 vel_x_max = 0.1
@@ -264,20 +264,20 @@ while v < n_rows-stop:
 		pos_x = -pos_x_max
 		vel_x = 0
 	x_index = int((pos_x + 0.5) * n_vertex_per_row)
-	tokens_00 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(
-		pos_x, interp_data[v][x_index] + 0.1, -v / vertex_sample_rate)
-	v += tokens_0_rows_space
+	items_00 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(
+		pos_x, interp_data[v][x_index] + 0.2, -v / vertex_sample_rate)
+	v += items_0_rows_space
 	if v < n_rows-stop:
-		tokens_00 += ", "
-tokens_00 += "];"
+		items_00 += ", "
+items_00 += "];"
 
 
 # lv 1, 2, 3
-tokens_123_rows_space = upsample_time * 4
+items_123_rows_space = upsample_time * 4
 # probabilities
-token_lv1_prob = 0.5
-token_lv2_prob = 0.3
-token_lv3_prob = 0.2
+item_lv1_prob = 0.5
+item_lv2_prob = 0.3
+item_lv3_prob = 0.2
 lv1_mean = 2
 lv1_dev = 1
 lv2_mean = 4
@@ -286,79 +286,88 @@ lv3_mean = 6
 lv3_dev = 4
 
 #lv 1
-tokens_10_prob = 1
-tokens_10 = "\nvar tokens_10 = ["
-tokens_11_prob = 0
-tokens_11 = "\nvar tokens_11 = ["
-tokens_12_prob = 0
-tokens_12 = "\nvar tokens_12 = ["
+items_10_prob = 0.7
+items_10 = "\nvar items_10 = ["
+items_11_prob = 0.2
+items_11 = "\nvar items_11 = ["
+items_12_prob = 0.1
+items_12 = "\nvar items_12 = ["
 #lv 2
-tokens_20_prob = 1
-tokens_20 = "\nvar tokens_20 = ["
-tokens_21_prob = 0
-tokens_21 = "\nvar tokens_21 = ["
-tokens_22_prob = 0
-tokens_22 = "\nvar tokens_22 = ["
+items_20_prob = 0.4
+items_20 = "\nvar items_20 = ["
+items_21_prob = 0.3
+items_21 = "\nvar items_21 = ["
+items_22_prob = 0.3
+items_22 = "\nvar items_22 = ["
 #lv 3
-tokens_30_prob = 1
-tokens_30 = "\nvar tokens_30 = ["
-tokens_31_prob = 0
-tokens_31 = "\nvar tokens_31 = ["
-tokens_32_prob = 0
-tokens_32 = "\nvar tokens_32 = ["
+items_30_prob = 0.5
+items_30 = "\nvar items_30 = ["
+items_31_prob = 0.4
+items_31 = "\nvar items_31 = ["
+items_32_prob = 0.1
+items_32 = "\nvar items_32 = ["
 
 v = start
 while v < n_rows-stop:
 	lv = np.random.rand()
 	pos_x = np.random.rand() * 0.95 - 0.475
 	pos_z = -v / vertex_sample_rate
-	if lv < token_lv1_prob:  # lv 1
-		pos_y = np.random.randn() * lv1_dev + lv1_mean
+	if lv < item_lv1_prob:  # lv 1
+		pos_y = np.max([np.random.randn() * lv1_dev + lv1_mean, 1])
 		n = np.random.rand()
-		if n < tokens_10_prob:
-			tokens_10 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_10_prob+tokens_11_prob:
-			tokens_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_10_prob+tokens_11_prob+tokens_12_prob:
-			tokens_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		if n < items_10_prob:
+			items_10 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_10_prob+items_11_prob:
+			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_10_prob+items_11_prob+items_12_prob:
+			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
 
-	elif lv < token_lv1_prob+token_lv2_prob:  # lv 2
-		pos_y = np.random.randn() * lv2_dev + lv2_mean
+	elif lv < item_lv1_prob+item_lv2_prob:  # lv 2
+		pos_y = np.max([np.random.randn() * lv2_dev + lv2_mean, 1])
 		n = np.random.rand()
-		if n < tokens_20_prob:
-			tokens_20 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_20_prob+tokens_21_prob:
-			tokens_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_20_prob+tokens_21_prob+tokens_22_prob:
-			tokens_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		if n < items_20_prob:
+			items_20 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_20_prob+items_21_prob:
+			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_20_prob+items_21_prob+items_22_prob:
+			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
 
 	else:  # lv 3
-		pos_y = np.random.randn() * lv3_dev + lv3_mean
+		pos_y = np.max([np.random.randn() * lv3_dev + lv3_mean, 1])
 		n = np.random.rand()
-		if n < tokens_30_prob:
-			tokens_30 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_30_prob+tokens_31_prob:
-			tokens_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-		elif n < tokens_30_prob+tokens_31_prob+tokens_32_prob:
-			tokens_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
-
-	v += tokens_123_rows_space
-tokens_10 += "];"
-tokens_11 += "];"
-tokens_12 += "];"
-tokens_20 += "];"
-tokens_21 += "];"
-tokens_22 += "];"
-tokens_30 += "];"
-tokens_31 += "];"
-tokens_32 += "];"
+		if n < items_30_prob:
+			items_30 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_30_prob+items_31_prob:
+			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+		elif n < items_30_prob+items_31_prob+items_32_prob:
+			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+	v += items_123_rows_space
+	if v < n_rows-stop:
+		items_10 += ", "
+		items_11 += ", "
+		items_12 += ", "
+		items_20 += ", "
+		items_21 += ", "
+		items_22 += ", "
+		items_30 += ", "
+		items_31 += ", "
+		items_32 += ", "
+items_10 += "];"
+items_11 += "];"
+items_12 += "];"
+items_20 += "];"
+items_21 += "];"
+items_22 += "];"
+items_30 += "];"
+items_31 += "];"
+items_32 += "];"
 
 song_data = vertices + indices + normals + info
 song_data += pattern_bass + pattern_mid + pattern_high
-song_data += tokens_00
-song_data += tokens_10 + tokens_11 + tokens_12
-song_data += tokens_20 + tokens_21 + tokens_22
-song_data += tokens_30 + tokens_31 + tokens_32
+song_data += items_00
+song_data += items_10 + items_11 + items_12
+song_data += items_20 + items_21 + items_22
+song_data += items_30 + items_31 + items_32
 
 # Write files
 print("\nWriting...")
