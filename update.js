@@ -21,14 +21,14 @@ Objects:
 
 function update() {
     current_time = (new Date).getTime();
-    elapsed_time = current_time-song_start_time;
+    elapsed_time = current_time-song_start_time+time_correction;
     let delta_t;
     if (last_update_time){
         delta_t = current_time - last_update_time;
     }else{
         delta_t = 0;
     }
-    current_z = -(current_time-song_start_time) * .001 * audio_ground_scale_z;
+    current_z = -(current_time-song_start_time+time_correction) * .001 * audio_ground_scale_z;
     if (elapsed_time/1000 > song_duration_seconds - 0.2){
         return;
     }else if(elapsed_time/1000 < 0.2){
@@ -64,7 +64,7 @@ function update() {
     let x_index_cont = (player_pos_x / audio_ground_scale_x + 0.5) * (n_vertex_per_row-1);
     let x_index = Math.round(x_index_cont);
 
-    let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * (n_rows-1) * correction_coeff;
+    let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * (n_rows-1) * stretch_correction;
     let z_index = Math.round(z_index_cont);
 
     let y_curr = y_map[z_index][x_index] * audio_ground_scale_y;
@@ -73,10 +73,10 @@ function update() {
     let range = 4;
     //compute path
     for(let i = 1; i <= range; i++){
-        if(left_pressed && !right_pressed) {
+        if(left_pressed && !right_pressed && player_pos_x > -player_max_pos_x + 0.01) {
             y_prev.push(y_map[Math.max(z_index-i, 0)][Math.min(x_index+i, n_vertex_per_row-1)] * audio_ground_scale_y);
             y_next.push(y_map[Math.min(z_index+i, n_rows-1)][Math.max(x_index-i, 0)] * audio_ground_scale_y);
-        }else if(!left_pressed && right_pressed) {
+        }else if(!left_pressed && right_pressed && player_pos_x < player_max_pos_x - 0.01) {
             y_prev.push(y_map[Math.max(z_index-i, 0)][Math.max(x_index-i, 0)] * audio_ground_scale_y);
             y_next.push(y_map[Math.min(z_index+i, n_rows-1)][Math.min(x_index+i, n_vertex_per_row-1)] * audio_ground_scale_y);
         }else{
@@ -146,7 +146,7 @@ function update() {
             touching_ground = true;
             player_pos_y = y_cont;
         }else{ //still in the air
-            if(up_pressed && !down_pressed){
+            if(up_pressed){
                 if(player_vel_y < -max_vel_y_up_button){
                     player_force_y = up_force * (-max_vel_y_up_button - player_vel_y);
                 }else{
@@ -174,33 +174,25 @@ function update() {
 
 
     //camera
-
     let camera_x_old = camera_x;
-    let camera_x_target = player_pos_x*0.7;
+    let camera_x_target = player_pos_x*0.5;
     camera_x += (camera_x_target - camera_x_old) * 0.2;
 
     let camera_y_old = camera_y;
     let camera_y_target = camera_y_min * (player_pos_y/camera_y_min + 1 / (player_pos_y/camera_y_min + 1));
     camera_y += (camera_y_target - camera_y_old) * 0.35;
 
-    camera_z_offset = camera_z_offset_min + (camera_y - camera_y_min) * 0.55;
+    camera_z_offset = camera_z_offset_min + (camera_y - camera_y_min) * 0.8;
 
 
     //colors
     let white_coeff = 0.05;
-    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(current_bass_light, 2.0);
+    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.8);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
 
 
-
-    //objects
-    for(let i = 0; i < coins_ground.length; i++){
-        let coin = coins_ground[i];
-        if(coin.is_near_player()){
-            coin.take();
-        }
-    }
+    score_manager.update();
 
 
 
@@ -208,39 +200,3 @@ function update() {
 
 }
 
-
-// key controls
-document.addEventListener("keydown" ,function(e) { // TODO
-    switch (e.keyCode) {
-        case 38: // up
-            up_pressed = true;
-            break;
-        case 40: // down
-            down_pressed = true;
-            break;
-        case 39: // right
-            right_pressed = true;
-            break;
-        case 37: // left
-            left_pressed = true;
-            break;
-        default:
-            break;
-    }
-})
-document.addEventListener("keyup" ,function(e) { // TODO
-    switch (e.keyCode) {
-        case 38: // up
-            up_pressed = false;
-            break;
-        case 40: // down
-            down_pressed = false;
-            break;
-        case 39: // right
-            right_pressed = false;
-            break;
-        case 37: // left
-            left_pressed = false;
-            break;
-    }
-})

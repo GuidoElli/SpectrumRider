@@ -20,20 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b349199-112b-4442-8477-fe3afdd54d7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Coin_ground.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Coin_lv1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Coin_lv2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Coin_lv3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Score_manger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coin_ground.js" beforeDir="false" afterPath="$PROJECT_DIR$/Coin_ground.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Item.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/draw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/coin/uploads_files_312546_Munt+geld+coin+cash.ma" beforeDir="false" afterPath="$PROJECT_DIR$/obj/coin/uploads_files_312546_Munt+geld+coin+cash.ma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/param.js" beforeDir="false" afterPath="$PROJECT_DIR$/param.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders.js" beforeDir="false" afterPath="$PROJECT_DIR$/shaders.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/song_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/song_data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,8 @@
       <updated>1604579765977</updated>
       <workItem from="1604579771211" duration="531000" />
       <workItem from="1604580981270" duration="1307000" />
-      <workItem from="1604598365599" duration="9575000" />
+      <workItem from="1604598365599" duration="10361000" />
+      <workItem from="1604676636997" duration="17275000" />
     </task>
     <task id="LOCAL-00001" summary="added other objcts only in python, better chasing camera">
       <created>1604582271612</created>
@@ -78,7 +82,28 @@
       <option name="project" value="LOCAL" />
       <updated>1604582271612</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added classes for coin ground, extends Item">
+      <created>1604618918946</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604618918946</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added classes for coin ground, extends Item">
+      <created>1604618928390</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604618928390</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added classes for coin ground, extends Item">
+      <created>1604618952840</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604618952840</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,9 +123,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added other objcts only in python, better chasing camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="added other objcts only in python, better chasing camera" />
+    <MESSAGE value="added classes for coin ground, extends Item" />
+    <option name="LAST_COMMIT_MESSAGE" value="added classes for coin ground, extends Item" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="565" y="32" key="RollbackChangesDialog" timestamp="1604619629725">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="565" y="32" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604619629725" />
     <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1604582284640">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -113,10 +143,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="0" y="0" width="848" height="780" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1604605236372" />
-    <state x="478" y="106" width="579" height="612" key="find.popup" timestamp="1604599917673">
+    <state x="478" y="106" width="579" height="612" key="find.popup" timestamp="1604697772501">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="106" width="579" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604599917673" />
+    <state x="478" y="106" width="579" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604697772501" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604599551947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

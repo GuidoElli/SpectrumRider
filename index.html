@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <title>MusicSpectrumRide</title>
+    <title>Spectrum Rider</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <canvas id="c"></canvas>
+    <div id="game">
+        <canvas id="webgl"></canvas>
+        <canvas id="text2d"></canvas>
+    </div>
     <div id="menu">
         <button id="start_button">Play!</button>
     </div>
+
     <audio id="song" src="songs/Let's Fuck (Cristian Marchi Perfect Mix).mp3"></audio>
 </body>
 <script type="text/javascript" src="song_data.js"></script>
 <script type="text/javascript" src="utils.js"></script>
-<script type="text/javascript" src="Item.js"></script>>
+<script type="text/javascript" src="Item.js"></script>
 <script type="text/javascript" src="Coin_ground.js"></script>
+<script type="text/javascript" src="Coin_lv1.js"></script>
+<script type="text/javascript" src="Coin_lv2.js"></script>
+<script type="text/javascript" src="Coin_lv3.js"></script>
 <script type="text/javascript" src="param.js"></script>
+<script type="text/javascript" src="Score_manger.js"></script>
+<script type="text/javascript" src="events.js"></script>
 <script type="text/javascript" src="shaders.js"></script>
 <script type="text/javascript" src="update.js"></script>
 <script type="text/javascript" src="draw.js"></script>

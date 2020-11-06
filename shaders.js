@@ -135,8 +135,7 @@ void main() {
 
 
 
-
-let coin_ground_vs = `#version 300 es
+let coin_vs = `#version 300 es
 
 in vec3 inPosition;
 in vec3 inNormal;
@@ -152,7 +151,7 @@ void main() {
     position = inPosition;
 }`;
 
-let coin_ground_fs = `#version 300 es
+let coin_fs = `#version 300 es
 
 precision mediump float;
 
@@ -174,7 +173,7 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = position.x;
+	 float h = position.x/6.0;
 	 float s = 1.0;
 	 float v = clamp( nNormal.z, 0.0, 1.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);

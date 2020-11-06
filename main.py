@@ -33,20 +33,20 @@ if audio.ndim == 2:
 	audio = audio[:, 0]  # Keep only left channel
 
 # %% Parameters
-win_length_time = 0.08
+win_length_time = 0.07
 
 n_bands = 6
-bands_borders = np.array([20, 140, 400, 1500, 5000, 10000, 20000])
+bands_borders = np.array([20, 120, 400, 1500, 5000, 10000, 20000])
 first_mid_band = 1
 first_high_band = 4
 
-upsample_freq = 4
+upsample_freq = 5
 upsample_time = 4
 
-sanity_ground = 1.4
-sanity_lights = 1.4
+sanity_ground = 1.6
+sanity_lights = 1.6
 
-max_vertices_per_block = 50000
+max_vertices_per_block = 20000
 
 
 # %% program
@@ -65,8 +65,9 @@ for f in tqdm(range(n_frames)):
 		rms = np.sqrt(sum(np.power(filtered_frame, 2)))
 		z_init_matrix[f, b] = rms
 for b in range(n_bands):
-	z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / z_init_matrix[:, b].max(), sanity_ground)
-
+	z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / (z_init_matrix[:, b].max() * 0.93), sanity_ground)
+	for f in range(n_frames):
+		z_init_matrix[f, b] = min([z_init_matrix[f, b], 1])
 
 # %% interpolate
 grid_x, grid_y = np.mgrid[0: 1.0000000001: 1.0 / ((n_frames - 1) * upsample_time), 0:1.0000000001:1.0 / ((n_bands - 1) * upsample_freq)]
@@ -243,7 +244,6 @@ stop = 50  # stop before n vertices
 
 # Level 0: on ground
 items_0_rows_space = upsample_time * 2
-# obj 0
 items_00 = "\nvar items_00 = ["
 pos_x = 0
 vel_x = 0
@@ -273,39 +273,39 @@ items_00 += "];"
 
 
 # lv 1, 2, 3
-items_123_rows_space = upsample_time * 4
+items_123_rows_space = upsample_time * 6
 # probabilities
-item_lv1_prob = 0.5
+item_lv1_prob = 0.4
 item_lv2_prob = 0.3
-item_lv3_prob = 0.2
+item_lv3_prob = 0.3
 lv1_mean = 2
-lv1_dev = 1
+lv1_dev = 0.5
 lv2_mean = 4
-lv2_dev = 3
+lv2_dev = 0.7
 lv3_mean = 6
-lv3_dev = 4
+lv3_dev = 0.9
 
 #lv 1
 items_10_prob = 0.7
-items_10 = "\nvar items_10 = ["
+items_10 = "\nvar items_10 = [ "
 items_11_prob = 0.2
-items_11 = "\nvar items_11 = ["
+items_11 = "\nvar items_11 = [ "
 items_12_prob = 0.1
-items_12 = "\nvar items_12 = ["
+items_12 = "\nvar items_12 = [ "
 #lv 2
-items_20_prob = 0.4
-items_20 = "\nvar items_20 = ["
+items_20_prob = 0.5
+items_20 = "\nvar items_20 = [ "
 items_21_prob = 0.3
-items_21 = "\nvar items_21 = ["
-items_22_prob = 0.3
-items_22 = "\nvar items_22 = ["
+items_21 = "\nvar items_21 = [ "
+items_22_prob = 0.2
+items_22 = "\nvar items_22 = [ "
 #lv 3
 items_30_prob = 0.5
-items_30 = "\nvar items_30 = ["
+items_30 = "\nvar items_30 = [ "
 items_31_prob = 0.4
-items_31 = "\nvar items_31 = ["
+items_31 = "\nvar items_31 = [ "
 items_32_prob = 0.1
-items_32 = "\nvar items_32 = ["
+items_32 = "\nvar items_32 = [ "
 
 v = start
 while v < n_rows-stop:
@@ -316,51 +316,42 @@ while v < n_rows-stop:
 		pos_y = np.max([np.random.randn() * lv1_dev + lv1_mean, 1])
 		n = np.random.rand()
 		if n < items_10_prob:
-			items_10 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_10 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_10_prob+items_11_prob:
-			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_10_prob+items_11_prob+items_12_prob:
-			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 
 	elif lv < item_lv1_prob+item_lv2_prob:  # lv 2
 		pos_y = np.max([np.random.randn() * lv2_dev + lv2_mean, 1])
 		n = np.random.rand()
 		if n < items_20_prob:
-			items_20 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_20 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_20_prob+items_21_prob:
-			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_20_prob+items_21_prob+items_22_prob:
-			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 
 	else:  # lv 3
 		pos_y = np.max([np.random.randn() * lv3_dev + lv3_mean, 1])
 		n = np.random.rand()
 		if n < items_30_prob:
-			items_30 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_30 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_30_prob+items_31_prob:
-			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		elif n < items_30_prob+items_31_prob+items_32_prob:
-			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}]".format(pos_x, pos_y, pos_z)
+			items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 	v += items_123_rows_space
-	if v < n_rows-stop:
-		items_10 += ", "
-		items_11 += ", "
-		items_12 += ", "
-		items_20 += ", "
-		items_21 += ", "
-		items_22 += ", "
-		items_30 += ", "
-		items_31 += ", "
-		items_32 += ", "
-items_10 += "];"
-items_11 += "];"
-items_12 += "];"
-items_20 += "];"
-items_21 += "];"
-items_22 += "];"
-items_30 += "];"
-items_31 += "];"
-items_32 += "];"
+
+items_10 = items_10[:-1] + "];"
+items_11 = items_11[:-1] + "];"
+items_12 = items_12[:-1] + "];"
+items_20 = items_20[:-1] + "];"
+items_21 = items_21[:-1] + "];"
+items_22 = items_22[:-1] + "];"
+items_30 = items_30[:-1] + "];"
+items_31 = items_31[:-1] + "];"
+items_32 = items_32[:-1] + "];"
 
 song_data = vertices + indices + normals + info
 song_data += pattern_bass + pattern_mid + pattern_high
