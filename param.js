@@ -1,12 +1,15 @@
 
+let max_delta_t_ms = 100;
+let stretch_correction = 1 + 0.17 / 270;
+let time_correction = 0;
+
+
 //audio ground
 let audio_ground_scale_x = 3.7;
-let audio_ground_scale_y = 0.7;
+let audio_ground_scale_y = 0.9;
 let audio_ground_scale_z = 5.0;
 
 //scene
-let stretch_correction = 1 + 0.17 / 270;
-let time_correction = 0;
 
 let seconds_to_see = 4;
 let current_z = 0;

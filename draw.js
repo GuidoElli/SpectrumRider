@@ -3,6 +3,7 @@ function draw() {
 
     if(synchronized) {
         update();
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
         current_song_percentage = elapsed_time / song_duration_seconds * .001 * stretch_correction;
 
@@ -60,7 +61,7 @@ function draw() {
         gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
 
 
-        //items
+        //coins
         gl.useProgram(coin_program);
         for(let i = 0; i < coins_all.length; ++i){
             let coin = coins_all[i];
@@ -78,7 +79,7 @@ function draw() {
 
                 gl.bindVertexArray(coin_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+                gl.drawElements(gl.TRIANGLES, coin_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
             }
         }
 

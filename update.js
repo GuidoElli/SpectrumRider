@@ -24,7 +24,11 @@ function update() {
     elapsed_time = current_time-song_start_time+time_correction;
     let delta_t;
     if (last_update_time){
-        delta_t = Math.min(100, current_time - last_update_time);
+        if(player_vel_y < 0){
+            delta_t = Math.min(max_delta_t_ms, current_time - last_update_time);
+        }else{
+            delta_t = Math.min(max_delta_t_ms*3, current_time - last_update_time);
+        }
     }else{
         delta_t = 0;
     }

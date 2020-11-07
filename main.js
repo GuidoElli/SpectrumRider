@@ -133,59 +133,7 @@ for(let i = 0; i < audio_ground_vert.length; ++i){
 
 
 
-
-// Player
-let player_vert = [0.0, 1.0, 0.0];
-let player_norm = [0.0, 1.0, 0.0];
-///// Creates vertices
-let k = 3;
-for(let j = 1; j < 18; j++) {
-    for(let i = 0; i < 36; i++) {
-        let x = Math.sin(i*10.0/180.0*Math.PI) * Math.sin(j*10.0/180.0*Math.PI);
-        let y = Math.cos(j*10.0/180.0*Math.PI);
-        let z = Math.cos(i*10.0/180.0*Math.PI) * Math.sin(j*10.0/180.0*Math.PI);
-        player_norm[k] = x;
-        player_vert[k++] = x;
-        player_norm[k] = y;
-        player_vert[k++] = y;
-        player_norm[k] = z;
-        player_vert[k++] = z;
-    }
-}
-let lastVert = k;
-player_norm[k] = 0.0;
-player_vert[k++] = 0.0;
-player_norm[k] = -1.0;
-player_vert[k++] = -1.0;
-player_norm[k] = 0.0;
-player_vert[k++] = 0.0;
-////// Creates indices
-let player_ind = [];
-k = 0;
-///////// Lateral part
-for(let i = 0; i < 36; i++) {
-    for(let j = 1; j < 17; j++) {
-        player_ind[k++] = i + (j-1) * 36 + 1;
-        player_ind[k++] = i + j * 36 + 1;
-        player_ind[k++] = (i + 1) % 36 + (j-1) * 36 + 1;
-        player_ind[k++] = (i + 1) % 36 + (j-1) * 36 + 1;
-        player_ind[k++] = i + j * 36 + 1;
-        player_ind[k++] = (i + 1) % 36 + j * 36 + 1;
-    }
-}
-//////// Upper Cap
-for(let i = 0; i < 36; i++) {
-    player_ind[k++] = 0;
-    player_ind[k++] = i + 1;
-    player_ind[k++] = (i + 1) % 36 + 1;
-}
-//////// Lower Cap
-for(let i = 0; i < 36; i++) {
-    player_ind[k++] = lastVert;
-    player_ind[k++] = (i + 1) % 36 + 541;
-    player_ind[k++] = i + 541;
-}
-
+//Player
 let player_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
 let player_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
 let player_program = utils.createProgram(gl, player_vertex_shader, player_fragment_shader);
@@ -221,6 +169,7 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DR
 
 //objects
 
+// Access the models by array index
 
 //coins on ground
 let coin_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_vs);
@@ -238,19 +187,19 @@ gl.bindVertexArray(coin_vao);
 
 let coin_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_vert), gl.STATIC_DRAW);//TODO
 gl.enableVertexAttribArray(coin_position_attribute);
 gl.vertexAttribPointer(coin_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let coin_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, coin_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(coin_normal_attribute);
 gl.vertexAttribPointer(coin_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let coin_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(coin_ind), gl.STATIC_DRAW);
 
 
 

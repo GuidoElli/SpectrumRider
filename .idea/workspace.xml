@@ -19,17 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b349199-112b-4442-8477-fe3afdd54d7e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/draw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/update.js" afterDir="false" />
-    </list>
+    <list default="true" id="2b349199-112b-4442-8477-fe3afdd54d7e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +63,7 @@
       <workItem from="1604598365599" duration="10361000" />
       <workItem from="1604676636997" duration="22378000" />
       <workItem from="1604708408301" duration="4365000" />
-      <workItem from="1604749090148" duration="1862000" />
+      <workItem from="1604749090148" duration="2815000" />
     </task>
     <task id="LOCAL-00001" summary="added other objcts only in python, better chasing camera">
       <created>1604582271612</created>
@@ -117,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604712081845</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added 2x, 5x, 10x">
+      <created>1604753982718</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604753982718</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,14 +147,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="added 2x, 5x, 10x" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="146" y="64" key="MergeDialog" timestamp="1604754690785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="146" y="64" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1604754690785" />
+    <state x="406" y="173" key="MultipleFileMergeDialog" timestamp="1604754693861">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="406" y="173" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1604754693861" />
     <state x="565" y="32" key="RollbackChangesDialog" timestamp="1604619629725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="565" y="32" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604619629725" />
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1604712336764">
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1604754700623">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604712336764" />
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604754700623" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604605979194">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
