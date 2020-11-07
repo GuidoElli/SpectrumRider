@@ -14,6 +14,7 @@ canvas {
     }
     #text2d{
         z-index: 1;
+        border-radius: 70px;
     }
 button {
     outline: none;
@@ -36,7 +37,7 @@ button {
     #start_button {
         position: absolute;
         width: 50%;
-        height: 20%;
+        height: 10%;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -46,7 +47,7 @@ button {
         padding: 19px;
         border-radius: 50px;
         font-family: Impact, Charcoal, sans-serif;
-        font-weight: normal;
+        font-weight: 700;
         text-decoration: none;
         font-style: normal;
         font-variant: normal;

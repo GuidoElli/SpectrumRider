@@ -12,34 +12,28 @@ class Score_manger{
 
     take_multiply(o){
         o.take();
-        this.multiply_factor *= o.multiply_factor;
-        setInterval(function (){
-            this.multiply_factor /= o.multiply_factor;
+        this.multiply_factor += o.multiply_factor;
+        setInterval(() => {
+            this.multiply_factor -= o.multiply_factor;
         }, o.expiration_time);
     }
 
     update(){
-        //ground coins
-        for(let i = 0; i < coins_ground.length; i++){
-            let coin = coins_ground[i];
-            if(!coin.is_taken() && coin.is_near_player()){
-                this.take_coin(coin);
+        //multiply
+        let mult = 1;
+        for(let i = 0; i < items_xx_all.length; i++){
+            let item = items_xx_all[i];
+            if(!item.is_taken() && item.is_near_player()){
+                this.take_multiply(item);
+            }
+            if(item.is_active()){
+                mult += item.multiply_factor;
             }
         }
-        for(let i = 0; i < coins_lv1.length; i++){
-            let coin = coins_lv1[i];
-            if(!coin.is_taken() && coin.is_near_player()){
-                this.take_coin(coin);
-            }
-        }
-        for(let i = 0; i < coins_lv2.length; i++){
-            let coin = coins_lv2[i];
-            if(!coin.is_taken() && coin.is_near_player()){
-                this.take_coin(coin);
-            }
-        }
-        for(let i = 0; i < coins_lv3.length; i++){
-            let coin = coins_lv3[i];
+        this.multiply_factor = mult;
+        //coins
+        for(let i = 0; i < coins_all.length; i++){
+            let coin = coins_all[i];
             if(!coin.is_taken() && coin.is_near_player()){
                 this.take_coin(coin);
             }

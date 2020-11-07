@@ -20,6 +20,22 @@ for(let i = 0; i < items_30.length; i++){
 let coins_all = coins_ground.concat(coins_lv1.concat(coins_lv2.concat(coins_lv3)));
 
 
+let items_2x = [];
+for(let i = 0; i < items_11.length; i++){
+    items_2x[i] = new Item_2x(items_11[i][0], items_11[i][1], items_11[i][2]);
+}
+let items_5x = [];
+for(let i = 0; i < items_21.length; i++){
+    items_5x[i] = new Item_5x(items_21[i][0], items_21[i][1], items_21[i][2]);
+}
+let items_10x = [];
+for(let i = 0; i < items_31.length; i++){
+    items_10x[i] = new Item_10x(items_31[i][0], items_31[i][1], items_31[i][2]);
+}
+let items_xx_all = items_2x.concat(items_5x.concat(items_10x));
+
+
+
 
 
 let canvas3d = document.getElementById("webgl");
@@ -67,6 +83,7 @@ gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 gl.clearColor(0.0, 0.0, 0.0, 0.0);
 gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.CULL_FACE);
 
 
 
@@ -235,3 +252,100 @@ let coin_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
 
+
+
+
+
+//item 2x, 5x, 10x
+let item_2x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_2x_vs);
+let item_2x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_2x_fs);
+let item_2x_program = utils.createProgram(gl, item_2x_vertex_shader, item_2x_fragment_shader);
+gl.useProgram(item_2x_program);
+
+let item_2x_position_attribute = gl.getAttribLocation(item_2x_program, 'inPosition');
+let item_2x_normal_attribute = gl.getAttribLocation(item_2x_program, 'inNormal');
+let item_2x_matrix_uniform = gl.getUniformLocation(item_2x_program, 'matrix');
+let item_2x_normal_matrix_uniform = gl.getUniformLocation(item_2x_program, 'nMatrix');
+
+let item_2x_vao = gl.createVertexArray();
+gl.bindVertexArray(item_2x_vao);
+
+let item_2x_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_position_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.enableVertexAttribArray(item_2x_position_attribute);
+gl.vertexAttribPointer(item_2x_position_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_2x_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_normal_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(item_2x_normal_attribute);
+gl.vertexAttribPointer(item_2x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_2x_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_2x_index_buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+
+
+
+let item_5x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_5x_vs);
+let item_5x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_5x_fs);
+let item_5x_program = utils.createProgram(gl, item_5x_vertex_shader, item_5x_fragment_shader);
+gl.useProgram(item_5x_program);
+
+let item_5x_position_attribute = gl.getAttribLocation(item_5x_program, 'inPosition');
+let item_5x_normal_attribute = gl.getAttribLocation(item_5x_program, 'inNormal');
+let item_5x_matrix_uniform = gl.getUniformLocation(item_5x_program, 'matrix');
+let item_5x_normal_matrix_uniform = gl.getUniformLocation(item_5x_program, 'nMatrix');
+
+let item_5x_vao = gl.createVertexArray();
+gl.bindVertexArray(item_5x_vao);
+
+let item_5x_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.enableVertexAttribArray(item_5x_position_attribute);
+gl.vertexAttribPointer(item_5x_position_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_5x_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_normal_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(item_5x_normal_attribute);
+gl.vertexAttribPointer(item_5x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_5x_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_5x_index_buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+
+
+
+
+
+let item_10x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_10x_vs);
+let item_10x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_10x_fs);
+let item_10x_program = utils.createProgram(gl, item_10x_vertex_shader, item_10x_fragment_shader);
+gl.useProgram(item_10x_program);
+
+let item_10x_position_attribute = gl.getAttribLocation(item_10x_program, 'inPosition');
+let item_10x_normal_attribute = gl.getAttribLocation(item_10x_program, 'inNormal');
+let item_10x_matrix_uniform = gl.getUniformLocation(item_10x_program, 'matrix');
+let item_10x_normal_matrix_uniform = gl.getUniformLocation(item_10x_program, 'nMatrix');
+
+let item_10x_vao = gl.createVertexArray();
+gl.bindVertexArray(item_10x_vao);
+
+let item_10x_position_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.enableVertexAttribArray(item_10x_position_attribute);
+gl.vertexAttribPointer(item_10x_position_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_10x_normal_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_normal_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(item_10x_normal_attribute);
+gl.vertexAttribPointer(item_10x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
+
+let item_10x_index_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_10x_index_buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);

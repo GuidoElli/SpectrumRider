@@ -24,7 +24,7 @@ function update() {
     elapsed_time = current_time-song_start_time+time_correction;
     let delta_t;
     if (last_update_time){
-        delta_t = current_time - last_update_time;
+        delta_t = Math.min(100, current_time - last_update_time);
     }else{
         delta_t = 0;
     }
@@ -146,7 +146,7 @@ function update() {
             touching_ground = true;
             player_pos_y = y_cont;
         }else{ //still in the air
-            if(up_pressed){
+            if(up_pressed && !down_pressed){
                 if(player_vel_y < -max_vel_y_up_button){
                     player_force_y = up_force * (-max_vel_y_up_button - player_vel_y);
                 }else{
@@ -175,7 +175,7 @@ function update() {
 
     //camera
     let camera_x_old = camera_x;
-    let camera_x_target = player_pos_x*0.5;
+    let camera_x_target = player_pos_x*0.6;
     camera_x += (camera_x_target - camera_x_old) * 0.2;
 
     let camera_y_old = camera_y;

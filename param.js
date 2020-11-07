@@ -38,12 +38,12 @@ let current_high_light = 0.0;
 //enviroment
 let gravity = 10; // unitary mass (no acceleration parameters)
 let x_force = 18 * audio_ground_scale_x;
-let down_force = gravity * 7.0;
-let max_vel_y_up_button = 1.5 * audio_ground_scale_y;
-let up_force = gravity * 5;
+let down_force = gravity * 6.0;
+let max_vel_y_up_button = 1.4 * audio_ground_scale_y;
+let up_force = gravity * 3;
 let player_max_vel_x = 1.05 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
-let player_max_pos_y = audio_ground_scale_y * 15;
+let player_max_pos_y = audio_ground_scale_y * 12;
 let player_max_vel_y_up = 15 * audio_ground_scale_y;
 let player_scale = audio_ground_scale_x * 0.025;
 let player_y_offset = player_scale * 2;
