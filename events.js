@@ -14,26 +14,51 @@ document.addEventListener("keydown" ,function(e) { // TODO
         case "ArrowLeft": // left
             left_pressed = true;
             break;
+        case "X":
+        case "x":
+            e.preventDefault();
+            if(synchronized){
+                if(e.ctrlKey){
+                    time_correction += 10;
+                }
+            }
+            break;
+        case "Z":
+        case "z":
+            e.preventDefault();
+            if(synchronized){
+                if(synchronized){
+                    if(e.ctrlKey){
+                        time_correction -= 10;
+                    }
+                }
+            }
+            break;
+        case "s":
+        case "S":
+            e.preventDefault();
+            if(synchronized){
+                if(e.ctrlKey){
+                    stretch_correction += 0.00001;
+                }
+            }
+            break;
+        case "a":
+        case "A":
+            e.preventDefault();
+            if(synchronized){
+                if(synchronized){
+                    if(e.ctrlKey){
+                        stretch_correction -= 0.00001;
+                    }
+                }
+            }
+            break;
         case "+":
-        case "Add":
-            if(synchronized && !e.repeat){
-                if(e.ctrlKey && !e.shiftKey){
-                    time_correction -= 20;
-                }else if(e.shiftKey && !e.ctrlKey){
-                    stretch_correction -= 0.0001
-                }
-            }
-            break;
+        case "*":
         case "-":
-        case "Subtract":
-            if(synchronized && !e.repeat){
-                if(e.ctrlKey && !e.shiftKey){
-                    time_correction += 20;
-                }else if(e.shiftKey && !e.ctrlKey){
-                    stretch_correction += 0.0001
-                }
-            }
-            break;
+        case "_":
+            e.preventDefault();
         default:
             break;
     }

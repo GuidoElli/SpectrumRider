@@ -198,9 +198,6 @@ function update() {
 
     score_manager.update();
 
-
-
     last_update_time = current_time;
 
 }
-

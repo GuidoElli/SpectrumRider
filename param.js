@@ -5,8 +5,8 @@ let time_correction = 0;
 
 
 //audio ground
-let audio_ground_scale_x = 3.7;
-let audio_ground_scale_y = 0.9;
+let audio_ground_scale_x = 3.9;
+let audio_ground_scale_y = 0.7;
 let audio_ground_scale_z = 5.0;
 
 //scene

@@ -139,6 +139,7 @@ precision mediump float;
 in vec3 fsNormal;
 in vec3 position;
 out vec4 outColor;
+uniform float bassIntensity;
 
 vec3 hsv2rgb_smooth( in vec3 c ){
 vec3 rgb = clamp( abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0, 0.0, 1.0 );
@@ -154,9 +155,9 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = 0.17 - 0.04 * sqrt(pow(position.x, 2.0) + pow(position.y, 2.0));
-	 float s = 0.8 * (1.2 - pow(abs(nNormal.z), 150.0));
-	 float v = clamp( abs(nNormal.z)+0.2, 0.0, 1.0);
+	 float h = clamp(0.17 - 0.04 * sqrt(pow(position.x, 2.0) + pow(position.y, 2.0)), 0.0, 1.0);
+	 float s = clamp(1.0 - pow( abs(nNormal.z), 150.0 ) - pow(bassIntensity, 2.0), 0.0, 1.0);
+	 float v = clamp( abs(nNormal.z) + 0.2 + bassIntensity, 0.0, 1.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;

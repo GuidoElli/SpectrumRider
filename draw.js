@@ -76,6 +76,7 @@ function draw() {
                 let coin_normal_matrix = utils.invertMatrix(utils.transposeMatrix(coin_world_matrix));
                 gl.uniformMatrix4fv(coin_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_projection_matrix));
                 gl.uniformMatrix4fv(coin_normal_matrix_uniform, gl.FALSE, utils.transposeMatrix(coin_normal_matrix));
+                gl.uniform1f(coin_bass_light_uniform, current_bass_light);
 
                 gl.bindVertexArray(coin_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
@@ -154,19 +155,30 @@ function draw() {
 
 
         //points
+
         ctx.clearRect(0, 0, canvasText.width, canvasText.height);
-        ctx.font = '700 70px Arial';
+        ctx.font = '700 90px Arial';
         ctx.fillStyle = '#eeeeee';
         ctx.textAlign = "left";
         ctx.fillText(score_manager.tot_points, 60, 100);
 
         if(score_manager.multiply_factor != 1){
-            ctx.font = '500 40px Arial';
+            ctx.font = '500 50px Arial';
             ctx.fillStyle = '#aaaaaa';
             ctx.textAlign = "right";
             ctx.fillText(score_manager.multiply_factor + "X", ctx.canvas.width*0.95, 100);
         }
 
+
+
+        ctx.font = '100 15px Arial';
+        ctx.fillStyle = '#888888';
+        ctx.textAlign = "left";
+        ctx.fillText("Time-Shift:  " + time_correction + "ms", 60, gl.canvas.height * 0.94);
+        ctx.fillText("Time-Stretch:  " + (stretch_correction * 100).toFixed(3) + "%", 220, gl.canvas.height * 0.94);
+        ctx.font = '500 12px Arial';
+        ctx.fillText("CTRL + [A]/[S]", 220, gl.canvas.height * 0.97);
+        ctx.fillText("CTRL + [Z]/[X]", 60, gl.canvas.height * 0.97);
 
     }
 

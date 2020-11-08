@@ -181,6 +181,7 @@ let coin_position_attribute = gl.getAttribLocation(coin_program, 'inPosition');
 let coin_normal_attribute = gl.getAttribLocation(coin_program, 'inNormal');
 let coin_matrix_uniform = gl.getUniformLocation(coin_program, 'matrix');
 let coin_normal_matrix_uniform = gl.getUniformLocation(coin_program, 'nMatrix');
+let coin_bass_light_uniform = gl.getUniformLocation(coin_program, 'bassIntensity');
 
 let coin_vao = gl.createVertexArray();
 gl.bindVertexArray(coin_vao);
