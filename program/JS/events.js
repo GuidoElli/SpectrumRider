@@ -59,6 +59,17 @@ document.addEventListener("keydown" ,function(e) { // TODO
         case "-":
         case "_":
             e.preventDefault();
+            break;
+        case " ":
+            if(in_game){
+                if(playing){
+                    pause_game();
+                }else{
+                    resume_game();
+                }
+            }
+            e.preventDefault();
+            break;
         default:
             break;
     }

@@ -1,3 +1,18 @@
+*{
+    width: 100%;
+    color: white;
+    height: 100%;
+    position: relative;
+
+    font-family: Verdana, Geneva, sans-serif;
+    letter-spacing: 0;
+    word-spacing: 0.3px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 29px;
+
+    user-select: none;
+}
 body {
     margin: 0;
     background-color: black;
@@ -7,18 +22,46 @@ canvas {
     cursor: none;
     height: 100vh;
     width: 100vw;
+    border-radius: 70px;
 }
     #webgl{
         z-index: 0;
-        border-radius: 70px;
     }
     #text2d{
         z-index: 1;
-        border-radius: 70px;
     }
 button {
     outline: none;
+    padding: 19px;
+    border-radius: 200px;
+    cursor: pointer;
+
+    position: absolute;
+    color: rgb(255, 255, 255);
+    background-image: radial-gradient(at center center, rgb(5, 190, 190) 0%, rgb(0, 17, 117) 100%);
+    border:0;
 }
+button:hover{
+    background-image: radial-gradient(at center center, rgb(5, 213, 213) 0%, rgb(0, 84, 155) 100%);
+    box-shadow: rgba(255, 255, 255, 0.84) 0px 0px 20px 10px;
+}
+
+
+
+.div_button{
+    cursor: default !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+.big_label{
+    font-size: 80px;
+    top: 80px;
+}
+
+
+
+
 
 #game{
     position: absolute;
@@ -27,6 +70,7 @@ button {
     height: 100vh;
 }
 
+
 #menu {
     border-radius: 70px;
     position: absolute;
@@ -34,30 +78,117 @@ button {
     width: 100vw;
     height: 100vh;
 }
-    #start_button {
-        position: absolute;
-        width: 50%;
-        height: 10%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        color: rgb(255, 255, 255);
-        font-size: 29px;
-        line-height: 29px;
-        padding: 19px;
-        border-radius: 50px;
-        font-family: Impact, Charcoal, sans-serif;
-        font-weight: 700;
-        text-decoration: none;
-        font-style: normal;
-        font-variant: normal;
-        text-transform: none;
-        background-image: radial-gradient(at center center, rgb(5, 190, 190) 0%, rgb(0, 17, 117) 100%);
-        border:0;
-        display: inline-block;
-        cursor: pointer;
+    #menu_song_info{
+        height: 50%;
     }
-    #start_button:hover {
-        background-image: radial-gradient(at center center, rgb(5, 213, 213) 0%, rgb(0, 84, 155) 100%);
-        box-shadow: rgba(255, 255, 255, 0.84) 0px 0px 20px 10px;
+        #app_name{
+            font-size: 120px;
+            height: 60%;
+        }
+        #song_info_title{
+            height: 40%;
+            top: 60%;
+        }
+
+    #menu_buttons{
+        height: 50%;
     }
+        #start_button {
+            top: 15%;
+            width: 50%;
+            height: 30%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        #options_button{
+            top: 60%;
+            width: 30%;
+            height: 20%;
+            font-size: 25px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+#options{
+
+}
+    #options_back_button{
+        top: 60%;
+        width: 30%;
+        height: 20%;
+    }
+
+#pause{
+
+}
+    #pause_label{
+        height: 30%;
+    }
+    #pause_buttons{
+        height: 70%;
+        top: 30%;
+    }
+
+        #resume_button {
+            top: 20%;
+            width: 50%;
+            height: 30%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        #pause_menu_button {
+            top: 60%;
+            width: 30%;
+            height: 20%;
+            font-size: 25px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+#game_over{
+
+}
+    #game_over_info{
+        height: 40%;
+    }
+        #game_over_label{
+            height: 50%;
+            top: 20%;
+        }
+        #game_over_score{
+            height: 30%;
+            top: 70%;
+        }
+            #score_label{
+                width: 50%;
+                text-align: right;
+                font-size: 35px;
+                left: 0;
+            }
+            #score{
+                width: 50%;
+                text-align: left;
+                font-size: 50px;
+                left: 50%;
+            }
+    #game_over_buttons{
+        height: 60%;
+    }
+        #play_again_button{
+            top: 20%;
+            width: 50%;
+            height: 30%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        #menu_button{
+            top: 60%;
+            width: 30%;
+            height: 20%;
+            font-size: 25px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+#loading{
+    font-size: 100px;
+}

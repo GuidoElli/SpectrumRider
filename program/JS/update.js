@@ -34,6 +34,7 @@ function update() {
     }
     current_z = -(current_time-song_start_time+time_correction) * .001 * audio_ground_scale_z;
     if (elapsed_time/1000 > song_duration_seconds - 0.2){
+        end_game();
         return;
     }else if(elapsed_time/1000 < 0.2){
         return;

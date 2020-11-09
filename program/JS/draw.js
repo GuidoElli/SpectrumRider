@@ -163,21 +163,19 @@ function draw() {
         ctx.fillText(score_manager.tot_points, 60, 100);
 
         if(score_manager.multiply_factor != 1){
-            ctx.font = '500 50px Arial';
-            ctx.fillStyle = '#aaaaaa';
+            ctx.font = '600 50px Arial';
+            ctx.fillStyle = '#bbbbbb';
             ctx.textAlign = "right";
             ctx.fillText(score_manager.multiply_factor + "X", ctx.canvas.width*0.95, 100);
         }
 
-
-
         ctx.font = '100 15px Arial';
         ctx.fillStyle = '#888888';
         ctx.textAlign = "left";
-        ctx.fillText("Time-Shift:  " + time_correction + "ms", 60, gl.canvas.height * 0.94);
-        ctx.fillText("Time-Stretch:  " + (stretch_correction * 100).toFixed(3) + "%", 220, gl.canvas.height * 0.94);
+        ctx.fillText("Time-Shift: " + time_correction + "ms", 60, gl.canvas.height * 0.94);
+        ctx.fillText("Time-Stretch: " + (stretch_correction * 100).toFixed(3) + "%", 250, gl.canvas.height * 0.94);
         ctx.font = '500 12px Arial';
-        ctx.fillText("CTRL + [A]/[S]", 220, gl.canvas.height * 0.97);
+        ctx.fillText("CTRL + [A]/[S]", 250, gl.canvas.height * 0.97);
         ctx.fillText("CTRL + [Z]/[X]", 60, gl.canvas.height * 0.97);
 
     }
