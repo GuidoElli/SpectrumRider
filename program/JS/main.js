@@ -1,86 +1,169 @@
-let score_manager = new Score_manger();
+let coins_ground;
+let coins_lv1;
+let coins_lv2;
+let coins_lv3;
+let coins_all;
 
-//Coins
-let coins_ground = [];
-for(let i = 0; i < items_00.length; i++){
-    coins_ground[i] = new Coin_ground(items_00[i][0], items_00[i][1], items_00[i][2]);
+let items_2x;
+let items_5x;
+let items_10x;
+let items_xx_all;
+
+let score_manager;
+
+
+function init(){
+    score_manager = new Score_manger();
+
+    //Coins
+    coins_ground = [];
+    for(let i = 0; i < items_00.length; i++){
+        coins_ground[i] = new Coin_ground(items_00[i][0], items_00[i][1], items_00[i][2]);
+    }
+    coins_lv1 = [];
+    for(let i = 0; i < items_10.length; i++){
+        coins_lv1[i] = new Coin_lv1(items_10[i][0], items_10[i][1], items_10[i][2]);
+    }
+    coins_lv2 = [];
+    for(let i = 0; i < items_20.length; i++){
+        coins_lv2[i] = new Coin_lv2(items_20[i][0], items_20[i][1], items_20[i][2]);
+    }
+    coins_lv3 = [];
+    for(let i = 0; i < items_30.length; i++){
+        coins_lv3[i] = new Coin_lv3(items_30[i][0], items_30[i][1], items_30[i][2]);
+    }
+    coins_all = coins_ground.concat(coins_lv1.concat(coins_lv2.concat(coins_lv3)));
+
+
+    items_2x = [];
+    for(let i = 0; i < items_11.length; i++){
+        items_2x[i] = new Item_2x(items_11[i][0], items_11[i][1], items_11[i][2]);
+    }
+    items_5x = [];
+    for(let i = 0; i < items_21.length; i++){
+        items_5x[i] = new Item_5x(items_21[i][0], items_21[i][1], items_21[i][2]);
+    }
+    items_10x = [];
+    for(let i = 0; i < items_31.length; i++){
+        items_10x[i] = new Item_10x(items_31[i][0], items_31[i][1], items_31[i][2]);
+    }
+    items_xx_all = items_2x.concat(items_5x.concat(items_10x));
 }
-let coins_lv1 = [];
-for(let i = 0; i < items_10.length; i++){
-    coins_lv1[i] = new Coin_lv1(items_10[i][0], items_10[i][1], items_10[i][2]);
-}
-let coins_lv2 = [];
-for(let i = 0; i < items_20.length; i++){
-    coins_lv2[i] = new Coin_lv2(items_20[i][0], items_20[i][1], items_20[i][2]);
-}
-let coins_lv3 = [];
-for(let i = 0; i < items_30.length; i++){
-    coins_lv3[i] = new Coin_lv3(items_30[i][0], items_30[i][1], items_30[i][2]);
-}
-let coins_all = coins_ground.concat(coins_lv1.concat(coins_lv2.concat(coins_lv3)));
 
 
-let items_2x = [];
-for(let i = 0; i < items_11.length; i++){
-    items_2x[i] = new Item_2x(items_11[i][0], items_11[i][1], items_11[i][2]);
-}
-let items_5x = [];
-for(let i = 0; i < items_21.length; i++){
-    items_5x[i] = new Item_5x(items_21[i][0], items_21[i][1], items_21[i][2]);
-}
-let items_10x = [];
-for(let i = 0; i < items_31.length; i++){
-    items_10x[i] = new Item_10x(items_31[i][0], items_31[i][1], items_31[i][2]);
-}
-let items_xx_all = items_2x.concat(items_5x.concat(items_10x));
-
-
-
-
-
-load_settings();
-
-
-
-
-let canvas3d = document.getElementById("webgl");
-let synchronized = false;
-let song_begun = false;
-let song_start_time = undefined;
-let song = document.getElementById("song");
-let start_button = document.getElementById("start_button");
-start_button.addEventListener("mouseup", function(){
-    song.load();
+function start_game(){
+    init();
+    show_screen("loading");
+    playing = true;
+    song.currentTime = 0;
     song.play().then(function () {
         song_begun = true;
     });
-    let menu = document.getElementById("menu");
-    let game = document.getElementById("game");
-    menu.style.display = "none";
-    game.style.display = "block";
     document.documentElement.requestFullscreen().then(() => {
         draw();
     })
-})
-
-song.ontimeupdate = function () {
-    let current = (new Date).getTime();
-    if(!song_begun){
-        song_begun = true;
-    }else if(!synchronized){
-        song_start_time = current - song.currentTime * 1000;
-        synchronized = true;
+    song.ontimeupdate = function () {
+        let current = (new Date).getTime();
+        if(!song_begun){
+            song_begun = true;
+        }else if(!synchronized && playing){
+            song_start_time = current - song.currentTime * 1000;
+            synchronized = true;
+            show_screen("game");
+            in_game = true;
+        }
     }
 }
 
+function end_game(){
+    show_screen("game_over");
+    playing = false;
+    song.pause();
+    in_game = false;
+    synchronized = false;
+}
+
+function exit_game(){
+    show_screen("menu");
+    playing = false;
+    song.pause();
+    in_game = false;
+    synchronized = false;
+}
+
+function pause_game(){
+    show_screen("pause");
+    playing = false;
+    synchronized = false;
+    song.pause();
+}
+
+function resume_game(){
+    show_screen("loading");
+    playing = true;
+    song.play();
+}
 
 
 // program
+init();
+window.addEventListener("load", () => {
+    show_screen("menu");
+})
+
+let song_begun = false;
+let song_start_time;
+
+let start_button = document.getElementById("start_button");
+start_button.addEventListener("mouseup", function (){
+    start_game();
+})
+
+let options_button = document.getElementById("options_button");
+options_button.addEventListener("mouseup", function (){
+    show_screen("options");
+})
+
+
+let menu_button = document.getElementById("menu_button");
+menu_button.addEventListener("mouseup", function (){
+    show_screen("menu");
+})
+
+let play_again_button = document.getElementById("play_again_button");
+play_again_button.addEventListener("mouseup", function (){
+    start_game();
+})
+
+let resume_button = document.getElementById("resume_button");
+resume_button.addEventListener("mouseup", function (){
+    resume_game();
+})
+
+let pause_menu_button = document.getElementById("pause_menu_button");
+pause_menu_button.addEventListener("mouseup", function (){
+    exit_game();
+})
+
+let options_back_button = document.getElementById("options_back_button");
+options_back_button.addEventListener("mouseup", function (){
+    show_screen("menu");
+})
+
+
+
+
+//song
+let song = document.getElementById("song");
+song.load();
+
+
 let canvasText = document.getElementById("text2d");
 let ctx = canvasText.getContext("2d");
 canvasText.width = screen.width;
 canvasText.height = screen.height;
 
+let canvas3d = document.getElementById("webgl");
 let gl = canvas3d.getContext("webgl2");
 canvas3d.width = screen.width;
 canvas3d.height = screen.height;

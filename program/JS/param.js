@@ -18,6 +18,8 @@ let current_time = 0;
 let elapsed_time = 0;
 let last_update_time = 0;
 
+let synchronized = false;
+
 //camera
 let camera_x = 0.0;
 
@@ -80,8 +82,45 @@ let left_pressed = false;
 
 
 
+let playing = false;
+let in_game = false;
 
 
-load_settings = () => {
+function show_screen(s){
+    let menu = document.getElementById("menu");
+    let game = document.getElementById("game");
+    let options = document.getElementById("options");
+    let game_over = document.getElementById("game_over");
+    let pause = document.getElementById("pause");
+    let loading = document.getElementById("loading");
+    menu.style.display = "none";
+    game.style.display = "none";
+    options.style.display = "none";
+    game_over.style.display = "none";
+    pause.style.display = "none";
+    loading.style.display = "none";
 
+    playing = false;
+
+    switch (s){
+        case "menu":
+            menu.style.display = "block";
+            break;
+        case "game":
+            game.style.display = "block";
+            playing = true;
+            break;
+        case "options":
+            options.style.display = "block";
+            break;
+        case "game_over":
+            game_over.style.display = "block";
+            break;
+        case "pause":
+            pause.style.display = "block";
+            break;
+        case "loading":
+            loading.style.display = "block";
+            break;
+    }
 }
