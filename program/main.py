@@ -448,7 +448,7 @@ class App:
 			self.frame.pack_forget()
 		self.frame = tk.Frame(self.master)
 		self.frame.pack()
-		folders = [f for f in os.listdir(os.path.join(os.getcwd(), '..', 'SONGS'))]
+		folders = [f for f in os.listdir(os.path.join(os.getcwd(), '..', 'SONGDATA'))]
 		labels = []
 		play_buttons = []
 		frames = []
@@ -459,7 +459,7 @@ class App:
 			labels.append(tk.Label(frames[i], text=folders[i]))
 			labels[i].pack(fill=tk.Y, side=tk.LEFT)
 
-			play_buttons.append(tk.Button(frames[i], text="Play", command=partial(open_song, "SONGS/" + folders[i])))
+			play_buttons.append(tk.Button(frames[i], text="Play", command=partial(open_song, "SONGDATA/" + folders[i])))
 			play_buttons[i].pack(fill=tk.Y, side=tk.LEFT)
 
 		new_song_button = tk.Button(self.frame, text="New Song", command=self.open_new_song_screen)
@@ -488,7 +488,7 @@ class New_song:
 		self.artist = self.artist_entry.get()
 		self.title = self.title_entry.get()
 		if not (self.filename == "No file selected!" or self.artist == "" or self.title == ""):
-			load_song(self.filename, "SONGS/" + self.artist + " - " + self.title + "/")
+			load_song(self.filename, "SONGDATA/" + self.artist + " - " + self.title + "/")
 			self.root.reload()
 			self.close_window()
 		else:

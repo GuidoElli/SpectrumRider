@@ -20,29 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Coin_ground.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Coin_lv1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Coin_lv2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Coin_lv3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Item.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Item_10x.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Item_2x.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Item_5x.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Score_manger.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/draw.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/events.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/objects_def.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/param.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/shaders.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGS/Yolanda B Cool - We No Speak Americano/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGS/Yolanda B Cool - We No Speak Americano/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolanda B Cool - We No Speak Americano.html" beforeDir="false" afterPath="$PROJECT_DIR$/Yolanda B Cool - We No Speak Americano.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +54,7 @@
       <updated>1604864869463</updated>
       <workItem from="1604864870630" duration="185000" />
       <workItem from="1604880652352" duration="1966000" />
+      <workItem from="1604940252417" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
