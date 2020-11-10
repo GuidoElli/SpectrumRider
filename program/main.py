@@ -42,8 +42,8 @@ def build_song_data(mp3_path, path):
 	# Parameters
 	win_length_time = 0.07
 
-	n_bands = 7
-	bands_borders = np.array([20, 120, 300, 600, 1600, 5000, 10000, 20000])
+	n_bands = 6
+	bands_borders = np.array([20, 130, 500, 1500, 5000, 10000, 20000])
 	first_mid_band = 1
 	first_high_band = 4
 
@@ -253,8 +253,8 @@ def build_song_data(mp3_path, path):
 			pattern_high += "];"
 
 	# items position
-	start = 50  # vertex to start on
-	stop = 50  # stop before n vertices
+	start = 150  # vertex to start on
+	stop = 150  # stop before n vertices
 
 	# Level 0: on ground
 	items_0_rows_space = upsample_time * 2
@@ -286,17 +286,17 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = upsample_time * 6
+	items_123_rows_space = upsample_time * 10
 	# probabilities
 	item_lv1_prob = 0.5
 	item_lv2_prob = 0.3
 	item_lv3_prob = 0.2
 	lv1_mean = 2
 	lv1_dev = 0.2
-	lv2_mean = 3.5
+	lv2_mean = 4
 	lv2_dev = 0.2
-	lv3_mean = 5
-	lv3_dev = 0.3
+	lv3_mean = 6
+	lv3_dev = 0.2
 
 	# lv 1
 	items_10_prob = 0.5
@@ -386,13 +386,59 @@ def build_html(path):
 	'    <link rel="stylesheet" type="text/css" href="program/CSS/main.css">' \
 	'</head>' \
 	'<body>' \
-	'    <div id="game">' \
-	'        <canvas id="webgl"></canvas>' \
-	'        <canvas id="text2d"></canvas>' \
-	'    </div>' \
-	'    <div id="menu">' \
-	'        <button id="start_button">Play!</button>' \
-	'    </div>' \
+'<div id="game">' \
+'	<canvas id="webgl"></canvas>' \
+'	<canvas id="text2d"></canvas>' \
+'</div>' \
+'<div id="menu" class="screen" style="display: none">' \
+'	<div id="menu_song_info">' \
+'		<button id="app_name" class="div_button">' \
+	'		Spectrum Rider' \
+	'	</button>' \
+	'	<button id="song_info_title" class="div_button big_label">' \
+	'		{1:s}' \
+	'	</button>' \
+'	</div>' \
+	'<div id="menu_buttons">' \
+'		<button id="start_button">Play!</button>' \
+'		<button id="options_button">Options</button>' \
+'	</div>' \
+'</div>' \
+'<div id="options" class="screen" style="display: none">' \
+	'<button id="options_back_button">Back</button>' \
+'</div>' \
+'<div id="game_over" class="screen" style="display: none">' \
+	'<div id="game_over_info">' \
+		'<button id="game_over_label" class="div_button big_label">' \
+		'	Game Over!' \
+	'	</button>' \
+	'	<div id="game_over_score">' \
+	'		<button id="score_label" class="div_button">' \
+	'			Your Score:' \
+	'		</button>' \
+	'		<button id="score" class="div_button">' \
+	'			50' \
+	'		</button>' \
+	'	</div>' \
+	'</div>' \
+'<div id="game_over_buttons">' \
+	'	<button id="play_again_button">Play Again!</button>' \
+	'	<button id="menu_button">Menu</button>' \
+	'</div>' \
+'</div>' \
+'<div id="pause" class="screen" style="display: none">' \
+	'<button id="pause_label" class="div_button big_label">' \
+	'	Game Paused' \
+	'</button>' \
+	'<div id="pause_buttons">' \
+		'<button id="resume_button">Resume</button>' \
+'		<button id="pause_restart_button">Restart</button>' \
+	'	<button id="pause_menu_button">Exit</button>' \
+'	</div>' \
+'</div>' \
+'<button id="loading" class="screen div_button" style="display: block">' \
+'Loading...' \
+'</button>' \
 	'    <audio id="song" src="{0:s}song.mp3"></audio>' \
 	'</body>' \
 	'<script type="text/javascript" src="{0:s}song_data.js"></script>' \

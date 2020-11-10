@@ -192,7 +192,7 @@ function update() {
 
     //colors
     let white_coeff = 0.05;
-    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 0.7);
+    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.5);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
 

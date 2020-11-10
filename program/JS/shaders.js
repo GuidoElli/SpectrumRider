@@ -43,13 +43,13 @@ void main() {
     vec3 nNormal = normalize(fsNormal);
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
-    float shadeIn = .04;
-    float shadeOut = .13;
+    float shadeIn = .02;
+    float shadeOut = .19;
     float factor;
     
 	 float h = noise(position.z/20.0);
-	 float s = 0.5 + clamp( pow(bassIntensity, 2.0)*0.1 + pow(midIntensity, 2.0)*0.3 + pow(highIntensity, 2.0)*0.2, 0.0, 0.4);
-	 float v = 0.2 + clamp( pow(abs(1.0-nNormal.y), 0.5)*0.8 + pow(bassIntensity, 2.0)*0.6 + pow(midIntensity, 2.0)*0.15 + pow(highIntensity, 2.0)*0.15, 0.0, 0.8);
+	 float s = 0.5 + clamp( pow(bassIntensity, 1.5)*0.1 + pow(midIntensity, 1.5)*0.3 + pow(highIntensity, 1.5)*0.2, 0.0, 0.4);
+	 float v = 0.2 + clamp( pow(abs(1.0-nNormal.y), 0.5)*0.8 + pow(bassIntensity, 1.5)*0.6 + pow(midIntensity, 1.5)*0.2 + pow(highIntensity, 1.5)*0.2, 0.0, 0.8);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	
 	 // current line
