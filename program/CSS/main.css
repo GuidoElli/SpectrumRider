@@ -6,7 +6,6 @@
 
     font-family: Verdana, Geneva, sans-serif;
     letter-spacing: 0;
-    word-spacing: 0.3px;
     font-weight: 700;
     font-size: 40px;
     line-height: 29px;
@@ -115,6 +114,8 @@ button:hover{
         top: 60%;
         width: 30%;
         height: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 
 #pause{
@@ -129,14 +130,22 @@ button:hover{
     }
 
         #resume_button {
-            top: 20%;
+            top: 10%;
             width: 50%;
-            height: 30%;
+            height: 25%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        #pause_restart_button {
+            top: 40%;
+            width: 30%;
+            height: 20%;
+            font-size: 25px;
             left: 50%;
             transform: translate(-50%, 0);
         }
         #pause_menu_button {
-            top: 60%;
+            top: 70%;
             width: 30%;
             height: 20%;
             font-size: 25px;

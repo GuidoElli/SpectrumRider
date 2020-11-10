@@ -181,7 +181,7 @@ function update() {
     //camera
     let camera_x_old = camera_x;
     let camera_x_target = player_pos_x*0.6;
-    camera_x += (camera_x_target - camera_x_old) * 0.2;
+    camera_x += (camera_x_target - camera_x_old) * 0.15;
 
     let camera_y_old = camera_y;
     let camera_y_target = camera_y_min * (player_pos_y/camera_y_min + 1 / (player_pos_y/camera_y_min + 1));
@@ -192,7 +192,7 @@ function update() {
 
     //colors
     let white_coeff = 0.05;
-    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.8);
+    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 0.7);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
 

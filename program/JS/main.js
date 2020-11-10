@@ -59,9 +59,6 @@ function start_game(){
     song.play().then(function () {
         song_begun = true;
     });
-    document.documentElement.requestFullscreen().then(() => {
-        draw();
-    })
     song.ontimeupdate = function () {
         let current = (new Date).getTime();
         if(!song_begun){
@@ -71,11 +68,13 @@ function start_game(){
             synchronized = true;
             show_screen("game");
             in_game = true;
+            draw();
         }
     }
 }
 
 function end_game(){
+    score.innerHTML = score_manager.tot_points;
     show_screen("game_over");
     playing = false;
     song.pause();
@@ -116,6 +115,7 @@ let song_start_time;
 
 let start_button = document.getElementById("start_button");
 start_button.addEventListener("mouseup", function (){
+    document.documentElement.requestFullscreen()
     start_game();
 })
 
@@ -144,13 +144,17 @@ let pause_menu_button = document.getElementById("pause_menu_button");
 pause_menu_button.addEventListener("mouseup", function (){
     exit_game();
 })
+let pause_restart_button = document.getElementById("pause_restart_button");
+pause_restart_button.addEventListener("mouseup", function (){
+    start_game();
+})
 
 let options_back_button = document.getElementById("options_back_button");
 options_back_button.addEventListener("mouseup", function (){
     show_screen("menu");
 })
 
-
+let score = document.getElementById("score");
 
 
 //song
