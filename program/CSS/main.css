@@ -54,7 +54,7 @@ button:hover{
     background: none !important;
 }
 .big_label{
-    font-size: 80px;
+    font-size: 60px;
     top: 80px;
 }
 
@@ -81,12 +81,13 @@ button:hover{
         height: 50%;
     }
         #app_name{
-            font-size: 120px;
+            font-size: 90px;
             height: 60%;
         }
         #song_info_title{
             height: 40%;
             top: 60%;
+            font-size: 40px;
         }
 
     #menu_buttons{
@@ -117,7 +118,7 @@ button:hover{
         left: 50%;
         transform: translate(-50%, 0);
     }
-
+e
 #pause{
 
 }

@@ -71,7 +71,7 @@ def build_song_data(mp3_path, path):
 			rms = np.sqrt(sum(np.power(filtered_frame, 2)))
 			z_init_matrix[f, b] = rms
 	for b in range(n_bands):
-		z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / z_init_matrix[:, b].max() / 0.93, sanity_ground)
+		z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / z_init_matrix[:, b].max() / 0.85, sanity_ground)
 		for f in range(n_frames):
 			z_init_matrix[f, b] = min([z_init_matrix[f, b], 1])
 
