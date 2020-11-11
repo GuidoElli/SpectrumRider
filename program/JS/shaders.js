@@ -44,7 +44,7 @@ void main() {
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
     float shadeIn = .02;
-    float shadeOut = .19;
+    float shadeOut = .3;
     float factor;
     
 	 float h = noise(position.z/20.0);

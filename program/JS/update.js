@@ -33,12 +33,6 @@ function update() {
         delta_t = 0;
     }
     current_z = -(current_time-song_start_time+time_correction) * .001 * audio_ground_scale_z;
-    if (elapsed_time/1000 > song_duration_seconds - 0.2){
-        end_game();
-        return;
-    }else if(elapsed_time/1000 < 0.2){
-        return;
-    }
 
     //player
     //compute force
@@ -71,6 +65,13 @@ function update() {
 
     let z_index_cont = -current_z / audio_ground_scale_z / song_duration_seconds * (n_rows-1) * stretch_correction;
     let z_index = Math.round(z_index_cont);
+
+    if (z_index >= n_rows){
+        end_game();
+        return;
+    }else if(z_index < 0){
+        return;
+    }
 
     let y_curr = y_map[z_index][x_index] * audio_ground_scale_y;
     let y_prev = [];
@@ -192,7 +193,7 @@ function update() {
 
     //colors
     let white_coeff = 0.05;
-    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.5);
+    gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.7);
     gl_clear_color.g = gl_clear_color.r
     gl_clear_color.b = gl_clear_color.r
 

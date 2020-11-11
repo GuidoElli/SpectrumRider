@@ -42,16 +42,16 @@ def build_song_data(mp3_path, path):
 	# Parameters
 	win_length_time = 0.07
 
-	n_bands = 6
-	bands_borders = np.array([20, 130, 500, 1500, 5000, 10000, 20000])
+	n_bands = 5
+	bands_borders = np.array([20, 140, 700, 2500, 10000, 20000])
 	first_mid_band = 1
 	first_high_band = 4
 
-	upsample_freq = 5
-	upsample_time = 5
+	upsample_freq = 4
+	upsample_time = 4
 
-	sanity_ground = 1.7
-	sanity_lights = 1.7
+	sanity_ground = 1
+	sanity_lights = 1.9
 
 	max_vertices_per_block = 16000
 
@@ -71,7 +71,7 @@ def build_song_data(mp3_path, path):
 			rms = np.sqrt(sum(np.power(filtered_frame, 2)))
 			z_init_matrix[f, b] = rms
 	for b in range(n_bands):
-		z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / (z_init_matrix[:, b].max() * 0.94), sanity_ground)
+		z_init_matrix[:, b] = np.power(z_init_matrix[:, b] / z_init_matrix[:, b].max() / 0.93, sanity_ground)
 		for f in range(n_frames):
 			z_init_matrix[f, b] = min([z_init_matrix[f, b], 1])
 
@@ -145,24 +145,14 @@ def build_song_data(mp3_path, path):
 					last_row_vertices += ","
 			# index
 			if (not is_last_row) & (j != n_vertex_per_row - 1):
-				if i + j % 2 == 0:
-					indices += " {0:d}, {1:d}, {2:d},".format(
-						current_vertex - past_blocks_vertices,
-						current_vertex - past_blocks_vertices + 1,
-						current_vertex - past_blocks_vertices + n_vertex_per_row)
-					indices += " {0:d}, {1:d}, {2:d}".format(
-						current_vertex - past_blocks_vertices + n_vertex_per_row,
-						current_vertex - past_blocks_vertices + 1,
-						current_vertex - past_blocks_vertices + n_vertex_per_row + 1)
-				else:
-					indices += " {0:d}, {1:d}, {2:d},".format(
-						current_vertex - past_blocks_vertices,
-						current_vertex - past_blocks_vertices + 1,
-						current_vertex - past_blocks_vertices + n_vertex_per_row + 1)
-					indices += " {0:d}, {1:d}, {2:d}".format(
-						current_vertex - past_blocks_vertices,
-						current_vertex - past_blocks_vertices + n_vertex_per_row + 1,
-						current_vertex - past_blocks_vertices + n_vertex_per_row)
+				indices += " {0:d}, {1:d}, {2:d},".format(
+					current_vertex - past_blocks_vertices,
+					current_vertex - past_blocks_vertices + 1,
+					current_vertex - past_blocks_vertices + n_vertex_per_row)
+				indices += " {0:d}, {1:d}, {2:d}".format(
+					current_vertex - past_blocks_vertices + n_vertex_per_row,
+					current_vertex - past_blocks_vertices + 1,
+					current_vertex - past_blocks_vertices + n_vertex_per_row + 1)
 				if j != n_vertex_per_row - 2:
 					indices += ","
 			# normal
