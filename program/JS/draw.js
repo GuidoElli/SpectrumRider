@@ -80,7 +80,7 @@ function draw() {
 
                 gl.bindVertexArray(coin_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-                gl.drawElements(gl.TRIANGLES, coin_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+                gl.drawElements(gl.TRIANGLES, coin_ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -104,7 +104,7 @@ function draw() {
 
                 gl.bindVertexArray(item_2x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -126,7 +126,7 @@ function draw() {
 
                 gl.bindVertexArray(item_5x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -148,7 +148,7 @@ function draw() {
 
                 gl.bindVertexArray(item_10x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );//TODO
+                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 

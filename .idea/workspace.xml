@@ -20,46 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/88888 - 8888.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Boh - Dime.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/88888 - 8888/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/88888 - 8888/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Boh - Dime/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Boh - Dime/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/c - x/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/c - x/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/club dogo - brucia ancora/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/club dogo - brucia ancora/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/eminem - 8 mile/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/f - lose/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/f - lose/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/n - 16/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/ppp - ppp/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/s - s/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/s - s/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/sada - ssa/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/y - 8/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/y - 8/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/c - x.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/club dogo - brucia ancora.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/f - lose.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/ElectricPiano.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/big speaker.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/led.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/test.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s - s.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/y - 8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Murubutu - Mari Infiniti/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Murubutu - Mari Infiniti/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Yolanda B Cool - We No Speak Americano/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Yolanda B Cool - We No Speak Americano/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolanda B Cool - We No Speak Americano.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Item_10x.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/Item_10x.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/shaders.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/shaders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/draw.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +58,7 @@
       <workItem from="1604880652352" duration="1966000" />
       <workItem from="1604940252417" duration="14561000" />
       <workItem from="1604969089092" duration="3764000" />
-      <workItem from="1605011968722" duration="9277000" />
+      <workItem from="1605011968722" duration="9356000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -141,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605013858280</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="aaa">
+      <created>1605054287569</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605054287569</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
