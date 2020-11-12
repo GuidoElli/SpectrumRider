@@ -201,9 +201,9 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = 0.35 + position.y*0.1;
-	 float s = 1.0;
-	 float v = clamp( 0.2+nNormal.z, 0.0, 1.0);
+	 float h = 0.65;
+	 float s = 1.0 - pow(nNormal.z, 30.0);
+	 float v = 0.5 + pow(nNormal.z, 30.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;
@@ -244,9 +244,9 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = 0.55 + position.y*0.1;
-	 float s = 1.0;
-	 float v = clamp( 0.2+nNormal.z, 0.0, 1.0);
+	 float h = 0.4;
+	 float s = 1.0 - pow(nNormal.z, 30.0);
+	 float v = 0.5 + pow(nNormal.z, 30.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;
@@ -287,9 +287,9 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
-	 float h = 0.75 + position.y*0.1;
-	 float s = 1.0;
-	 float v = clamp( 0.2+nNormal.z, 0.0, 1.0);
+	 float h = 0.8;
+	 float s = 1.0 - pow(nNormal.z, 30.0);
+	 float v = 0.5 + pow(nNormal.z, 30.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;

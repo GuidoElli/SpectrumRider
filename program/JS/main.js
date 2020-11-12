@@ -162,7 +162,7 @@ let song = document.getElementById("song");
 song.load();
 
 let canvasText = document.getElementById("text2d");
-let ctx = canvasText.getContext("2d");
+let ctx_2d = canvasText.getContext("2d");
 canvasText.width = screen.width;
 canvasText.height = screen.height;
 
@@ -260,8 +260,6 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DR
 
 //objects
 
-// Access the models by array index
-
 //coins on ground
 let coin_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_vs);
 let coin_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, coin_fs);
@@ -279,7 +277,7 @@ gl.bindVertexArray(coin_vao);
 
 let coin_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_vert), gl.STATIC_DRAW);//TODO
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(coin_position_attribute);
 gl.vertexAttribPointer(coin_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
@@ -294,10 +292,12 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(coin_ind), gl.STATIC_DRAW);
 
 
-
-
-
 //item 2x, 5x, 10x
+
+
+// Access the models by array index
+let note_obj = parseObjText(note_obj_text, false);
+
 let item_2x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_2x_vs);
 let item_2x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_2x_fs);
 let item_2x_program = utils.createProgram(gl, item_2x_vertex_shader, item_2x_fragment_shader);
@@ -313,19 +313,19 @@ gl.bindVertexArray(item_2x_vao);
 
 let item_2x_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_2x_position_attribute);
 gl.vertexAttribPointer(item_2x_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_2x_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_2x_normal_attribute);
 gl.vertexAttribPointer(item_2x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_2x_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_2x_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);
 
 
 
@@ -344,19 +344,19 @@ gl.bindVertexArray(item_5x_vao);
 
 let item_5x_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_5x_position_attribute);
 gl.vertexAttribPointer(item_5x_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_5x_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_5x_normal_attribute);
 gl.vertexAttribPointer(item_5x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_5x_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_5x_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);
 
 
 
@@ -377,16 +377,16 @@ gl.bindVertexArray(item_10x_vao);
 
 let item_10x_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);//TODO
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_10x_position_attribute);
 gl.vertexAttribPointer(item_10x_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_10x_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_10x_normal_attribute);
 gl.vertexAttribPointer(item_10x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_10x_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_10x_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);

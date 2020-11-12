@@ -104,7 +104,7 @@ function draw() {
 
                 gl.bindVertexArray(item_2x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_2x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, note_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -126,7 +126,7 @@ function draw() {
 
                 gl.bindVertexArray(item_5x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, note_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -148,7 +148,7 @@ function draw() {
 
                 gl.bindVertexArray(item_10x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, note_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -156,29 +156,67 @@ function draw() {
 
         //points
 
-        ctx.clearRect(0, 0, canvasText.width, canvasText.height);
-        ctx.font = '700 90px Arial';
-        ctx.fillStyle = '#eeeeee';
-        ctx.textAlign = "left";
-        ctx.fillText(score_manager.tot_points, 60, 100);
+        ctx_2d.clearRect(0, 0, canvasText.width, canvasText.height);
+        ctx_2d.font = '700 90px Arial';
+        ctx_2d.fillStyle = '#eeeeee';
+        ctx_2d.textAlign = "left";
+        ctx_2d.fillText(score_manager.tot_points, 60, 100);
 
         if(score_manager.multiply_factor != 1){
-            ctx.font = '600 50px Arial';
-            ctx.fillStyle = '#bbbbbb';
-            ctx.textAlign = "right";
-            ctx.fillText(score_manager.multiply_factor + "X", ctx.canvas.width*0.95, 100);
+            ctx_2d.font = '600 50px Arial';
+            ctx_2d.fillStyle = '#bbbbbb';
+            ctx_2d.textAlign = "left";
+            ctx_2d.fillText(score_manager.multiply_factor + "X", 60, 180);
         }
 
-        ctx.font = '100 15px Arial';
-        ctx.fillStyle = '#888888';
-        ctx.textAlign = "left";
-        ctx.fillText("Time-Shift: " + time_correction + "ms", 60, gl.canvas.height * 0.94);
-        ctx.fillText("Time-Stretch: " + (stretch_correction * 100).toFixed(3) + "%", 250, gl.canvas.height * 0.94);
-        ctx.font = '500 12px Arial';
-        ctx.fillText("CTRL + [A]/[S]", 250, gl.canvas.height * 0.97);
-        ctx.fillText("CTRL + [Z]/[X]", 60, gl.canvas.height * 0.97);
+
+        //title
+        let title = document.getElementById("song_info_title").innerHTML;
+        ctx_2d.font = '100 25px Arial';
+        ctx_2d.fillStyle = 'rgba(150, 150, 150, 0.5)';
+        ctx_2d.textAlign = "right";
+        ctx_2d.fillText(title, ctx_2d.canvas.width - 60 - 5, 60);
+
+        //evolution bar
+        let ev_bar_width = ctx_2d.canvas.width/5;
+        let ev_bar_height = 30;
+        ctx_2d.fillStyle = 'rgba(100, 100, 100, 0.5)';
+        ctx_2d.fillRect(ctx_2d.canvas.width - 60 - ev_bar_width, 80, ev_bar_width, ev_bar_height);
+        ctx_2d.fillStyle = 'rgba(150, 150, 150, 0.5)';
+        ctx_2d.fillRect(ctx_2d.canvas.width - 60 - ev_bar_width + 2, 80 + 2,  (ev_bar_width - 4) * current_song_percentage, ev_bar_height - 4);
+
+        //timing
+        let min_tot = Math.floor(song_duration_seconds / 60);
+        let sec_tot = Math.floor(song_duration_seconds % 60);
+        let min_curr = Math.floor(song_duration_seconds*current_song_percentage / 60);
+        let sec_curr = Math.floor(song_duration_seconds*current_song_percentage % 60);
+        let total_timing = "";
+        let current_timing = "";
+        total_timing += (min_tot < 10) ? ("0" + min_tot) : (min_tot);
+        total_timing += ":";
+        total_timing += (sec_tot < 10) ? ("0" + sec_tot) : (sec_tot);
+        current_timing += (min_curr < 10) ? ("0" + min_curr) : (min_curr);
+        current_timing += ":";
+        current_timing += (sec_curr < 10) ? ("0" + sec_curr) : (sec_curr);
+        ctx_2d.textAlign = "right";
+        ctx_2d.fillText(total_timing, ctx_2d.canvas.width - 60 - 5, 140);
+        ctx_2d.textAlign = "left";
+        ctx_2d.fillText(current_timing, ctx_2d.canvas.width - 60 - ev_bar_width + 5, 140);
+
+        //commands
+        ctx_2d.fillStyle = 'rgba(150, 150, 150, 0.5)';
+        ctx_2d.textAlign = "right";
+        ctx_2d.font = '100 15px Arial';
+        ctx_2d.fillText("Time-Shift: " + time_correction + "ms", ctx_2d.canvas.width - 60 - 5, 240);
+        ctx_2d.fillText("Time-Stretch: " + (stretch_correction * 100).toFixed(3) + "%", ctx_2d.canvas.width - 60 - 5, 300);
+        ctx_2d.font = '500 12px Arial';
+        ctx_2d.fillText("CTRL + [A]/[S]", ctx_2d.canvas.width - 60 - 5, 260);
+        ctx_2d.fillText("CTRL + [Z]/[X]", ctx_2d.canvas.width - 60 - 5, 320);
+
+
 
     }
 
+    last_update_time = current_time;
     window.requestAnimationFrame(draw);
 }

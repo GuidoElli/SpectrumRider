@@ -198,8 +198,8 @@ function update() {
     gl_clear_color.b = gl_clear_color.r
 
 
+    //score
     score_manager.update();
 
-    last_update_time = current_time;
 
 }

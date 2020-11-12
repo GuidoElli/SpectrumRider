@@ -9,6 +9,8 @@ import webbrowser
 import tkinter as tk
 from functools import partial
 from tkinter import filedialog
+import tqdm
+
 
 
 def butter_bandpass(lowcut, highcut, fs, order=5):
@@ -47,8 +49,8 @@ def build_song_data(mp3_path, path):
 	first_mid_band = 1
 	first_high_band = 4
 
-	upsample_freq = 4
-	upsample_time = 4
+	upsample_freq = 5
+	upsample_time = 3
 
 	sanity_ground = 1
 	sanity_lights = 1.9
@@ -62,7 +64,7 @@ def build_song_data(mp3_path, path):
 	z_init_matrix = np.zeros((n_frames, n_bands))
 	z_matrix = np.zeros((n_frames * upsample_time, (n_bands - 1) * upsample_freq + 1))
 	audio_length_time = len(audio) / fs
-	for f in range(n_frames):
+	for f in tqdm(range(n_frames)):
 		frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 		for b in range(n_bands):
 			lowcut = bands_borders[b]
@@ -96,7 +98,7 @@ def build_song_data(mp3_path, path):
 	song_duration_seconds = len(audio) / fs
 	vertex_sample_rate = n_rows / (len(audio) / fs)
 
-	for i in range(n_rows):
+	for i in tqdm(range(n_rows)):
 		for j in range(n_vertex_per_row):
 			if isNaN(interp_data[i][j]):
 				interp_data[i][j] = 0.0

@@ -20,7 +20,7 @@ class Score_manger{
 
     update(){
         //multiply
-        let mult = 1;
+        let mult = 0;
         for(let i = 0; i < items_xx_all.length; i++){
             let item = items_xx_all[i];
             if(!item.is_taken() && item.is_near_player()){
@@ -30,7 +30,7 @@ class Score_manger{
                 mult += item.multiply_factor;
             }
         }
-        this.multiply_factor = mult;
+        this.multiply_factor = Math.max(mult, 1);
         //coins
         for(let i = 0; i < coins_all.length; i++){
             let coin = coins_all[i];
