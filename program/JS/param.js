@@ -11,7 +11,7 @@ let audio_ground_scale_z = 4.5;
 
 //scene
 
-let seconds_to_see = 4;
+let seconds_to_see = 10;
 let current_z = 0;
 let current_song_percentage = 0;
 let current_time = 0;
@@ -50,7 +50,7 @@ let player_max_vel_x = 1.05 * audio_ground_scale_x;
 let player_max_pos_x = audio_ground_scale_x / 2 * 0.97;
 let player_max_pos_y = audio_ground_scale_y * 12;
 let player_max_vel_y_up = 15 * audio_ground_scale_y;
-let player_scale = audio_ground_scale_x * 0.025;
+let player_scale = audio_ground_scale_x * 0.009;
 let player_y_offset = player_scale * 2;
 
 let touching_ground = false;

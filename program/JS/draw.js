@@ -58,7 +58,7 @@ function draw() {
 
         gl.bindVertexArray(player_vao);
         gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
-        gl.drawElements(gl.TRIANGLES, player_ind.length, gl.UNSIGNED_SHORT, 0 );
+        gl.drawElements(gl.TRIANGLES, player_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
 
 
         //coins
@@ -80,7 +80,7 @@ function draw() {
 
                 gl.bindVertexArray(coin_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-                gl.drawElements(gl.TRIANGLES, coin_ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, coin_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -126,7 +126,7 @@ function draw() {
 
                 gl.bindVertexArray(item_5x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, note_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, stand_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
@@ -148,14 +148,13 @@ function draw() {
 
                 gl.bindVertexArray(item_10x_vao);
                 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
-                gl.drawElements(gl.TRIANGLES, note_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
+                gl.drawElements(gl.TRIANGLES, item10_obj.ind.length, gl.UNSIGNED_SHORT, 0 );
             }
         }
 
 
 
         //points
-
         ctx_2d.clearRect(0, 0, canvasText.width, canvasText.height);
         ctx_2d.font = '700 90px Arial';
         ctx_2d.fillStyle = '#eeeeee';
@@ -166,7 +165,7 @@ function draw() {
             ctx_2d.font = '600 50px Arial';
             ctx_2d.fillStyle = '#bbbbbb';
             ctx_2d.textAlign = "left";
-            ctx_2d.fillText(score_manager.multiply_factor + "X", 60, 180);
+            ctx_2d.fillText( "x" + score_manager.multiply_factor, 60, 180);
         }
 
 

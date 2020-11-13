@@ -225,6 +225,7 @@ for(let i = 0; i < audio_ground_vert.length; ++i){
 
 
 //Player
+let player_obj = parseObjText(obj_semibreve_text, false);
 let player_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
 let player_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
 let player_program = utils.createProgram(gl, player_vertex_shader, player_fragment_shader);
@@ -240,19 +241,19 @@ gl.bindVertexArray(player_vao);
 
 let player_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_vert), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(player_position_attribute);
 gl.vertexAttribPointer(player_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let player_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, player_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(player_normal_attribute);
 gl.vertexAttribPointer(player_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let player_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, player_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_obj.ind), gl.STATIC_DRAW);
 
 
 
@@ -261,6 +262,7 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_ind), gl.STATIC_DR
 //objects
 
 //coins on ground
+let coin_obj = parseObjText(obj_semiminima_text, false);
 let coin_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, coin_vs);
 let coin_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, coin_fs);
 let coin_program = utils.createProgram(gl, coin_vertex_shader, coin_fragment_shader);
@@ -277,26 +279,26 @@ gl.bindVertexArray(coin_vao);
 
 let coin_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, coin_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_vert), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(coin_position_attribute);
 gl.vertexAttribPointer(coin_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let coin_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, coin_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coin_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(coin_normal_attribute);
 gl.vertexAttribPointer(coin_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let coin_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, coin_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(coin_ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(coin_obj.ind), gl.STATIC_DRAW);
 
 
 //item 2x, 5x, 10x
 
 
 // Access the models by array index
-let note_obj = parseObjText(note_obj_text, false);
+let note_obj = parseObjText(obj_doppiacroma_text, false);
 
 let item_2x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_2x_vs);
 let item_2x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_2x_fs);
@@ -328,6 +330,7 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_2x_index_buffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);
 
 
+let stand_obj = parseObjText(obj_chiavedisol_text, false);
 
 let item_5x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_5x_vs);
 let item_5x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_5x_fs);
@@ -344,23 +347,25 @@ gl.bindVertexArray(item_5x_vao);
 
 let item_5x_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.vert), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(stand_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_5x_position_attribute);
 gl.vertexAttribPointer(item_5x_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_5x_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_5x_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(stand_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_5x_normal_attribute);
 gl.vertexAttribPointer(item_5x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_5x_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_5x_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(stand_obj.ind), gl.STATIC_DRAW);
 
 
 
 
+
+let item10_obj = parseObjText(obj_semicroma_text, false);
 
 let item_10x_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, item_10x_vs);
 let item_10x_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, item_10x_fs);
@@ -377,16 +382,16 @@ gl.bindVertexArray(item_10x_vao);
 
 let item_10x_position_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.vert), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(item10_obj.vert), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_10x_position_attribute);
 gl.vertexAttribPointer(item_10x_position_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_10x_normal_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, item_10x_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(note_obj.norm), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(item10_obj.norm), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(item_10x_normal_attribute);
 gl.vertexAttribPointer(item_10x_normal_attribute, 3, gl.FLOAT, false, 0, 0);
 
 let item_10x_index_buffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, item_10x_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(note_obj.ind), gl.STATIC_DRAW);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(item10_obj.ind), gl.STATIC_DRAW);
