@@ -44,7 +44,7 @@ void main() {
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
     float shadeIn = .02;
-    float shadeOut = .3;
+    float shadeOut = .2;
     float factor;
     
 	 float h = noise(position.z/20.0);
@@ -202,8 +202,8 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
 	 float h = 0.65;
-	 float s = 1.0 - pow(nNormal.z, 30.0);
-	 float v = 0.5 + pow(nNormal.z, 30.0);
+	 float s = 1.0 - pow(abs(nNormal.z), 40.0);
+	 float v = 0.5 + pow(abs(nNormal.z), 40.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;
@@ -245,8 +245,8 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
 	 float h = 0.4;
-	 float s = 1.0 - pow(nNormal.z, 30.0);
-	 float v = 0.5 + pow(nNormal.z, 30.0);
+	 float s = 1.0 - pow(abs(nNormal.z), 40.0);
+	 float v = 0.5 + pow(abs(nNormal.z), 40.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;
@@ -288,8 +288,8 @@ return mix(rand(fl), rand(fl + 1.0), fc);
 void main() {
 	 vec3 nNormal = normalize(fsNormal);
 	 float h = 0.8;
-	 float s = 1.0 - pow(nNormal.z, 30.0);
-	 float v = 0.5 + pow(nNormal.z, 30.0);
+	 float s = 1.0 - pow(abs(nNormal.z), 40.0);
+	 float v = 0.5 + pow(abs(nNormal.z), 40.0);
 	 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
 	 outColor = vec4(color, 1.0);
 }`;

@@ -4,7 +4,7 @@ class Coin_ground extends Item{
         this.does_add_points = true;
         this.points = 1;
         this.max_dist_take = 0.2*audio_ground_scale_x;
-        this.scale = 0.06;
+        this.scale = 0.1;
     }
 
     //overload

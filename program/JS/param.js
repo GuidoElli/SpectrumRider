@@ -26,7 +26,7 @@ let camera_x = 0.0;
 let camera_y_min = audio_ground_scale_y * 2.1;
 let camera_y = camera_y_min;
 
-let camera_z_offset_min = 1.8;
+let camera_z_offset_min = 1.7;
 let camera_z_offset = camera_z_offset_min;
 let camera_fov = 80;
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><title>Imagine Dragons - Birds - Spectrum Rider</title>
+	<link href="program/CSS/main.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://k3d.ivank.net/K3D.js"></script>
+</head>
+<body>
+<div id="game">
+	<canvas id="webgl"></canvas>
+	<canvas id="text2d"></canvas>
+</div>
+<div class="screen" id="menu" style="display: none">
+	<div id="menu_song_info">
+		<button class="div_button" id="app_name"> Spectrum Rider</button>
+		<button class="div_button big_label" id="song_info_title"> Imagine Dragons - Birds</button>
+	</div>
+	<div id="menu_buttons">
+		<button id="start_button">Play!</button>
+		<button id="options_button">Options</button>
+	</div>
+</div>
+<div class="screen" id="options" style="display: none">
+	<button id="options_back_button">Back</button>
+</div>
+<div class="screen" id="game_over" style="display: none">
+	<div id="game_over_info">
+		<button class="div_button big_label" id="game_over_label"> Game Over!</button>
+		<div id="game_over_score">
+			<button class="div_button" id="score_label"> Your Score:</button>
+			<button class="div_button" id="score"> 50</button>
+		</div>
+	</div>
+	<div id="game_over_buttons">
+		<button id="play_again_button">Play Again!</button>
+		<button id="menu_button">Menu</button>
+	</div>
+</div>
+<div class="screen" id="pause" style="display: none">
+	<button class="div_button big_label" id="pause_label"> Game Paused</button>
+	<div id="pause_buttons">
+		<button id="resume_button">Resume</button>
+		<button id="pause_restart_button">Restart</button>
+		<button id="pause_menu_button">Exit</button>
+	</div>
+</div>
+<button class="screen div_button" id="loading" style="display: block">Loading...</button>
+<audio id="song"
+		 src="C:\Users\guido\Progetti\Web\ComputerGraphicsProject\program\..\SONGDATA/Imagine Dragons - Birds/song.mp3"></audio>
+</body>
+<script src="C:\Users\guido\Progetti\Web\ComputerGraphicsProject\program\..\SONGDATA/Imagine Dragons - Birds/song_data.js"
+		  type="text/javascript"></script>
+<script src="program/JS/objects_def.js" type="text/javascript"></script>
+<script src="program/JS/obj_raw.js" type="text/javascript"></script>
+<script src="program/JS/utils.js" type="text/javascript"></script>
+<script src="program/JS/Item.js" type="text/javascript"></script>
+<script src="program/JS/Coin_ground.js" type="text/javascript"></script>
+<script src="program/JS/Coin_lv1.js" type="text/javascript"></script>
+<script src="program/JS/Coin_lv2.js" type="text/javascript"></script>
+<script src="program/JS/Coin_lv3.js" type="text/javascript"></script>
+<script src="program/JS/Item_2x.js" type="text/javascript"></script>
+<script src="program/JS/Item_5x.js" type="text/javascript"></script>
+<script src="program/JS/Item_10x.js" type="text/javascript"></script>
+<script src="program/JS/param.js" type="text/javascript"></script>
+<script src="program/JS/Score_manger.js" type="text/javascript"></script>
+<script src="program/JS/events.js" type="text/javascript"></script>
+<script src="program/JS/shaders.js" type="text/javascript"></script>
+<script src="program/JS/update.js" type="text/javascript"></script>
+<script src="program/JS/draw.js" type="text/javascript"></script>
+<script src="program/JS/main.js" type="text/javascript"></script>
+</html>

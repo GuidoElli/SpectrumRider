@@ -4,7 +4,7 @@ class Item_5x extends Item{
         this.does_multiply_points = true;
         this.multiply_factor = 5;
         this.expiration_time = 15e+3;
-        this.scale = 0.2;
+        this.scale = 1;
         this.max_dist_take = 0.3*audio_ground_scale_x;
     }
 
