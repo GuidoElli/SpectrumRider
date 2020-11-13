@@ -441,7 +441,7 @@ def build_html(path):
 	'<script type="text/javascript" src="program/JS/Coin_lv1.js"></script>' \
 	'<script type="text/javascript" src="program/JS/Coin_lv2.js"></script>' \
 	'<script type="text/javascript" src="program/JS/Coin_lv3.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item_2x.js"></script>' \
+	'<script type="text/javascript" src="program/JS/Item_semicroma.js"></script>' \
 	'<script type="text/javascript" src="program/JS/Item_5x.js"></script>' \
 	'<script type="text/javascript" src="program/JS/Item_10x.js"></script>' \
 	'<script type="text/javascript" src="program/JS/param.js"></script>' \

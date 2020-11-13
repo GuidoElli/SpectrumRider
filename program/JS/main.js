@@ -11,6 +11,9 @@ let items_xx_all;
 
 let score_manager;
 
+this.vertex_shader = utils.createShader(this.gl, this.gl.VERTEX_SHADER, this.vs_text);
+this.fragment_shader = utils.createShader(this.gl, this.gl.FRAGMENT_SHADER, this.fs_text);
+this.program = utils.createProgram(this.gl, this.vertex_shader, this.fragment_shader);
 
 function init(){
     score_manager = new Score_manger();
@@ -223,37 +226,6 @@ for(let i = 0; i < audio_ground_vert.length; ++i){
 }
 
 
-
-//Player
-let player_obj = parseObjText(obj_semibreve_text, false);
-let player_vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, player_vs);
-let player_fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, player_fs);
-let player_program = utils.createProgram(gl, player_vertex_shader, player_fragment_shader);
-gl.useProgram(player_program);
-
-let player_position_attribute = gl.getAttribLocation(player_program, 'inPosition');
-let player_normal_attribute = gl.getAttribLocation(player_program, 'inNormal');
-let player_matrix_uniform = gl.getUniformLocation(player_program, 'matrix');
-let player_normal_matrix_uniform = gl.getUniformLocation(player_program, 'nMatrix');
-
-let player_vao = gl.createVertexArray();
-gl.bindVertexArray(player_vao);
-
-let player_position_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, player_position_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_obj.vert), gl.STATIC_DRAW);
-gl.enableVertexAttribArray(player_position_attribute);
-gl.vertexAttribPointer(player_position_attribute, 3, gl.FLOAT, false, 0, 0);
-
-let player_normal_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, player_normal_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(player_obj.norm), gl.STATIC_DRAW);
-gl.enableVertexAttribArray(player_normal_attribute);
-gl.vertexAttribPointer(player_normal_attribute, 3, gl.FLOAT, false, 0, 0);
-
-let player_index_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, player_index_buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(player_obj.ind), gl.STATIC_DRAW);
 
 
 

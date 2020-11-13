@@ -43,8 +43,8 @@ void main() {
     vec3 nNormal = normalize(fsNormal);
     float currentZ = -totSeconds * currentSongPercentage;
     float currentTimeLineWidth = .01;
-    float shadeIn = .02;
-    float shadeOut = .2;
+    float fadeIn = .02;
+    float fadeOut = .2;
     float factor;
     
 	 float h = noise(position.z/20.0);
@@ -54,11 +54,11 @@ void main() {
 	
 	 // current line
     if(position.z > currentZ + currentTimeLineWidth * 0.2){ 						//past
-    	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / shadeOut;
+    	  factor = (position.z - currentZ + currentTimeLineWidth * 0.2) / fadeOut;
 		  factor = clamp(factor, 0.0, 1.0);
         outColor = vec4(1.0-factor, 1.0-factor, 1.0-factor, 1.0);
     }else if(position.z < currentZ - currentTimeLineWidth * 0.8){  				   //yet to come
-    	  factor = -(position.z - currentZ + currentTimeLineWidth * 0.8) / shadeIn;
+    	  factor = -(position.z - currentZ + currentTimeLineWidth * 0.8) / fadeIn;
 		  factor = clamp(factor, 0.0, 1.0);
 		  outColor = vec4( 
 		  		clamp(factor * color.r + (1.0-factor), 0.0, 1.0), 
