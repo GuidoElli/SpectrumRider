@@ -26,24 +26,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Bruno Mars - Uptown Funk.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2Chainz - We Own It.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Noyz - 16 Barre.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Noyz - 16 Barre/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Noyz - 16 Barre/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/d - s/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/d - s/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/g - g/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/g - g/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/ggg - ggg/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/ggg - ggg/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/d - s.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/g - g.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ggg - ggg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/empty_page.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Imagine Dragons - Birds.html" beforeDir="false" afterPath="$PROJECT_DIR$/Imagine Dragons - Birds.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Audio_ground.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Audio_ground.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_player.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/shaders.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +96,8 @@
       <workItem from="1605100624206" duration="15930000" />
       <workItem from="1605186206707" duration="17479000" />
       <workItem from="1605265244122" duration="43071000" />
-      <workItem from="1605346893126" duration="12548000" />
+      <workItem from="1605346893126" duration="12935000" />
+      <workItem from="1605373947136" duration="3795000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -234,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605365419181</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="almost finished">
+      <created>1605369123404</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1605369123404</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,10 +305,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605283417022" />
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605322343900">
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605369125648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605322343900" />
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605369125648" />
     <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605319465206">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -305,14 +317,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="585" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605190824632" />
-    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605368326204">
+    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605376432855">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605368326204" />
-    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605367632233">
+    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605376432855" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605383217424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605367632233" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605383217424" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605286517721">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

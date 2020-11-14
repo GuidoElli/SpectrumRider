@@ -51,5 +51,4 @@ class Obj_player extends Obj {
         let objects = [utils.parseObjText(obj_semibreve_text, false)];
         super(gl, program, objects);
     }
-
 }

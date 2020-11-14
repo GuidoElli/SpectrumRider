@@ -60,9 +60,8 @@ def build_song_data(mp3_path, path):
 	print("\nAnalyzing Audio (1 of 2)...")
 	win_length_samples = int(win_length_time * fs)
 	n_frames = int(len(audio) / win_length_samples) - 1
+	song_duration_seconds = win_length_time * n_frames
 	z_init_matrix = np.zeros((n_frames, n_bands))
-	z_matrix = np.zeros((n_frames * upsample_time, (n_bands - 1) * upsample_freq + 1))
-	audio_length_time = len(audio) / fs
 	for f in range(n_frames):
 		frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 		for b in range(n_bands):
@@ -93,10 +92,8 @@ def build_song_data(mp3_path, path):
 
 	n_rows = interp_data.shape[0]
 	n_vertex_per_row = interp_data.shape[1]
-	n_vertex = n_rows * n_vertex_per_row
-	song_duration_seconds = len(audio) / fs
-	vertex_sample_rate = n_rows / (len(audio) / fs)
-
+	vertex_sample_rate = n_rows / song_duration_seconds
+	
 	for i in range(n_rows):
 		for j in range(n_vertex_per_row):
 			if isNaN(interp_data[i][j]):
@@ -244,8 +241,8 @@ def build_song_data(mp3_path, path):
 			pattern_high += "];"
 
 	# items position
-	start = 50  # vertex to start on
-	stop = 20  # stop before n vertices
+	start = 0  # vertex to start on
+	stop = 0  # stop before n vertices
 
 	# Level 0: on ground
 	items_0_rows_space = upsample_time * 6
@@ -277,7 +274,7 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = upsample_time * 10
+	items_123_rows_space = upsample_time * 8
 	# probabilities
 	item_lv1_prob = 0.4
 	item_lv2_prob = 0.4
@@ -370,88 +367,9 @@ def build_song_data(mp3_path, path):
 	file.write(song_data)
 
 def build_html(path):
-	html = '<!DOCTYPE html>' \
-	'<html lang="en-US">' \
-	'<head>' \
-	'    <title>{1:s} - Spectrum Rider</title>' \
-	'    <link rel="stylesheet" type="text/css" href="program/CSS/main.css">' \
-	'</head>' \
-	'<body>' \
-'<div id="game">' \
-'	<canvas id="webgl"></canvas>' \
-'	<canvas id="text2d"></canvas>' \
-'</div>' \
-'<div id="menu" class="screen" style="display: none">' \
-'	<div id="menu_song_info">' \
-'		<button id="app_name" class="div_button">' \
-	'		Spectrum Rider' \
-	'	</button>' \
-	'	<button id="song_info_title" class="div_button big_label">' \
-	'		{1:s}' \
-	'	</button>' \
-'	</div>' \
-	'<div id="menu_buttons">' \
-'		<button id="start_button">Play!</button>' \
-'		<button id="options_button">Options</button>' \
-'	</div>' \
-'</div>' \
-'<div id="options" class="screen" style="display: none">' \
-	'<button id="options_back_button">Back</button>' \
-'</div>' \
-'<div id="game_over" class="screen" style="display: none">' \
-	'<div id="game_over_info">' \
-		'<button id="game_over_label" class="div_button big_label">' \
-		'	Game Over!' \
-	'	</button>' \
-	'	<div id="game_over_score">' \
-	'		<button id="score_label" class="div_button">' \
-	'			Your Score:' \
-	'		</button>' \
-	'		<button id="score" class="div_button">' \
-	'			50' \
-	'		</button>' \
-	'	</div>' \
-	'</div>' \
-'<div id="game_over_buttons">' \
-	'	<button id="play_again_button">Play Again!</button>' \
-	'	<button id="menu_button">Menu</button>' \
-	'</div>' \
-'</div>' \
-'<div id="pause" class="screen" style="display: none">' \
-	'<button id="pause_label" class="div_button big_label">' \
-	'	Game Paused' \
-	'</button>' \
-	'<div id="pause_buttons">' \
-		'<button id="resume_button">Resume</button>' \
-'		<button id="pause_restart_button">Restart</button>' \
-	'	<button id="pause_menu_button">Exit</button>' \
-'	</div>' \
-'</div>' \
-'<button id="loading" class="screen div_button" style="display: block">' \
-'Loading...' \
-'</button>' \
-	'    <audio id="song" src="{0:s}song.mp3"></audio>' \
-	'</body>' \
-	'<script type="text/javascript" src="{0:s}song_data.js"></script>' \
-	'<script type="text/javascript" src="program/JS/objects_def.js"></script>' \
-	'<script type="text/javascript" src="program/JS/utils.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Coin_ground.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Coin_lv1.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Coin_lv2.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Coin_lv3.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item_semicroma.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item_5x.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item_10x.js"></script>' \
-	'<script type="text/javascript" src="program/JS/param.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Item_score_manger.js"></script>' \
-	'<script type="text/javascript" src="program/JS/events.js"></script>' \
-	'<script type="text/javascript" src="program/JS/shaders.js"></script>' \
-	'<script type="text/javascript" src="program/JS/update.js"></script>' \
-	'<script type="text/javascript" src="program/JS/draw.js"></script>' \
-	'<script type="text/javascript" src="program/JS/main.js"></script>' \
-	'</html>'.format(path, path.split("/")[1])
-
+	f = open('empty_page.txt', 'r')
+	page = f.read()
+	html = page.format(path.split("/")[1])
 	file = open(os.path.join("..", "{0:s}.html".format(path.split("/")[1])), "w")
 	file.write(html)
 

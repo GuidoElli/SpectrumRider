@@ -123,9 +123,6 @@ class App {
         this.right_pressed = false;
         this.up_just_pressed = true;
 
-
-
-
         this.init();
 
         this.bind_listeners();
@@ -144,7 +141,7 @@ class App {
                this.obj_semicroma,
                items_00[i][0]*this.audio_ground.scale_x,
                items_00[i][1]*this.audio_ground.scale_y,
-               items_00[i][2]*this.audio_ground.scale_x);
+               items_00[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_semicroma);
 
@@ -154,7 +151,7 @@ class App {
                this.obj_croma,
                items_10[i][0]*this.audio_ground.scale_x,
                items_10[i][1]*this.audio_ground.scale_y,
-               items_10[i][2]*this.audio_ground.scale_x);
+               items_10[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_croma);
 
@@ -164,7 +161,7 @@ class App {
                this.obj_semiminima,
                items_20[i][0]*this.audio_ground.scale_x,
                items_20[i][1]*this.audio_ground.scale_y,
-               items_20[i][2]*this.audio_ground.scale_x);
+               items_20[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_semiminima);
 
@@ -174,7 +171,7 @@ class App {
                this.obj_minima,
                items_21[i][0]*this.audio_ground.scale_x,
                items_21[i][1]*this.audio_ground.scale_y,
-               items_21[i][2]*this.audio_ground.scale_x);
+               items_21[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_minima);
 
@@ -184,7 +181,7 @@ class App {
                this.obj_doppiacroma,
                items_22[i][0]*this.audio_ground.scale_x,
                items_22[i][1]*this.audio_ground.scale_y,
-               items_22[i][2]*this.audio_ground.scale_x);
+               items_22[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_doppiacroma);
 
@@ -194,7 +191,7 @@ class App {
                this.obj_diesis,
                items_12[i][0]*this.audio_ground.scale_x,
                items_12[i][1]*this.audio_ground.scale_y,
-               items_12[i][2]*this.audio_ground.scale_x);
+               items_12[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_diesis);
 
@@ -204,7 +201,7 @@ class App {
                this.obj_bemolle,
                items_11[i][0]*this.audio_ground.scale_x,
                items_11[i][1]*this.audio_ground.scale_y,
-               items_11[i][2]*this.audio_ground.scale_x);
+               items_11[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_bemolle);
 
@@ -214,7 +211,7 @@ class App {
                this.obj_semibreve,
                items_30[i][0]*this.audio_ground.scale_x,
                items_30[i][1]*this.audio_ground.scale_y,
-               items_30[i][2]*this.audio_ground.scale_x);
+               items_30[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_semibreve);
 
@@ -224,7 +221,7 @@ class App {
                this.obj_chiavedifa,
                items_31[i][0]*this.audio_ground.scale_x,
                items_31[i][1]*this.audio_ground.scale_y,
-               items_31[i][2]*this.audio_ground.scale_x);
+               items_31[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_chiavedifa);
 
@@ -234,7 +231,7 @@ class App {
                this.obj_chiavedisol,
                items_32[i][0]*this.audio_ground.scale_x,
                items_32[i][1]*this.audio_ground.scale_y,
-               items_32[i][2]*this.audio_ground.scale_x);
+               items_32[i][2]*this.audio_ground.scale_z);
         }
         this.items_all = this.items_all.concat(this.items_chiavedisol);
 
@@ -762,5 +759,9 @@ class App {
 
 }
 
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+    alert("Error occured: " + errorMsg);//or any message
+    return false;
+}
 
 let app = new App();
