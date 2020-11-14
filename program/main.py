@@ -244,11 +244,11 @@ def build_song_data(mp3_path, path):
 			pattern_high += "];"
 
 	# items position
-	start = 150  # vertex to start on
-	stop = 150  # stop before n vertices
+	start = 50  # vertex to start on
+	stop = 20  # stop before n vertices
 
 	# Level 0: on ground
-	items_0_rows_space = upsample_time * 5
+	items_0_rows_space = upsample_time * 6
 	items_00 = "\nvar items_00 = ["
 	pos_x = 0
 	vel_x = 0
@@ -277,24 +277,24 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = upsample_time * 7
+	items_123_rows_space = upsample_time * 10
 	# probabilities
-	item_lv1_prob = 0.3
+	item_lv1_prob = 0.4
 	item_lv2_prob = 0.4
-	item_lv3_prob = 0.3
+	item_lv3_prob = 0.2
 	lv1_mean = 2
 	lv1_dev = 0.15
-	lv2_mean = 3.5
+	lv2_mean = 4
 	lv2_dev = 0.15
-	lv3_mean = 5
+	lv3_mean = 6
 	lv3_dev = 0.15
 
 	# lv 1
-	items_10_prob = 0.4
+	items_10_prob = 0.5
 	items_10 = "\nvar items_10 = [ "
-	items_11_prob = 0.3
+	items_11_prob = 0.25
 	items_11 = "\nvar items_11 = [ "
-	items_12_prob = 0.3
+	items_12_prob = 0.25
 	items_12 = "\nvar items_12 = [ "
 	# lv 2
 	items_20_prob = 0.3
@@ -304,11 +304,11 @@ def build_song_data(mp3_path, path):
 	items_22_prob = 0.4
 	items_22 = "\nvar items_22 = [ "
 	# lv 3
-	items_30_prob = 0.5
+	items_30_prob = 0.7
 	items_30 = "\nvar items_30 = [ "
-	items_31_prob = 0.3
+	items_31_prob = 0.2
 	items_31 = "\nvar items_31 = [ "
-	items_32_prob = 0.2
+	items_32_prob = 0.1
 	items_32 = "\nvar items_32 = [ "
 
 	v = start

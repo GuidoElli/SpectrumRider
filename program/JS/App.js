@@ -37,6 +37,7 @@ class App {
 
         //obj
         this.obj_audio_ground = new Obj_audio_ground(this.gl);
+        this.obj_player = new Obj_player(this.gl);
         this.obj_semicroma = new Obj_semicroma(this.gl);
         this.obj_semibreve = new Obj_semibreve(this.gl);
         this.obj_minima = new Obj_minima(this.gl);
@@ -51,12 +52,11 @@ class App {
 
         this.audio_ground = new Audio_ground(this.obj_audio_ground);
 
-        this.player = new Player(this.obj_semibreve);
+        this.player = new Player(this.obj_player);
         this.player.max_vel_x = 1.05 * this.audio_ground.scale_x;
         this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
         this.player.max_pos_y = this.audio_ground.scale_y * 12;
         this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
-        this.player.y_offset = 2;
         this.player.force_x = 0.0;
         this.player.vel_x = 0.0;
         this.player.force_y = 0.0;
@@ -68,7 +68,7 @@ class App {
 
         //Parameters
         this.max_delta_t_ms = 100;
-        this.stretch_correction = 1 + 0.17 / 270;
+        this.stretch_correction = 1 + 0.13 / 270;
         this.time_correction = 0;
 
         this.song_begun = false;
@@ -87,7 +87,7 @@ class App {
         this.x_force = 16 * this.audio_ground.scale_x;
         this.down_force = this.gravity * 6.0;
         this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
-        this.up_force = this.gravity * 3;
+        this.up_force = this.gravity;
         this.touching_ground = false;
         this.last_z_index = 0;
         this.last_x_index = 0;
@@ -396,13 +396,13 @@ class App {
             this.ctx_2d.font = '700 90px Arial';
             this.ctx_2d.fillStyle = '#eeeeee';
             this.ctx_2d.textAlign = "left";
-            this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 100);
+            this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 120);
 
             if(this.item_score_manager.n_doppiacroma > 0){
                 this.ctx_2d.font = '600 50px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 180);
+                this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 190);
             }
             for(let i = 0; i < this.item_score_manager.n_diesis; i++){
                 this.ctx_2d.font = '600 40px Arial';
@@ -426,7 +426,7 @@ class App {
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "[JUMP]", 60, 450);
+                this.ctx_2d.fillText( "[JUMP]", 60, 520);
             }
 
 
@@ -616,12 +616,12 @@ class App {
                 this.player.position_y = y_cont;
             }else{ //still in the air
                 if(this.up_pressed && !this.down_pressed){
-                    if(this.item_score_manager.jump > 0 && this.up_just_pressed){
+                    if(this.item_score_manager.jump > 0 && this.up_just_pressed && this.player.vel_y < 4){// jump amount
                         this.player.vel_y = 4; // jump amount
                     }
                     let v = -this.max_vel_y_up_button;
                     if(this.item_score_manager.fly > 0){
-                        v = -v*3; // fly amount
+                        v = -v*2; // fly amount
                     }
                     if(this.player.vel_y < v){
                         this.player.force_y = this.up_force *
