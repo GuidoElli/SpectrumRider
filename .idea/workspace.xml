@@ -26,31 +26,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Snoop Dogg feat. David Guetta - Wet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Component.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_croma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_croma.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_minima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_minima.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semibreve.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semibreve.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semiminima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semiminima.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_bemolle.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_bemolle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedifa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedisol.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedisol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_croma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_croma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Item_score_manger.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/Item_score_manger.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_diesis.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_diesis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_doppiacroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_doppiacroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_minima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_minima.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semibreve.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semibreve.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semicroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semicroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semiminima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semiminima.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +88,7 @@
       <workItem from="1605100624206" duration="15930000" />
       <workItem from="1605186206707" duration="17479000" />
       <workItem from="1605265244122" duration="43071000" />
-      <workItem from="1605346893126" duration="5566000" />
+      <workItem from="1605346893126" duration="9296000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -225,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605322341301</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="different shaders for each obj">
+      <created>1605361223596</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1605361223596</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +265,8 @@
     <MESSAGE value="clean, ready to make remaining classes" />
     <MESSAGE value="everything in classes" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="different shaders for each obj" />
+    <option name="LAST_COMMIT_MESSAGE" value="different shaders for each obj" />
   </component>
   <component name="WindowStateProjectService">
     <state x="146" y="64" key="MergeDialog" timestamp="1604965622771">

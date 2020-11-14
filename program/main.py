@@ -9,7 +9,6 @@ import webbrowser
 import tkinter as tk
 from functools import partial
 from tkinter import filedialog
-import tqdm
 
 
 
@@ -52,7 +51,7 @@ def build_song_data(mp3_path, path):
 	upsample_freq = 5
 	upsample_time = 3
 
-	sanity_ground = 1
+	sanity_ground = 1.3
 	sanity_lights = 1.9
 
 	max_vertices_per_block = 16000
@@ -64,7 +63,7 @@ def build_song_data(mp3_path, path):
 	z_init_matrix = np.zeros((n_frames, n_bands))
 	z_matrix = np.zeros((n_frames * upsample_time, (n_bands - 1) * upsample_freq + 1))
 	audio_length_time = len(audio) / fs
-	for f in tqdm(range(n_frames)):
+	for f in range(n_frames):
 		frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 		for b in range(n_bands):
 			lowcut = bands_borders[b]
@@ -98,7 +97,7 @@ def build_song_data(mp3_path, path):
 	song_duration_seconds = len(audio) / fs
 	vertex_sample_rate = n_rows / (len(audio) / fs)
 
-	for i in tqdm(range(n_rows)):
+	for i in range(n_rows):
 		for j in range(n_vertex_per_row):
 			if isNaN(interp_data[i][j]):
 				interp_data[i][j] = 0.0
@@ -249,11 +248,11 @@ def build_song_data(mp3_path, path):
 	stop = 150  # stop before n vertices
 
 	# Level 0: on ground
-	items_0_rows_space = upsample_time * 2
+	items_0_rows_space = upsample_time * 5
 	items_00 = "\nvar items_00 = ["
 	pos_x = 0
 	vel_x = 0
-	vel_x_max = 0.1
+	vel_x_max = 0.3
 	pos_x_max = 0.45
 	v = start
 	while v < n_rows - stop:
@@ -278,38 +277,38 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = upsample_time * 10
+	items_123_rows_space = upsample_time * 7
 	# probabilities
-	item_lv1_prob = 0.5
-	item_lv2_prob = 0.3
-	item_lv3_prob = 0.2
+	item_lv1_prob = 0.3
+	item_lv2_prob = 0.4
+	item_lv3_prob = 0.3
 	lv1_mean = 2
-	lv1_dev = 0.2
-	lv2_mean = 4
-	lv2_dev = 0.2
-	lv3_mean = 6
-	lv3_dev = 0.2
+	lv1_dev = 0.15
+	lv2_mean = 3.5
+	lv2_dev = 0.15
+	lv3_mean = 5
+	lv3_dev = 0.15
 
 	# lv 1
-	items_10_prob = 0.5
+	items_10_prob = 0.4
 	items_10 = "\nvar items_10 = [ "
-	items_11_prob = 0.4
+	items_11_prob = 0.3
 	items_11 = "\nvar items_11 = [ "
-	items_12_prob = 0.1
+	items_12_prob = 0.3
 	items_12 = "\nvar items_12 = [ "
 	# lv 2
-	items_20_prob = 0.5
+	items_20_prob = 0.3
 	items_20 = "\nvar items_20 = [ "
-	items_21_prob = 0.4
+	items_21_prob = 0.3
 	items_21 = "\nvar items_21 = [ "
-	items_22_prob = 0.1
+	items_22_prob = 0.4
 	items_22 = "\nvar items_22 = [ "
 	# lv 3
 	items_30_prob = 0.5
 	items_30 = "\nvar items_30 = [ "
-	items_31_prob = 0.4
+	items_31_prob = 0.3
 	items_31 = "\nvar items_31 = [ "
-	items_32_prob = 0.1
+	items_32_prob = 0.2
 	items_32 = "\nvar items_32 = [ "
 
 	v = start
@@ -325,7 +324,7 @@ def build_song_data(mp3_path, path):
 			elif n < items_10_prob + items_11_prob:
 				items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 			elif n < items_10_prob + items_11_prob + items_12_prob:
-				items_11 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
+				items_12 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 
 		elif lv < item_lv1_prob + item_lv2_prob:  # lv 2
 			pos_y = np.max([np.random.randn() * lv2_dev + lv2_mean, 1])
@@ -335,7 +334,7 @@ def build_song_data(mp3_path, path):
 			elif n < items_20_prob + items_21_prob:
 				items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 			elif n < items_20_prob + items_21_prob + items_22_prob:
-				items_21 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
+				items_22 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 
 		else:  # lv 3
 			pos_y = np.max([np.random.randn() * lv3_dev + lv3_mean, 1])
@@ -345,7 +344,7 @@ def build_song_data(mp3_path, path):
 			elif n < items_30_prob + items_31_prob:
 				items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 			elif n < items_30_prob + items_31_prob + items_32_prob:
-				items_31 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
+				items_32 += "[{0:.6f}, {1:.6f}, {2:.6f}],".format(pos_x, pos_y, pos_z)
 		v += items_123_rows_space
 
 	items_10 = items_10[:-1] + "];"

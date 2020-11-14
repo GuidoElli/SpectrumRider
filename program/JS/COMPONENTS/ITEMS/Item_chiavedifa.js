@@ -8,12 +8,11 @@ class Item_chiavedifa extends Item{
 
     take = () => {
         super.take();
-        app.item_score_manager.set_jump(true);
+        app.item_score_manager.take_chiavedifa(this);
     }
 
     when_expired = () => {
         super.when_expired();
-        app.item_score_manager.set_jump(false);
+        app.item_score_manager.expired_chiavedifa(this);
     }
-
 }

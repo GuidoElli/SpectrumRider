@@ -10,12 +10,12 @@ class Item_doppiacroma extends Item{
 
     take = () => {
         super.take();
-        app.item_score_manager.mult_points(this.points_mult_factor);
+        app.item_score_manager.take_doppiacroma(this);
     }
 
     when_expired = () => {
         super.when_expired();
-        app.item_score_manager.mult_points(1 / this.points_mult_factor);
+        app.item_score_manager.expired_doppiacroma(this);
     }
 
 }

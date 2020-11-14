@@ -55,7 +55,6 @@ class Item extends Component {
         this.taken_at_time = (new Date).getTime();
         if(this.expiration_time){
             setTimeout(this.when_expired, this.expiration_time);
-            app.item_score_manager.active_items.push(this);
         }else{
             this.expired = true;
         }
@@ -64,7 +63,6 @@ class Item extends Component {
 
     when_expired(){
         this.expired = true;
-        app.item_score_manager.active_items.splice(app.item_score_manager.active_items.indexOf(this), 1);
     }
 
     current_percentage = () => {

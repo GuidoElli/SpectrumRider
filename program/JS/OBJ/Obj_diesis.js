@@ -41,7 +41,7 @@ class Obj_diesis extends Obj {
             
             void main() {
                 vec3 nNormal = normalize(fsNormal);
-                float h = 0.15;
+                float h = 0.1;
                 float s = 0.8 - clamp( pow(nNormal.z, 25.0) + pow(bassIntensity, 3.0), 0.0, 0.8);
                 float v = 0.6 + clamp( pow(nNormal.z, 25.0) + pow(bassIntensity, 3.0), 0.0, 0.4);
                 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);

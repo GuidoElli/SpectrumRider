@@ -178,16 +178,6 @@ class App {
         }
         this.items_all = this.items_all.concat(this.items_minima);
 
-        this.items_semibreve = [];
-        for(let i = 0; i < items_30.length; i++){
-            this.items_semibreve[i] = new Item_semibreve(
-               this.obj_semibreve,
-               items_30[i][0]*this.audio_ground.scale_x,
-               items_30[i][1]*this.audio_ground.scale_y,
-               items_30[i][2]*this.audio_ground.scale_x);
-        }
-        this.items_all = this.items_all.concat(this.items_semibreve);
-
         this.items_doppiacroma = [];
         for(let i = 0; i < items_22.length; i++){
             this.items_doppiacroma[i] = new Item_doppiacroma(
@@ -218,15 +208,15 @@ class App {
         }
         this.items_all = this.items_all.concat(this.items_bemolle);
 
-        this.items_chiavedisol = [];
-        for(let i = 0; i < items_32.length; i++){
-            this.items_chiavedisol[i] = new Item_chiavedisol(
-               this.obj_chiavedisol,
-               items_32[i][0]*this.audio_ground.scale_x,
-               items_32[i][1]*this.audio_ground.scale_y,
-               items_32[i][2]*this.audio_ground.scale_x);
+        this.items_semibreve = [];
+        for(let i = 0; i < items_30.length; i++){
+            this.items_semibreve[i] = new Item_semibreve(
+               this.obj_semibreve,
+               items_30[i][0]*this.audio_ground.scale_x,
+               items_30[i][1]*this.audio_ground.scale_y,
+               items_30[i][2]*this.audio_ground.scale_x);
         }
-        this.items_all = this.items_all.concat(this.items_chiavedisol);
+        this.items_all = this.items_all.concat(this.items_semibreve);
 
         this.items_chiavedifa = [];
         for(let i = 0; i < items_31.length; i++){
@@ -237,6 +227,16 @@ class App {
                items_31[i][2]*this.audio_ground.scale_x);
         }
         this.items_all = this.items_all.concat(this.items_chiavedifa);
+
+        this.items_chiavedisol = [];
+        for(let i = 0; i < items_32.length; i++){
+            this.items_chiavedisol[i] = new Item_chiavedisol(
+               this.obj_chiavedisol,
+               items_32[i][0]*this.audio_ground.scale_x,
+               items_32[i][1]*this.audio_ground.scale_y,
+               items_32[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_chiavedisol);
 
         this.item_score_manager = new Item_score_manger();
     }
@@ -392,17 +392,44 @@ class App {
 
             //draw 2d elements
             this.ctx_2d.clearRect(0, 0, this.canvasText.width, this.canvasText.height);
+
             this.ctx_2d.font = '700 90px Arial';
             this.ctx_2d.fillStyle = '#eeeeee';
             this.ctx_2d.textAlign = "left";
             this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 100);
 
-            if(this.item_score_manager.points_mult_factor != 1){
+            if(this.item_score_manager.n_doppiacroma > 0){
                 this.ctx_2d.font = '600 50px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 180);
             }
+            for(let i = 0; i < this.item_score_manager.n_diesis; i++){
+                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.fillStyle = '#bbbbbb';
+                this.ctx_2d.textAlign = "left";
+                this.ctx_2d.fillText( "# ", 60 + i*30, 310);
+            }
+            for(let i = 0; i < this.item_score_manager.n_bemolle; i++){
+                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.fillStyle = '#bbbbbb';
+                this.ctx_2d.textAlign = "left";
+                this.ctx_2d.fillText( "b ", 60 + i*30, 380);
+            }
+            if(this.item_score_manager.n_chiavedisol > 0){
+                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.fillStyle = '#bbbbbb';
+                this.ctx_2d.textAlign = "left";
+                this.ctx_2d.fillText( "[FLY]", 60, 450);
+            }
+            if(this.item_score_manager.n_chiavedifa > 0){
+                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.fillStyle = '#bbbbbb';
+                this.ctx_2d.textAlign = "left";
+                this.ctx_2d.fillText( "[JUMP]", 60, 450);
+            }
+
+
 
             //title
             let title = document.getElementById("song_info_title").innerHTML;
