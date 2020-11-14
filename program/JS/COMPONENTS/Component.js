@@ -55,22 +55,29 @@ class Component {
         this._scale_z = s;
     }
 
+    set scale(s){
+        this._scale_x = s;
+        this._scale_y = s;
+        this._scale_z = s;
+    }
+    get scale(){
+        return this.scale_x;
+    }
+
     is_visible(){
         return true;
     }
 
     get_world_matrix = () => {
-        let wm = utils.MakeWorld(
+        return utils.MakeWorld(
            this.position_x, this.position_y, this.position_z,
            this.rotation_x, this.rotation_y, this.rotation_z,
            this.scale_x, this.scale_y, this.scale_z);
-        return wm;
     }
 
     draw = (view, perspective) => {
         if(this.is_visible()){
-            let world_matrix = this.get_world_matrix();
-            this.obj.draw(world_matrix, view, perspective);
+            this.obj.draw(this.get_world_matrix(), view, perspective);
         }
     }
 

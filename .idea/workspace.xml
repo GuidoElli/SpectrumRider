@@ -28,6 +28,29 @@
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program/JS/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Component.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_croma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_croma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_minima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_minima.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semibreve.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semibreve.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semiminima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semiminima.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_bemolle.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_bemolle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedifa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedisol.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedisol.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_croma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_croma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_diesis.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_diesis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_doppiacroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_doppiacroma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_minima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_minima.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semibreve.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semibreve.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semicroma.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semicroma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_semiminima.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semiminima.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +96,8 @@
       <workItem from="1605011968722" duration="9400000" />
       <workItem from="1605100624206" duration="15930000" />
       <workItem from="1605186206707" duration="17479000" />
-      <workItem from="1605265244122" duration="42988000" />
+      <workItem from="1605265244122" duration="43071000" />
+      <workItem from="1605346893126" duration="5566000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -194,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605322115893</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="a">
+      <created>1605322341301</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1605322341301</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,14 +260,14 @@
     <MESSAGE value="clean code and added external app to load songs" />
     <MESSAGE value="qsd" />
     <MESSAGE value="added menu screen, pause, options (to do) and game over with buttons" />
-    <MESSAGE value="a" />
     <MESSAGE value="aaa" />
     <MESSAGE value="made local obj loader" />
     <MESSAGE value="added notes objects" />
     <MESSAGE value="added various notes and music notation obj" />
     <MESSAGE value="clean, ready to make remaining classes" />
     <MESSAGE value="everything in classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="everything in classes" />
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
   </component>
   <component name="WindowStateProjectService">
     <state x="146" y="64" key="MergeDialog" timestamp="1604965622771">
@@ -251,10 +282,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605283417022" />
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605322199416">
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605322343900">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605322199416" />
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605322343900" />
     <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605319465206">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -263,10 +294,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="585" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605190824632" />
-    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605321702112">
+    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605359680526">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605321702112" />
+    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605359680526" />
     <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605316588930">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

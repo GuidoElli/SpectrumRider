@@ -56,13 +56,12 @@ class App {
         this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
         this.player.max_pos_y = this.audio_ground.scale_y * 12;
         this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
-        this.player.scale = this.audio_ground.scale_x * 0.009;
         this.player.y_offset = 2;
         this.player.force_x = 0.0;
         this.player.vel_x = 0.0;
-        this.player.position_x = 0.0;
         this.player.force_y = 0.0;
         this.player.vel_y = 0.0;
+        this.player.position_x = 0.0;
         this.player.position_y = this.audio_ground.scale_y * 1.1;
 
 

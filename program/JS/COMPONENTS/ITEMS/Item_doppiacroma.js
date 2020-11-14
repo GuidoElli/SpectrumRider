@@ -1,9 +1,9 @@
 class Item_doppiacroma extends Item{
     constructor(obj, position_x, position_y, position_z){
         super(obj, position_x, position_y, position_z);
-        this.expiration_time = 7e+3;
-        this.scale = 1;
-        this.max_dist_take = 1;
+        this.expiration_time = 20e+3;
+        this.scale = 2;
+        this.max_dist_take = 2;
 
         this.points_mult_factor = 2;
     }

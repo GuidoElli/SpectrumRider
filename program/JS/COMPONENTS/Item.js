@@ -8,7 +8,7 @@ class Item extends Component {
 
         this.random = Math.random();
         this.max_dist_take = 0.2;
-        this.scale = 0.1;
+        this.scale = 1;
         this.taken_at_time = undefined;
         this.expired = false;
         this.expiration_time = null;
@@ -17,7 +17,7 @@ class Item extends Component {
     get current_y_displacement(){
         return 0.2 * (1 +Math.sin(this.random*Math.PI*2 + app.current_z*0.7));
     }get current_y_rotation(){
-        return (this.random*360 + app.current_z*15)%360;
+        return 40 * Math.sin(this.random*2*Math.PI + app.current_z*0.5);
     }
 
     get position_y(){
@@ -26,7 +26,7 @@ class Item extends Component {
         this._position_y = p;
     }
     get rotation_y(){
-        return this._rotation_y + 25 * Math.sin(this.random*2*Math.PI + app.current_z%(2*Math.PI));
+        return this._rotation_y + this.current_y_rotation;
     }set rotation_y(p){
         this._rotation_y = p;
     }
