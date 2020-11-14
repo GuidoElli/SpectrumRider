@@ -21,9 +21,7 @@ class App {
         this.canvasText = document.getElementById("text2d");
         this.canvas3d = document.getElementById("webgl");
 
-
-
-        //init
+        //canvas
         this.gl = this.canvas3d.getContext("webgl2");
         this.ctx_2d = this.canvasText.getContext("2d");
         this.song.load();
@@ -37,13 +35,10 @@ class App {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
 
-
-
         //obj
         this.obj_audio_ground = new Obj_audio_ground(this.gl);
         this.obj_semicroma = new Obj_semicroma(this.gl);
         this.obj_semibreve = new Obj_semibreve(this.gl);
-        /*
         this.obj_minima = new Obj_minima(this.gl);
         this.obj_semiminima= new Obj_semiminima(this.gl);
         this.obj_croma = new Obj_croma(this.gl);
@@ -52,33 +47,24 @@ class App {
         this.obj_bemolle = new Obj_bemolle(this.gl);
         this.obj_chiavedifa = new Obj_chiavedifa(this.gl);
         this.obj_chiavedisol = new Obj_chiavedisol(this.gl);
-        */
 
 
         this.audio_ground = new Audio_ground(this.obj_audio_ground);
 
         this.player = new Player(this.obj_semibreve);
-            this.player.max_vel_x = 1.05 * this.audio_ground.scale_x;
-            this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
-            this.player.max_pos_y = this.audio_ground.scale_y * 12;
-            this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
-            this.player.scale = this.audio_ground.scale_x * 0.009;
-            this.player.y_offset = 2;
-            this.player.force_x = 0.0;
-            this.player.vel_x = 0.0;
-            this.player.position_x = 0.0;
-            this.player.force_y = 0.0;
-            this.player.vel_y = 0.0;
-            this.player.position_y = this.audio_ground.scale_y * 1.1;
+        this.player.max_vel_x = 1.05 * this.audio_ground.scale_x;
+        this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
+        this.player.max_pos_y = this.audio_ground.scale_y * 12;
+        this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
+        this.player.scale = this.audio_ground.scale_x * 0.009;
+        this.player.y_offset = 2;
+        this.player.force_x = 0.0;
+        this.player.vel_x = 0.0;
+        this.player.position_x = 0.0;
+        this.player.force_y = 0.0;
+        this.player.vel_y = 0.0;
+        this.player.position_y = this.audio_ground.scale_y * 1.1;
 
-        this.items_semicroma = [];
-        for(let i = 0; i < items_00.length; i++){
-            this.items_semicroma[i] = new Item_semicroma(
-               this.obj_semicroma,
-               items_00[i][0]*this.audio_ground.scale_x,
-               items_00[i][1]*this.audio_ground.scale_y,
-               items_00[i][2]*this.audio_ground.scale_x);
-        }
 
 
         //Parameters
@@ -136,10 +122,126 @@ class App {
         this.down_pressed = false;
         this.left_pressed = false;
         this.right_pressed = false;
+        this.up_just_pressed = true;
 
+
+
+
+        this.init();
 
         this.bind_listeners();
     }
+
+
+
+
+    init = () => {
+
+        this.items_all = [];
+
+        this.items_semicroma = [];
+        for(let i = 0; i < items_00.length; i++){
+            this.items_semicroma[i] = new Item_semicroma(
+               this.obj_semicroma,
+               items_00[i][0]*this.audio_ground.scale_x,
+               items_00[i][1]*this.audio_ground.scale_y,
+               items_00[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_semicroma);
+
+        this.items_croma = [];
+        for(let i = 0; i < items_10.length; i++){
+            this.items_croma[i] = new Item_croma(
+               this.obj_croma,
+               items_10[i][0]*this.audio_ground.scale_x,
+               items_10[i][1]*this.audio_ground.scale_y,
+               items_10[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_croma);
+
+        this.items_semiminima = [];
+        for(let i = 0; i < items_20.length; i++){
+            this.items_semiminima[i] = new Item_semiminima(
+               this.obj_semiminima,
+               items_20[i][0]*this.audio_ground.scale_x,
+               items_20[i][1]*this.audio_ground.scale_y,
+               items_20[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_semiminima);
+
+        this.items_minima = [];
+        for(let i = 0; i < items_21.length; i++){
+            this.items_minima[i] = new Item_minima(
+               this.obj_minima,
+               items_21[i][0]*this.audio_ground.scale_x,
+               items_21[i][1]*this.audio_ground.scale_y,
+               items_21[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_minima);
+
+        this.items_semibreve = [];
+        for(let i = 0; i < items_30.length; i++){
+            this.items_semibreve[i] = new Item_semibreve(
+               this.obj_semibreve,
+               items_30[i][0]*this.audio_ground.scale_x,
+               items_30[i][1]*this.audio_ground.scale_y,
+               items_30[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_semibreve);
+
+        this.items_doppiacroma = [];
+        for(let i = 0; i < items_22.length; i++){
+            this.items_doppiacroma[i] = new Item_doppiacroma(
+               this.obj_doppiacroma,
+               items_22[i][0]*this.audio_ground.scale_x,
+               items_22[i][1]*this.audio_ground.scale_y,
+               items_22[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_doppiacroma);
+
+        this.items_diesis = [];
+        for(let i = 0; i < items_12.length; i++){
+            this.items_diesis[i] = new Item_diesis(
+               this.obj_diesis,
+               items_12[i][0]*this.audio_ground.scale_x,
+               items_12[i][1]*this.audio_ground.scale_y,
+               items_12[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_diesis);
+
+        this.items_bemolle = [];
+        for(let i = 0; i < items_11.length; i++){
+            this.items_bemolle[i] = new Item_bemolle(
+               this.obj_bemolle,
+               items_11[i][0]*this.audio_ground.scale_x,
+               items_11[i][1]*this.audio_ground.scale_y,
+               items_11[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_bemolle);
+
+        this.items_chiavedisol = [];
+        for(let i = 0; i < items_32.length; i++){
+            this.items_chiavedisol[i] = new Item_chiavedisol(
+               this.obj_chiavedisol,
+               items_32[i][0]*this.audio_ground.scale_x,
+               items_32[i][1]*this.audio_ground.scale_y,
+               items_32[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_chiavedisol);
+
+        this.items_chiavedifa = [];
+        for(let i = 0; i < items_31.length; i++){
+            this.items_chiavedifa[i] = new Item_chiavedifa(
+               this.obj_chiavedifa,
+               items_31[i][0]*this.audio_ground.scale_x,
+               items_31[i][1]*this.audio_ground.scale_y,
+               items_31[i][2]*this.audio_ground.scale_x);
+        }
+        this.items_all = this.items_all.concat(this.items_chiavedifa);
+
+        this.item_score_manager = new Item_score_manger();
+    }
+
 
     bind_listeners = () => {
         this.song.ontimeupdate = this.on_song_time_update;
@@ -284,28 +386,23 @@ class App {
             this.audio_ground.draw(view_matrix, perspective_matrix);
             this.player.draw(view_matrix, perspective_matrix);
 
-            for(let i = 0; i < this.items_semicroma.length; i++){
-                this.items_semicroma[i].draw(view_matrix, perspective_matrix);
+            for(let i = 0; i < this.items_all.length; i++){
+                this.items_all[i].draw(view_matrix, perspective_matrix);
             }
 
-
-            let score_manager = { ////////////
-                "tot_points": 10,
-                "multiply_factor": 2
-            }
 
             //draw 2d elements
             this.ctx_2d.clearRect(0, 0, this.canvasText.width, this.canvasText.height);
             this.ctx_2d.font = '700 90px Arial';
             this.ctx_2d.fillStyle = '#eeeeee';
             this.ctx_2d.textAlign = "left";
-            this.ctx_2d.fillText(score_manager.tot_points, 60, 100);
+            this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 100);
 
-            if(score_manager.multiply_factor != 1){
+            if(this.item_score_manager.points_mult_factor != 1){
                 this.ctx_2d.font = '600 50px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "x" + score_manager.multiply_factor, 60, 180);
+                this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 180);
             }
 
             //title
@@ -493,15 +590,26 @@ class App {
                 this.player.position_y = y_cont;
             }else{ //still in the air
                 if(this.up_pressed && !this.down_pressed){
-                    if(this.player.vel_y < -this.max_vel_y_up_button){
-                        this.player.force_y = this.up_force * (-this.max_vel_y_up_button - this.player.vel_y);
-                    }else{
-                        this.player.force_y = -this.gravity;
+                    if(this.item_score_manager.jump > 0 && this.up_just_pressed){
+                        this.player.vel_y = 7; // jump amount
                     }
+                    let v = -this.max_vel_y_up_button;
+                    if(this.item_score_manager.fly > 0){
+                        v = -v*3; // fly amount
+                    }
+                    if(this.player.vel_y < v){
+                        this.player.force_y = this.up_force *
+                           (v - this.player.vel_y);
+                    }else{
+                        this.player.force_y = -this.gravity * this.item_score_manager.gravity_mult_factor;
+                    }
+                    this.up_just_pressed = false;
                 }else if(this.down_pressed && !this.up_pressed){
                     this.player.force_y = -this.down_force;
+                    this.up_just_pressed = true;
                 }else{
-                    this.player.force_y = -this.gravity;
+                    this.player.force_y = -this.gravity * this.item_score_manager.gravity_mult_factor;
+                    this.up_just_pressed = true;
                 }
                 this.player.vel_y += this.player.force_y * delta_t / 1000;
                 this.player.position_y += this.player.vel_y * delta_t / 1000;
@@ -525,17 +633,25 @@ class App {
         this.camera.position_x += (camera_x_target - camera_x_old) * 0.15;
 
         let camera_y_old = this.camera.position_y;
-        let camera_y_target = this.camera.position_y_min * (this.player.position_y/this.camera.position_y_min + 1 / (this.player.position_y/this.camera.position_y_min + 1));
+        let camera_y_target = this.camera.position_y_min *
+           (this.player.position_y/this.camera.position_y_min +
+              1 / (this.player.position_y/this.camera.position_y_min + 1));
         this.camera.position_y += (camera_y_target - camera_y_old) * 0.35;
 
-        this.camera.offset_z = this.camera.offset_z_min + (this.camera.position_y - this.camera.position_y_min) * 0.8;
+        this.camera.offset_z = this.camera.offset_z_min +
+           (this.camera.position_y - this.camera.position_y_min) * 0.8;
 
 
         //colors
         let white_coeff = 0.05;
-        this.gl_clear_color.r = white_coeff + (0.6 - white_coeff) * Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.7);
+        this.gl_clear_color.r = white_coeff + (0.6 - white_coeff) *
+           Math.pow(Math.min(pattern_bass[z_index+2], pattern_bass.length-1), 1.7);
         this.gl_clear_color.g = this.gl_clear_color.r
         this.gl_clear_color.b = this.gl_clear_color.r
+
+
+        this.item_score_manager.update();
+
 
     }
 

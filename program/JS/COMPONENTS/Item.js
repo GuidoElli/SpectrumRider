@@ -9,15 +9,9 @@ class Item extends Component {
         this.random = Math.random();
         this.max_dist_take = 0.2;
         this.scale = 0.1;
-
-        this.does_add_points = false;
-        this.points = 0;
-
-        this.does_multiply_points = false;
-        this.multiply_factor = 1;
-
         this.taken_at_time = undefined;
-        this.expiration_time = 0;
+        this.expired = false;
+        this.expiration_time = null;
     }
 
     get current_y_displacement(){
@@ -31,12 +25,18 @@ class Item extends Component {
     }set position_y(p){
         this._position_y = p;
     }
+    get rotation_y(){
+        return this._rotation_y + 25 * Math.sin(this.random*2*Math.PI + app.current_z%(2*Math.PI));
+    }set rotation_y(p){
+        this._rotation_y = p;
+    }
 
-    is_taken(){
+
+    is_taken = () => {
         return this.taken_at_time !== undefined;
     }
 
-    is_near_player(){
+    is_near_player = () => {
         if(Math.abs(this.position_z - app.current_z) > app.audio_ground.scale_z){
             return false;
         }
@@ -47,20 +47,33 @@ class Item extends Component {
         return diff < this.max_dist_take;
     }
 
-    is_visible(){
+    is_visible = () => {
         return !this.is_taken() && app.current_z - this.position_z > -app.camera.offset_z && app.current_z - this.position_z < app.seconds_to_see * app.audio_ground.scale_z;
     }
 
     take(){
         this.taken_at_time = (new Date).getTime();
+        if(this.expiration_time){
+            setTimeout(this.when_expired, this.expiration_time);
+            app.item_score_manager.active_items.push(this);
+        }else{
+            this.expired = true;
+        }
     }
 
-    active_time_remaining(){
-        if(this.taken_at_time) {
+
+    when_expired(){
+        this.expired = true;
+        app.item_score_manager.active_items.splice(app.item_score_manager.active_items.indexOf(this), 1);
+    }
+
+    current_percentage = () => {
+        if(this.is_taken() && !this.expired) {
             let current_time = (new Date).getTime();
-            return this.taken_at_time + this.expiration_time - current_time;
+            let percentage = (current_time - this.taken_at_time) / this.expiration_time;
+            return (percentage > 1) ? null : (percentage+1e-16);
         }
-        return -1;
+        return null;
     }
 
 }

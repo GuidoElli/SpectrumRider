@@ -445,7 +445,7 @@ def build_html(path):
 	'<script type="text/javascript" src="program/JS/Item_5x.js"></script>' \
 	'<script type="text/javascript" src="program/JS/Item_10x.js"></script>' \
 	'<script type="text/javascript" src="program/JS/param.js"></script>' \
-	'<script type="text/javascript" src="program/JS/Score_manger.js"></script>' \
+	'<script type="text/javascript" src="program/JS/Item_score_manger.js"></script>' \
 	'<script type="text/javascript" src="program/JS/events.js"></script>' \
 	'<script type="text/javascript" src="program/JS/shaders.js"></script>' \
 	'<script type="text/javascript" src="program/JS/update.js"></script>' \

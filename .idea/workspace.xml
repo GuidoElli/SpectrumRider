@@ -26,33 +26,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Audio_ground.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Obj.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Obj_audio_ground.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Obj_semibreve.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Obj_semicroma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/JS/Player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Audio_ground.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_bemolle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedifa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_chiavedisol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_croma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_diesis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_doppiacroma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_minima.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semibreve.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semicroma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/ITEMS/Item_semiminima.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/Item_score_manger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_audio_ground.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_bemolle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedifa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_chiavedisol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_croma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_diesis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_doppiacroma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_minima.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semibreve.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semicroma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_semiminima.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program/JS/OBJ/raw.obj.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Imagine Dragons - Birds.html" beforeDir="false" afterPath="$PROJECT_DIR$/Imagine Dragons - Birds.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Coin_ground.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Coin_lv1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Coin_lv2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Coin_lv3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/Item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Item_10x.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Item_2x.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/Item_semicroma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/Item_5x.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/draw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/events.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/objects_def.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/param.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/shaders.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/shaders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Audio_ground.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Item.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Item_semicroma.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Obj.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Obj_audio_ground.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Obj_semibreve.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Obj_semicroma.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Player.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/Score_manger.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/draw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/obj_raw.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/JS/update.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +118,7 @@
       <workItem from="1605011968722" duration="9400000" />
       <workItem from="1605100624206" duration="15930000" />
       <workItem from="1605186206707" duration="17479000" />
-      <workItem from="1605265244122" duration="27866000" />
+      <workItem from="1605265244122" duration="40744000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -199,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605281025022</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="everything in classes">
+      <created>1605305022049</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1605305022049</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +266,8 @@
     <MESSAGE value="added notes objects" />
     <MESSAGE value="added various notes and music notation obj" />
     <MESSAGE value="clean, ready to make remaining classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean, ready to make remaining classes" />
+    <MESSAGE value="everything in classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="everything in classes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="146" y="64" key="MergeDialog" timestamp="1604965622771">
@@ -259,10 +286,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605281028631" />
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605135063433">
+    <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605319465206">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1605135063433" />
+    <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1605319465206" />
     <state x="585" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605190824632">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -271,10 +298,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605281886848" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1605299237016">
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605316588930">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605299237016" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605316588930" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605286517721">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
