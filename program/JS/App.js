@@ -676,7 +676,7 @@ class App {
         });
     }
     end_game = () => {
-        this.score.innerHTML = score_manager.tot_points;
+        this.score.innerHTML = this.item_score_manager.tot_points;
         this.show_screen("game_over");
         this.playing = false;
         this.song.pause();
