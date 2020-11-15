@@ -760,8 +760,6 @@ class App {
 }
 
 window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-    alert("Error occured: " + errorMsg);//or any message
-    return false;
+    alert("Error: " + errorMsg);
 }
-
 let app = new App();
