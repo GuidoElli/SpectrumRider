@@ -52,7 +52,7 @@ def build_song_data(mp3_path, path):
 	upsample_time = 3
 
 	sanity_ground = 1.3
-	sanity_lights = 1.9
+	sanity_lights = 2
 
 	max_vertices_per_block = 16000
 
@@ -82,7 +82,6 @@ def build_song_data(mp3_path, path):
 	range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
 	range_y = np.arange(0, 1.0000000001, 1 / (n_bands - 1))
 	data_points = np.zeros((len(data_values), 2))
-	print("\nComputing surface (2 of 2)...")
 	for i in range(len(range_x)):
 		for j in range(len(range_y)):
 			data_points[i * len(range_y) + j, 0] = range_x[i]
@@ -117,6 +116,7 @@ def build_song_data(mp3_path, path):
 	bass_mid_high_data[:, 2] = np.power(np.absolute(high_data) / high_data.max(), sanity_lights)
 
 	# compute vertices, indices and normals
+	print("\nComputing items (2 of 2)...")
 	current_block = 0
 	vertices = "var audio_ground_vert = [];\naudio_ground_vert[{0:d}] = [".format(current_block)
 	indices = "var audio_ground_ind = [];\naudio_ground_ind[{0:d}] = [".format(current_block)
@@ -241,11 +241,11 @@ def build_song_data(mp3_path, path):
 			pattern_high += "];"
 
 	# items position
-	start = 0  # vertex to start on
-	stop = 0  # stop before n vertices
+	start = 100  # vertex to start on
+	stop = 100  # stop before n vertices
 
 	# Level 0: on ground
-	items_0_rows_space = upsample_time * 6
+	items_0_rows_space = 30
 	items_00 = "\nvar items_00 = ["
 	pos_x = 0
 	vel_x = 0
@@ -274,16 +274,16 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = upsample_time * 8
+	items_123_rows_space = 50
 	# probabilities
-	item_lv1_prob = 0.4
-	item_lv2_prob = 0.4
-	item_lv3_prob = 0.2
+	item_lv1_prob = 0.5
+	item_lv2_prob = 0.45
+	item_lv3_prob = 0.05
 	lv1_mean = 2
 	lv1_dev = 0.15
-	lv2_mean = 4
+	lv2_mean = 4.5
 	lv2_dev = 0.15
-	lv3_mean = 6
+	lv3_mean = 7
 	lv3_dev = 0.15
 
 	# lv 1
@@ -301,9 +301,9 @@ def build_song_data(mp3_path, path):
 	items_22_prob = 0.4
 	items_22 = "\nvar items_22 = [ "
 	# lv 3
-	items_30_prob = 0.7
+	items_30_prob = 0.8
 	items_30 = "\nvar items_30 = [ "
-	items_31_prob = 0.2
+	items_31_prob = 0.1
 	items_31 = "\nvar items_31 = [ "
 	items_32_prob = 0.1
 	items_32 = "\nvar items_32 = [ "
@@ -362,9 +362,9 @@ def build_song_data(mp3_path, path):
 	song_data += items_30 + items_31 + items_32
 
 	# Write files
-	print("\nWriting...")
 	file = open("{0:s}/song_data.js".format(path), "w")
 	file.write(song_data)
+	print("\nDone!")
 
 def build_html(path):
 	f = open('empty_page.txt', 'r')
