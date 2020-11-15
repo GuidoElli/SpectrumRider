@@ -26,29 +26,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/2Chainz - We Own It.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Noyz - 16 Barre.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Noyz - 16 Barre/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Noyz - 16 Barre/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/d - s/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/d - s/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/g - g/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/g - g/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/ggg - ggg/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/ggg - ggg/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/d - s.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/g - g.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ggg - ggg.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/empty_page.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2Chainz - We Own It (feat. Wiz Khalifa).html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Aban feat. Noyz Narcos - 16 Barre.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lady Gaga - Telephone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReLocate - Horizons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It (feat. Wiz Khalifa)/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It (feat. Wiz Khalifa)/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Aban feat. Noyz Narcos - 16 Barre/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Aban feat. Noyz Narcos - 16 Barre/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Lady Gaga - Telephone/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Lady Gaga - Telephone/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/ReLocate - Horizons/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/ReLocate - Horizons/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Unknown - Be Bop/song.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SONGDATA/Unknown - Be Bop/song_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unknown - Be Bop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Imagine Dragons - Birds.html" beforeDir="false" afterPath="$PROJECT_DIR$/Imagine Dragons - Birds.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/COMPONENTS/Audio_ground.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/COMPONENTS/Audio_ground.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/OBJ/Obj_player.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/JS/OBJ/Obj_player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/JS/shaders.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Imagine Dragons - Birds.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/Nuova cartella/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/Nuova cartella/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/d - ed/song.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SONGDATA/d - ed/song_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/d - ed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +103,8 @@
       <workItem from="1605186206707" duration="17479000" />
       <workItem from="1605265244122" duration="43071000" />
       <workItem from="1605346893126" duration="12935000" />
-      <workItem from="1605373947136" duration="3795000" />
+      <workItem from="1605373947136" duration="3907000" />
+      <workItem from="1605398125660" duration="1907000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -246,7 +253,28 @@
       <option name="project" value="LOCAL" />
       <updated>1605369123404</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Bugs corrected">
+      <created>1605383591266</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1605383591266</updated>
+    </task>
+    <task id="LOCAL-00023" summary="bug">
+      <created>1605399181036</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1605399181036</updated>
+    </task>
+    <task id="LOCAL-00024" summary="bug">
+      <created>1605400019185</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1605400019185</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +318,9 @@
     <MESSAGE value="a" />
     <MESSAGE value="different shaders for each obj" />
     <MESSAGE value="almost finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost finished" />
+    <MESSAGE value="Bugs corrected" />
+    <MESSAGE value="bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug" />
   </component>
   <component name="WindowStateProjectService">
     <state x="146" y="64" key="MergeDialog" timestamp="1604965622771">
@@ -305,10 +335,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605283417022" />
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605369125648">
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605400023213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605369125648" />
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605400023213" />
     <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605319465206">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
