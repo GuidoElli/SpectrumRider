@@ -277,8 +277,8 @@ def build_song_data(mp3_path, path):
 	items_123_rows_space = 50
 	# probabilities
 	item_lv1_prob = 0.5
-	item_lv2_prob = 0.45
-	item_lv3_prob = 0.05
+	item_lv2_prob = 0.4
+	item_lv3_prob = 0.1
 	lv1_mean = 2
 	lv1_dev = 0.15
 	lv2_mean = 4.5

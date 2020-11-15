@@ -68,7 +68,7 @@ class App {
 
         //Parameters
         this.max_delta_t_ms = 100;
-        this.stretch_correction = 1 + 0.13 / 270;
+        this.stretch_correction = 1;
         this.time_correction = 0;
 
         this.song_begun = false;
