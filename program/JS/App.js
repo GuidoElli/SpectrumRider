@@ -413,13 +413,13 @@ class App {
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "b ", 60 + i*30, 380);
             }
-            if(this.item_score_manager.n_chiavedisol > 0){
+            if(this.item_score_manager.fly > 0){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "[FLY]", 60, 450);
             }
-            if(this.item_score_manager.n_chiavedifa > 0){
+            if(this.item_score_manager.jump > 0){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
@@ -536,7 +536,7 @@ class App {
         let y_curr = y_map[z_index][x_index] * this.audio_ground.scale_y;
         let y_prev = [];
         let y_next = [];
-        let range = 4;
+        let range = 5;
         //compute path
         for(let i = 1; i <= range; i++){
             if(this.left_pressed && !this.right_pressed && this.player.position_x > -this.player.max_pos_x + 0.01) {
@@ -613,12 +613,12 @@ class App {
                 this.player.position_y = y_cont;
             }else{ //still in the air
                 if(this.up_pressed && !this.down_pressed){
-                    if(this.item_score_manager.jump > 0 && this.up_just_pressed && this.player.vel_y < 4){// jump amount
-                        this.player.vel_y = 4; // jump amount
+                    if(this.item_score_manager.jump > 0 && this.up_just_pressed && this.player.vel_y < 5){// jump amount
+                        this.player.vel_y = 5; // jump amount
                     }
                     let v = -this.max_vel_y_up_button;
                     if(this.item_score_manager.fly > 0){
-                        v = -v*5; // fly amount
+                        v = -v*4; // fly amount
                     }
                     if(this.player.vel_y < v){
                         this.player.force_y = this.up_force *
