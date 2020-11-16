@@ -53,9 +53,9 @@ class App {
         this.audio_ground = new Audio_ground(this.obj_audio_ground);
 
         this.player = new Player(this.obj_player);
-        this.player.max_vel_x = 1.05 * this.audio_ground.scale_x;
+        this.player.max_vel_x = 1.2 * this.audio_ground.scale_x;
         this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
-        this.player.max_pos_y = this.audio_ground.scale_y * 12;
+        this.player.max_pos_y = this.audio_ground.scale_y * 15;
         this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
         this.player.force_x = 0.0;
         this.player.vel_x = 0.0;
@@ -589,8 +589,14 @@ class App {
             this.new_vert = false;
         }
 
+        if(this.touching_ground && this.up_pressed && !this.down_pressed && (this.item_score_manager.jump > 0 && this.up_just_pressed  ||  this.item_score_manager.fly > 0)){
+            this.player.position_y = y_cont;
+            this.player.vel_y = 0.5;
+            this.touching_ground = false;
+        }
+
         if(this.touching_ground){//on ground
-            if(this.down_pressed){
+            if(this.down_pressed && !this.up_pressed){
                 this.player.position_y = y_cont;
             }else if(this.new_vert){
                 if(this.last_max_diff > y_next[0] - y_curr && // not on ground anymore
@@ -638,6 +644,7 @@ class App {
                 this.player.position_y += this.player.vel_y * delta_t / 1000;
                 if(this.player.position_y > this.player.max_pos_y){
                     this.player.position_y = this.player.max_pos_y;
+                    this.player.vel_y = 0;
                 }
             }
         }
