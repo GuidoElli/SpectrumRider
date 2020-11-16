@@ -1,7 +1,7 @@
 class Item_semicroma extends Item{
     constructor(obj, position_x, position_y, position_z){
         super(obj, position_x, position_y, position_z);
-        this.scale = 0.7;
+        this.scale = 0.8;
         this.max_dist_take = 1.3;
 
         this.points = 1;

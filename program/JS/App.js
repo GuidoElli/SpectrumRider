@@ -83,11 +83,11 @@ class App {
         this.elapsed_time = undefined;
         this.last_update_time = undefined;
 
-        this.gravity = 10; // unitary mass (no acceleration parameters)
+        this.gravity = 12; // unitary mass (no acceleration parameters)
         this.x_force = 16 * this.audio_ground.scale_x;
         this.down_force = this.gravity * 6.0;
         this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
-        this.up_force = this.gravity;
+        this.up_force = this.gravity * 0.7;
         this.touching_ground = false;
         this.last_z_index = 0;
         this.last_x_index = 0;
@@ -98,10 +98,10 @@ class App {
             "position_x": 0.0,
             "position_y": 0.0,
             "position_z": 0.0,
-            "offset_z_min": 2.3,
-            "offset_z": 2.3,
+            "offset_z_min": 2.5,
+            "offset_z": 2.5,
             "position_x_max": 0.7 * this.audio_ground.scale_x,
-            "position_y_min": 2,
+            "position_y_min": 1.9 * this.audio_ground.scale_y,
             "angle": 0,
             "elevation": -11,
             "fov": 80
@@ -311,7 +311,7 @@ class App {
                     e.preventDefault();
                     if(this.synchronized){
                         if(e.ctrlKey){
-                            this.stretch_correction += 0.001;
+                            this.stretch_correction += 0.00001;
                         }
                     }
                     break;
@@ -321,7 +321,7 @@ class App {
                     if(this.synchronized){
                         if(this.synchronized){
                             if(e.ctrlKey){
-                                this.stretch_correction -= 0.001;
+                                this.stretch_correction -= 0.00001;
                             }
                         }
                     }
@@ -618,7 +618,7 @@ class App {
                     }
                     let v = -this.max_vel_y_up_button;
                     if(this.item_score_manager.fly > 0){
-                        v = -v*2; // fly amount
+                        v = -v*5; // fly amount
                     }
                     if(this.player.vel_y < v){
                         this.player.force_y = this.up_force *

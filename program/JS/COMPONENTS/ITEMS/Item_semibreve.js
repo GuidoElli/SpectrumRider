@@ -1,8 +1,8 @@
 class Item_semibreve extends Item{
     constructor(obj, position_x, position_y, position_z){
         super(obj, position_x, position_y, position_z);
-        this.scale = 4;
-        this.max_dist_take = 2.5;
+        this.scale = 5;
+        this.max_dist_take = 3;
 
         this.points = 16;
     }
