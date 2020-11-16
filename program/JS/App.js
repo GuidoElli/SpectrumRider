@@ -262,7 +262,7 @@ class App {
             this.show_screen("menu");
         })
         this.start_button.addEventListener("mouseup", () => {
-            document.documentElement.requestFullscreen()
+            document.documentElement.requestFullscreen().then(() => {})
             this.start_game();
         })
         this.options_button.addEventListener("mouseup", () => {
@@ -766,7 +766,7 @@ class App {
 
 }
 
-window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+window.onerror = function myErrorHandler(errorMsg) {
     alert("Error: " + errorMsg);
 }
 let app = new App();

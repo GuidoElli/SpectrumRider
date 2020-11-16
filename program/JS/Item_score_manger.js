@@ -12,7 +12,7 @@ class Item_score_manger{
         this.gravity_mult_factor = 1;
 
         this.jump = 0;
-        this.fly = 1;
+        this.fly = 0;
     }
 
     take_diesis = (o) => {
