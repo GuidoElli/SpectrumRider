@@ -26,35 +26,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a449e7f7-d036-4d0a-9518-a4cefd929d23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/2Chainz - We Own It (feat. Wiz Khalifa).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Aban feat. Noyz Narcos - 16 Barre.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lady Gaga - Telephone.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ReLocate - Horizons.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It (feat. Wiz Khalifa)/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/2Chainz - We Own It (feat. Wiz Khalifa)/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Aban feat. Noyz Narcos - 16 Barre/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Aban feat. Noyz Narcos - 16 Barre/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Lady Gaga - Telephone/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Lady Gaga - Telephone/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/ReLocate - Horizons/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/ReLocate - Horizons/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Unknown - Be Bop/song.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SONGDATA/Unknown - Be Bop/song_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unknown - Be Bop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Imagine Dragons - Birds.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Bruno Mars - Uptown Funk/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/Nuova cartella/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/Nuova cartella/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Imagine Dragons - Birds/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/Snoop Dogg feat. David Guetta - Wet/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/d - ed/song.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SONGDATA/d - ed/song_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/d - ed.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +78,9 @@
       <workItem from="1605346893126" duration="12935000" />
       <workItem from="1605373947136" duration="3907000" />
       <workItem from="1605398125660" duration="1907000" />
+      <workItem from="1605451489506" duration="2898000" />
+      <workItem from="1605528809298" duration="5822000" />
+      <workItem from="1605610878278" duration="6680000" />
     </task>
     <task id="LOCAL-00001" summary="clean code and added external app to load songs">
       <created>1604864972880</created>
@@ -274,7 +250,77 @@
       <option name="project" value="LOCAL" />
       <updated>1605400019185</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="a">
+      <created>1605451653085</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1605451653085</updated>
+    </task>
+    <task id="LOCAL-00026" summary="a">
+      <created>1605469737761</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1605469737762</updated>
+    </task>
+    <task id="LOCAL-00027" summary="a">
+      <created>1605470064896</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1605470064896</updated>
+    </task>
+    <task id="LOCAL-00028" summary="bug">
+      <created>1605530489131</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1605530489131</updated>
+    </task>
+    <task id="LOCAL-00029" summary="bug">
+      <created>1605531381611</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1605531381611</updated>
+    </task>
+    <task id="LOCAL-00030" summary="bug">
+      <created>1605533484215</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1605533484215</updated>
+    </task>
+    <task id="LOCAL-00031" summary="bug">
+      <created>1605534009136</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1605534009136</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Bugs fixed">
+      <created>1605612311933</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1605612311933</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Bugs fixed">
+      <created>1605612989952</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1605612989952</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Bugs fixed">
+      <created>1605619259872</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1605619259872</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,12 +361,13 @@
     <MESSAGE value="added various notes and music notation obj" />
     <MESSAGE value="clean, ready to make remaining classes" />
     <MESSAGE value="everything in classes" />
-    <MESSAGE value="a" />
     <MESSAGE value="different shaders for each obj" />
     <MESSAGE value="almost finished" />
     <MESSAGE value="Bugs corrected" />
+    <MESSAGE value="a" />
     <MESSAGE value="bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug" />
+    <MESSAGE value="Bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugs fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="146" y="64" key="MergeDialog" timestamp="1604965622771">
@@ -335,10 +382,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605283417022" />
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605400023213">
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2" timestamp="1605619353276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605400023213" />
+    <state x="360" y="142" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605619353276" />
     <state x="149" y="115" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605319465206">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -347,10 +394,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="585" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605190824632" />
-    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605376432855">
+    <state x="478" y="135" width="587" height="612" key="find.popup" timestamp="1605532692938">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605376432855" />
+    <state x="478" y="135" width="587" height="612" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605532692938" />
     <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605383217424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
