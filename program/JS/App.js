@@ -63,8 +63,8 @@ class App {
         this.max_delta_t_ms = 100;
         this.stretch_correction = 1;
         this.time_correction = 0;
-
-        this.gravity = 12; // unitary mass (no acceleration parameters)
+        this.seconds_to_see = 15;
+        this.gravity = 16; // unitary mass (no acceleration parameters)
         this.x_force = 13 * this.audio_ground.scale_x;
         this.down_force = this.gravity * 6.0;
         this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
@@ -90,7 +90,6 @@ class App {
         this.synchronized = false;
         this.in_game = false;
 
-        this.seconds_to_see = 10;
         this.current_z = undefined;
         this.current_song_percentage = undefined;
         this.current_time = undefined;
@@ -402,13 +401,13 @@ class App {
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 190);
             }
-            for(let i = 0; i < this.item_score_manager.n_diesis; i++){
+            for(let i = 0; i < this.item_score_manager.n_diesis - this.item_score_manager.n_bemolle; i++){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "# ", 60 + i*30, 310);
             }
-            for(let i = 0; i < this.item_score_manager.n_bemolle; i++){
+            for(let i = 0; i < this.item_score_manager.n_bemolle - this.item_score_manager.n_diesis; i++){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";

@@ -17,7 +17,7 @@ class Item extends Component {
     get current_y_displacement(){
         return 0.2 * (1 +Math.sin(this.random*Math.PI*2 + app.current_z*0.5));
     }get current_y_rotation(){
-        return 25 * Math.sin(this.random*2*Math.PI + app.current_z*0.3);
+        return 30 * Math.sin(this.random*2*Math.PI + app.current_z*0.3);
     }
 
     get position_y(){
@@ -27,8 +27,8 @@ class Item extends Component {
     }
     get rotation_y(){
         return this._rotation_y + this.current_y_rotation;
-    }set rotation_y(p){
-        this._rotation_y = p;
+    }set rotation_y(r){
+        this._rotation_y = r;
     }
 
 
@@ -37,18 +37,16 @@ class Item extends Component {
     }
 
     is_near_player = () => {
-        if(Math.abs(this.position_z - app.current_z) > app.audio_ground.scale_z){
-            return false;
-        }
+        if(Math.abs(this.position_z - app.current_z) > app.audio_ground.scale_z){ return false }
         let dx = this.position_x - app.player.position_x;
         let dy = this.position_y - app.player.position_y;
-        let dz = this.position_z -app.current_z;
+        let dz = this.position_z - app.current_z;
         let diff = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2))
         return diff < this.max_dist_take;
     }
 
     is_visible = () => {
-        return !this.is_taken() && app.current_z - this.position_z > -app.camera.offset_z && app.current_z - this.position_z < app.seconds_to_see * app.audio_ground.scale_z;
+        return !this.is_taken() && app.current_z - this.position_z > -app.camera.offset_z && app.current_z - this.position_z < app.seconds_to_see * app.audio_ground.scale_z * 0.95;
     }
 
     take(){
