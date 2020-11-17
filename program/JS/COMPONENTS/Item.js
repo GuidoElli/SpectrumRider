@@ -15,9 +15,9 @@ class Item extends Component {
     }
 
     get current_y_displacement(){
-        return 0.2 * (1 +Math.sin(this.random*Math.PI*2 + app.current_z*0.7));
+        return 0.2 * (1 +Math.sin(this.random*Math.PI*2 + app.current_z*0.5));
     }get current_y_rotation(){
-        return 40 * Math.sin(this.random*2*Math.PI + app.current_z*0.5);
+        return 25 * Math.sin(this.random*2*Math.PI + app.current_z*0.3);
     }
 
     get position_y(){

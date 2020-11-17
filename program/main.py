@@ -116,7 +116,7 @@ def build_song_data(mp3_path, path):
 	bass_mid_high_data[:, 2] = np.power(np.absolute(high_data) / high_data.max(), sanity_lights)
 
 	# compute vertices, indices and normals
-	print("\nComputing items (2 of 2)...")
+	print("\nComputing data (2 of 2)...")
 	current_block = 0
 	vertices = "var audio_ground_vert = [];\naudio_ground_vert[{0:d}] = [".format(current_block)
 	indices = "var audio_ground_ind = [];\naudio_ground_ind[{0:d}] = [".format(current_block)

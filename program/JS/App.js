@@ -53,23 +53,37 @@ class App {
         this.audio_ground = new Audio_ground(this.obj_audio_ground);
 
         this.player = new Player(this.obj_player);
-        this.player.max_vel_x = 1.2 * this.audio_ground.scale_x;
+        this.player.max_vel_x = 1.1 * this.audio_ground.scale_x;
         this.player.max_pos_x = this.audio_ground.scale_x / 2 * 0.97;
         this.player.max_pos_y = this.audio_ground.scale_y * 15;
         this.player.max_vel_y_up = 15 * this.audio_ground.scale_y;
-        this.player.force_x = 0.0;
-        this.player.vel_x = 0.0;
-        this.player.force_y = 0.0;
-        this.player.vel_y = 0.0;
-        this.player.position_x = 0.0;
-        this.player.position_y = this.audio_ground.scale_y * 1.1;
-
 
 
         //Parameters
         this.max_delta_t_ms = 100;
         this.stretch_correction = 1;
         this.time_correction = 0;
+
+        this.gravity = 12; // unitary mass (no acceleration parameters)
+        this.x_force = 13 * this.audio_ground.scale_x;
+        this.down_force = this.gravity * 6.0;
+        this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
+        this.up_force = this.gravity * 0.7;
+
+
+        this.init();
+        this.bind_listeners();
+    }
+
+
+
+    init = () => {
+
+        this.touching_ground = false;
+        this.last_z_index = 0;
+        this.last_x_index = 0;
+        this.new_vert = false;
+        this.last_max_diff = 0;
 
         this.song_begun = false;
         this.song_start_time = undefined;
@@ -83,17 +97,6 @@ class App {
         this.elapsed_time = undefined;
         this.last_update_time = undefined;
 
-        this.gravity = 12; // unitary mass (no acceleration parameters)
-        this.x_force = 16 * this.audio_ground.scale_x;
-        this.down_force = this.gravity * 6.0;
-        this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
-        this.up_force = this.gravity * 0.7;
-        this.touching_ground = false;
-        this.last_z_index = 0;
-        this.last_x_index = 0;
-        this.new_vert = false;
-        this.last_max_diff = 0;
-
         this.camera = {
             "position_x": 0.0,
             "position_y": 0.0,
@@ -103,8 +106,8 @@ class App {
             "position_x_max": 0.7 * this.audio_ground.scale_x,
             "position_y_min": 1.9 * this.audio_ground.scale_y,
             "angle": 0,
-            "elevation": -11,
-            "fov": 80
+            "elevation": -12,
+            "fov": 75
         }
 
         this.current_bass_light = 0.0;
@@ -123,15 +126,13 @@ class App {
         this.right_pressed = false;
         this.up_just_pressed = true;
 
-        this.init();
+        this.player.force_x = 0.0;
+        this.player.vel_x = 0.0;
+        this.player.force_y = 0.0;
+        this.player.vel_y = 0.0;
+        this.player.position_x = 0.0;
+        this.player.position_y = this.audio_ground.scale_y * 1.1;
 
-        this.bind_listeners();
-    }
-
-
-
-
-    init = () => {
 
         this.items_all = [];
 
