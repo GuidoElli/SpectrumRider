@@ -5,7 +5,7 @@ class Item_diesis extends Item{
         this.scale = 1.5;
         this.max_dist_take = 1.5;
 
-        this.gravity_mult_factor = 1 / 1.3;
+        this.gravity_mult_factor = 1 / 1.25;
     }
 
     take = () => {
@@ -14,7 +14,8 @@ class Item_diesis extends Item{
     }
 
     when_expired = () => {
-        super.when_expired();
-        app.item_score_manager.expired_diesis(this);
+        if(super.when_expired()){
+            app.item_score_manager.expired_diesis(this);
+        }
     }
 }

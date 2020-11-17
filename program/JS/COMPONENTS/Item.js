@@ -9,7 +9,7 @@ class Item extends Component {
         this.random = Math.random();
         this.max_dist_take = 0.2;
         this.scale = 1;
-        this.taken_at_time = undefined;
+        this.taken_at_z = undefined;
         this.expired = false;
         this.expiration_time = null;
     }
@@ -33,7 +33,7 @@ class Item extends Component {
 
 
     is_taken = () => {
-        return this.taken_at_time !== undefined;
+        return this.taken_at_z !== undefined;
     }
 
     is_near_player = () => {
@@ -50,23 +50,31 @@ class Item extends Component {
     }
 
     take(){
-        this.taken_at_time = (new Date).getTime();
+        this.taken_at_z = app.current_z;
+    }
+
+    check_expiration = () => {
+        return -(app.current_z - this.taken_at_z)*1000 > (this.expiration_time*app.audio_ground.scale_z)
+    }
+
+    has_just_expired = () => {
         if(this.expiration_time){
-            setTimeout(this.when_expired, this.expiration_time);
-        }else{
-            this.expired = true;
+            return (!this.expired && this.is_taken() && this.check_expiration());
         }
     }
 
 
     when_expired(){
-        this.expired = true;
+        if(!this.expired){
+            this.expired = true;
+            return true;
+        }
+        return false;
     }
 
     current_percentage = () => {
         if(this.is_taken() && !this.expired) {
-            let current_time = (new Date).getTime();
-            let percentage = (current_time - this.taken_at_time) / this.expiration_time;
+            let percentage = (app.current_z - this.taken_at_z) / (this.expiration_time*app.audio_ground.scale_z);
             return (percentage > 1) ? null : (percentage+1e-16);
         }
         return null;

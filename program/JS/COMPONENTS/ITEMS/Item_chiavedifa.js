@@ -12,7 +12,8 @@ class Item_chiavedifa extends Item{
     }
 
     when_expired = () => {
-        super.when_expired();
-        app.item_score_manager.expired_chiavedifa(this);
+        if(super.when_expired()){
+            app.item_score_manager.expired_chiavedifa(this);
+        }
     }
 }

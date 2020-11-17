@@ -64,12 +64,14 @@ class App {
         this.stretch_correction = 1;
         this.time_correction = 0;
         this.seconds_to_see = 15;
-        this.gravity = 16; // unitary mass (no acceleration parameters)
+        this.gravity = 15; // unitary mass (no acceleration parameters)
         this.x_force = 13 * this.audio_ground.scale_x;
         this.down_force = this.gravity * 6.0;
         this.max_vel_y_up_button = 1.4 * this.audio_ground.scale_y;
         this.up_force = this.gravity * 0.7;
 
+
+        this.items_all = [];
 
         this.init();
         this.bind_listeners();
@@ -132,7 +134,9 @@ class App {
         this.player.position_x = 0.0;
         this.player.position_y = this.audio_ground.scale_y * 1.1;
 
-
+        for(let i = 0; i < this.items_all.length; i++){
+            this.items_all[i].when_expired();
+        }
         this.items_all = [];
 
         this.items_semicroma = [];

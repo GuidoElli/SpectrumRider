@@ -12,8 +12,9 @@ class Item_chiavedisol extends Item{
     }
 
     when_expired = () => {
-        super.when_expired();
-        app.item_score_manager.expired_chiavedisol(this);
+        if(super.when_expired()){
+            app.item_score_manager.expired_chiavedisol(this);
+        }
     }
 
 }

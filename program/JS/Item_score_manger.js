@@ -79,6 +79,8 @@ class Item_score_manger{
             let item = app.items_all[i];
             if(!item.is_taken() && item.is_near_player()){
                 item.take();
+            }else if(item.has_just_expired()){
+                item.when_expired();
             }
         }
     }

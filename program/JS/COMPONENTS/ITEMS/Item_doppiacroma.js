@@ -14,8 +14,8 @@ class Item_doppiacroma extends Item{
     }
 
     when_expired = () => {
-        super.when_expired();
-        app.item_score_manager.expired_doppiacroma(this);
+        if(super.when_expired()){
+            app.item_score_manager.expired_doppiacroma(this);
+        }
     }
-
 }
