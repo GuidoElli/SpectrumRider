@@ -1,4 +1,5 @@
 import numpy as np
+from tqdm import tqdm
 from scipy.signal import butter, lfilter
 from scipy.interpolate import griddata
 from soundfile import read
@@ -10,8 +11,6 @@ import tkinter as tk
 from functools import partial
 from tkinter import filedialog
 
-
-
 def butter_bandpass(lowcut, highcut, fs, order=5):
 	nyq = 0.5 * fs
 	low = lowcut / nyq
@@ -19,17 +18,20 @@ def butter_bandpass(lowcut, highcut, fs, order=5):
 	b, a = butter(order, [low, high], btype='band')
 	return b, a
 
+
 def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 	b, a = butter_bandpass(lowcut, highcut, fs, order=order)
 	y = lfilter(b, a, data)
 	return y
 
+
 def isNaN(num):
 	return num != num
 
-def build_song_data(mp3_path, path):
 
+def build_song_data(mp3_path, path):
 	# Initialization
+	print("\nAnalyzing Audio (1 of 2)...")
 
 	mp3 = AudioSegment.from_mp3(mp3_path)
 	mp3.export(path + "song.mp3", format="mp3")
@@ -52,17 +54,16 @@ def build_song_data(mp3_path, path):
 	upsample_time = 3
 
 	sanity_ground = 1.3
-	sanity_lights = 2
+	sanity_lights = 1.9
 
 	max_vertices_per_block = 16000
 
 	# program
-	print("\nAnalyzing Audio (1 of 2)...")
 	win_length_samples = int(win_length_time * fs)
 	n_frames = int(len(audio) / win_length_samples) - 1
 	song_duration_seconds = win_length_time * n_frames
 	z_init_matrix = np.zeros((n_frames, n_bands))
-	for f in range(n_frames):
+	for f in tqdm(range(n_frames)):
 		frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 		for b in range(n_bands):
 			lowcut = bands_borders[b]
@@ -82,6 +83,7 @@ def build_song_data(mp3_path, path):
 	range_x = np.arange(0, 1.0000000001, 1 / (n_frames - 1))
 	range_y = np.arange(0, 1.0000000001, 1 / (n_bands - 1))
 	data_points = np.zeros((len(data_values), 2))
+	print("\nComputing surface (2 of 2)...")
 	for i in range(len(range_x)):
 		for j in range(len(range_y)):
 			data_points[i * len(range_y) + j, 0] = range_x[i]
@@ -91,8 +93,8 @@ def build_song_data(mp3_path, path):
 
 	n_rows = interp_data.shape[0]
 	n_vertex_per_row = interp_data.shape[1]
-	vertex_sample_rate = n_rows / song_duration_seconds
-	
+	vertex_sample_rate = n_frames*upsample_time / song_duration_seconds
+
 	for i in range(n_rows):
 		for j in range(n_vertex_per_row):
 			if isNaN(interp_data[i][j]):
@@ -116,7 +118,6 @@ def build_song_data(mp3_path, path):
 	bass_mid_high_data[:, 2] = np.power(np.absolute(high_data) / high_data.max(), sanity_lights)
 
 	# compute vertices, indices and normals
-	print("\nComputing data (2 of 2)...")
 	current_block = 0
 	vertices = "var audio_ground_vert = [];\naudio_ground_vert[{0:d}] = [".format(current_block)
 	indices = "var audio_ground_ind = [];\naudio_ground_ind[{0:d}] = [".format(current_block)
@@ -128,7 +129,7 @@ def build_song_data(mp3_path, path):
 	last_row_vertices = ""
 	last_row_normals = ""
 	past_blocks_vertices = 0
-	for i in range(n_rows):
+	for i in tqdm(range(n_rows)):
 		for j in range(n_vertex_per_row):
 			current_vertex = i * n_vertex_per_row + j
 			# vertex
@@ -241,11 +242,11 @@ def build_song_data(mp3_path, path):
 			pattern_high += "];"
 
 	# items position
-	start = 100  # vertex to start on
-	stop = 100  # stop before n vertices
+	start = 0  # vertex to start on
+	stop = 0  # stop before n vertices
 
 	# Level 0: on ground
-	items_0_rows_space = 30
+	items_0_rows_space = upsample_time * 6
 	items_00 = "\nvar items_00 = ["
 	pos_x = 0
 	vel_x = 0
@@ -274,16 +275,16 @@ def build_song_data(mp3_path, path):
 	items_00 += "];"
 
 	# lv 1, 2, 3
-	items_123_rows_space = 50
+	items_123_rows_space = upsample_time * 8
 	# probabilities
-	item_lv1_prob = 0.5
+	item_lv1_prob = 0.4
 	item_lv2_prob = 0.4
-	item_lv3_prob = 0.1
+	item_lv3_prob = 0.2
 	lv1_mean = 2
 	lv1_dev = 0.15
-	lv2_mean = 4.5
+	lv2_mean = 4
 	lv2_dev = 0.15
-	lv3_mean = 7
+	lv3_mean = 6
 	lv3_dev = 0.15
 
 	# lv 1
@@ -301,9 +302,9 @@ def build_song_data(mp3_path, path):
 	items_22_prob = 0.4
 	items_22 = "\nvar items_22 = [ "
 	# lv 3
-	items_30_prob = 0.8
+	items_30_prob = 0.7
 	items_30 = "\nvar items_30 = [ "
-	items_31_prob = 0.1
+	items_31_prob = 0.2
 	items_31 = "\nvar items_31 = [ "
 	items_32_prob = 0.1
 	items_32 = "\nvar items_32 = [ "
@@ -364,7 +365,8 @@ def build_song_data(mp3_path, path):
 	# Write files
 	file = open("{0:s}/song_data.js".format(path), "w")
 	file.write(song_data)
-	print("\nDone!")
+	print("\nDone!\n")
+
 
 def build_html(path):
 	f = open('empty_page.txt', 'r')
@@ -373,10 +375,12 @@ def build_html(path):
 	file = open(os.path.join("..", "{0:s}.html".format(path.split("/")[1])), "w")
 	file.write(html)
 
+
 def open_song(path):
 	parent = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 	url = "file://" + parent + "/{0:s}.html".format(path.split("/")[1])
 	webbrowser.open(url, new=2)
+
 
 def load_song(mp3_path, song_data_path):
 	song_data_path = os.path.join(os.getcwd(), '..', song_data_path)
@@ -384,6 +388,7 @@ def load_song(mp3_path, song_data_path):
 		os.mkdir(song_data_path)
 	build_song_data(mp3_path, song_data_path)
 	build_html(song_data_path)
+
 
 class App:
 	def __init__(self, master):
@@ -419,6 +424,7 @@ class App:
 
 		new_song_button = tk.Button(self.frame, text="New Song", command=self.open_new_song_screen)
 		new_song_button.pack()
+
 
 class New_song:
 	def __init__(self, master, root):

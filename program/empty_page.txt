@@ -16,7 +16,7 @@
 	</div>
 	<div id="menu_buttons">
 		<button id="start_button">Play!</button>
-		<button id="options_button">Options</button>
+		<button id="options_button" style="display:none">Options</button>
 	</div>
 </div>
 <div class="screen" id="options" style="display: none">

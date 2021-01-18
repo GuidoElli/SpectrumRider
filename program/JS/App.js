@@ -63,7 +63,7 @@ class App {
         this.max_delta_t_ms = 100;
         this.stretch_correction = 1;
         this.time_correction = 0;
-        this.seconds_to_see = 15;
+        this.seconds_to_see = 12;
         this.gravity = 15; // unitary mass (no acceleration parameters)
         this.x_force = 13 * this.audio_ground.scale_x;
         this.down_force = this.gravity * 6.0;
