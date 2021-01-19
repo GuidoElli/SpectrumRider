@@ -41,9 +41,9 @@ class Obj_player extends Obj {
             
             void main() {
                 vec3 nNormal = normalize(fsNormal);
-                float h = 0.0;
-                float s = 0.0;
-                float v = 0.4 + clamp( pow(nNormal.z, 3.0) * 0.4 + pow(bassIntensity, 3.0), 0.0, 0.6);
+                float h = 0.5;
+                float s = 0.8;
+                float v = 0.3 + clamp( pow(nNormal.z, 3.0) * 0.4 + pow(bassIntensity, 3.0), 0.0, 0.7);
                 vec3 color = clamp(hsv2rgb_smooth(vec3(h,s,v)), 0.0, 1.0);
                 outColor = vec4(color, 1.0);
             }`;

@@ -42,7 +42,7 @@ button {
 }
 button:hover{
     background-image: radial-gradient(at center center, rgb(5, 213, 213) 0%, rgb(0, 84, 155) 100%);
-    box-shadow: rgba(255, 255, 255, 0.84) 0px 0px 20px 10px;
+    box-shadow: rgba(255, 255, 255, 0.84) 0 0 20px 10px;
 }
 
 
@@ -115,6 +115,7 @@ button:hover{
         width: 50%;
         height: auto;
         left: 5%;
+        top:5%;
     }
     #instructions_back_button{
         top: 70%;

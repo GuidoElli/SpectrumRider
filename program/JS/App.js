@@ -472,8 +472,8 @@ class App {
             this.ctx_2d.fillText("Time-Shift: " + this.time_correction + "ms", this.ctx_2d.canvas.width - 60 - 5, 240);
             this.ctx_2d.fillText("Time-Stretch: " + (this.stretch_correction * 100).toFixed(3) + "%", this.ctx_2d.canvas.width - 60 - 5, 300);
             this.ctx_2d.font = '500 12px Arial';
-            this.ctx_2d.fillText("CTRL + [A]/[S]", this.ctx_2d.canvas.width - 60 - 5, 260);
-            this.ctx_2d.fillText("CTRL + [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 320);
+            this.ctx_2d.fillText("CTRL + [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 260);
+            this.ctx_2d.fillText("CTRL + [A]/[S]", this.ctx_2d.canvas.width - 60 - 5, 320);
 
 
         }

@@ -1,7 +1,7 @@
 class Player extends Component{
     constructor(obj){
         super(obj);
-        this.scale = 1;
+        this.scale = 1.3;
     }
     get_world_matrix = () => {
         return utils.MakeWorld(
