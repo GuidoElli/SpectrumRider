@@ -4,18 +4,18 @@ class App {
         // DOM Elements
         this.menu = document.getElementById("menu");
         this.game = document.getElementById("game");
-        this.options = document.getElementById("options");
+        this.instructions = document.getElementById("instructions");
         this.game_over = document.getElementById("game_over");
         this.pause = document.getElementById("pause");
         this.loading = document.getElementById("loading");
         this.start_button = document.getElementById("start_button");
-        this.options_button = document.getElementById("options_button");
+        this.instructions_button = document.getElementById("instructions_button");
         this.menu_button = document.getElementById("menu_button");
         this.play_again_button = document.getElementById("play_again_button");
         this.resume_button = document.getElementById("resume_button");
         this.pause_menu_button = document.getElementById("pause_menu_button");
         this.pause_restart_button = document.getElementById("pause_restart_button");
-        this.options_back_button = document.getElementById("options_back_button");
+        this.instructions_back_button = document.getElementById("instructions_back_button");
         this.score = document.getElementById("score");
         this.song = document.getElementById("song");
         this.canvasText = document.getElementById("text2d");
@@ -259,7 +259,7 @@ class App {
         this.pause_restart_button.addEventListener("mouseup", () => {
             this.start_game();
         })
-        this.options_back_button.addEventListener("mouseup", () => {
+        this.instructions_back_button.addEventListener("mouseup", () => {
             this.show_screen("menu");
         })
         this.menu_button.addEventListener("mouseup", () => {
@@ -269,8 +269,8 @@ class App {
             document.documentElement.requestFullscreen().then(() => {})
             this.start_game();
         })
-        this.options_button.addEventListener("mouseup", () => {
-            this.show_screen("options");
+        this.instructions_button.addEventListener("mouseup", () => {
+            this.show_screen("instructions");
         })
         this.play_again_button.addEventListener("mouseup", () => {
             this.start_game();
@@ -738,7 +738,7 @@ class App {
     show_screen = (s) => {
         this.menu.style.display = "none";
         this.game.style.display = "none";
-        this.options.style.display = "none";
+        this.instructions.style.display = "none";
         this.game_over.style.display = "none";
         this.pause.style.display = "none";
         this.loading.style.display = "none";
@@ -753,8 +753,8 @@ class App {
                 this.game.style.display = "block";
                 this.playing = true;
                 break;
-            case "options":
-                this.options.style.display = "block";
+            case "instructions":
+                this.instructions.style.display = "block";
                 break;
             case "game_over":
                 this.game_over.style.display = "block";
