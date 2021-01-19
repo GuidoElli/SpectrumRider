@@ -16,11 +16,11 @@
 	</div>
 	<div id="menu_buttons">
 		<button id="start_button">Play!</button>
-		<button id="options_button" style="display:none">Options</button>
+		<button id="instructions_button">Instructions</button>
 	</div>
 </div>
-<div class="screen" id="options" style="display: none">
-	<button id="options_back_button">Back</button>
+<div class="screen" id="instructions" style="display: none">
+	<button id="instructions_back_button">Back</button>
 </div>
 <div class="screen" id="game_over" style="display: none">
 	<div id="game_over_info">

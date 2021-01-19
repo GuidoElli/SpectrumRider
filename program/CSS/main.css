@@ -100,7 +100,7 @@ button:hover{
             left: 50%;
             transform: translate(-50%, 0);
         }
-        #options_button{
+        #instructions_button{
             top: 60%;
             width: 30%;
             height: 20%;
@@ -108,14 +108,19 @@ button:hover{
             left: 50%;
             transform: translate(-50%, 0);
         }
-#options{
+#instructions{
 
 }
-    #options_back_button{
-        top: 60%;
+    #commands_img{
+        width: 50%;
+        height: auto;
+        left: 5%;
+    }
+    #instructions_back_button{
+        top: 70%;
         width: 30%;
-        height: 20%;
-        left: 50%;
+        height: 15%;
+        left: 80%;
         transform: translate(-50%, 0);
     }
 e
