@@ -2,7 +2,7 @@
 In this music game you can ride on your favourite song. Take items and get the highest score!
 
 There are some songs already included, but you can add more songs:
-- run the file "program/main.py" in a python enviroment
+- run the file "program/main.py" in a python enviroment (install all the required libraries)
 - select an MP3 file
 - give a title and the artist's name
 - click on "Load Song"
