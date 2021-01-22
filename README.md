@@ -1,5 +1,5 @@
 # SpectrumRider
-In this music game you can ride on your favourite song. Take items and get the highest score!
+A music game in which you can ride on the audio spectrum of your favourite songs. Take points and items and get the highest score!
 
 There are some songs already included, but you can add more songs:
 - run the file "program/main.py" in a python enviroment (install all the required libraries)
