@@ -435,20 +435,25 @@ class App {
                 this.ctx_2d.textAlign = "left";
                 this.ctx_2d.fillText( "b ", 60 + i*30, 410);
             }
-
+            if(this.item_score_manager.n_bemolle === this.item_score_manager.n_diesis){
+                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.fillStyle = '#bbbbbb';
+                this.ctx_2d.textAlign = "left";
+                this.ctx_2d.fillText( "0", 60, 410);
+            }
 
             //powers
             if(this.item_score_manager.fly > 0){
                 this.ctx_2d.font = '900 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "FLY", 60, 500);
+                this.ctx_2d.fillText( "FLY!", 60, 500);
             }
             if(this.item_score_manager.jump > 0){
                 this.ctx_2d.font = '900 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "JUMP", 60, 560);
+                this.ctx_2d.fillText( "JUMP!", 60, 560);
             }
 
 
