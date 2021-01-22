@@ -8,5 +8,6 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (default)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ACTAMProject" />
   </component>
 </module>

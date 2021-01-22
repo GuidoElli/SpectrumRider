@@ -112,16 +112,17 @@ button:hover{
 
 }
     #commands_img{
-        width: 50%;
-        height: auto;
-        left: 5%;
+        width: auto;
+        height: 70%;
+        left: 50%;
+        transform: translate(-50%, 0);
         top:5%;
     }
     #instructions_back_button{
-        top: 70%;
+        top: 80%;
         width: 30%;
-        height: 15%;
-        left: 80%;
+        height: 10%;
+        left: 50%;
         transform: translate(-50%, 0);
     }
 
