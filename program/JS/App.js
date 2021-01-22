@@ -394,40 +394,58 @@ class App {
             //draw 2d elements
             this.ctx_2d.clearRect(0, 0, this.canvasText.width, this.canvasText.height);
 
+            //score
+            this.ctx_2d.font = '400 30px Arial';
+            this.ctx_2d.fillStyle = '#888888';
+            this.ctx_2d.textAlign = "left";
+            this.ctx_2d.fillText( "Score:", 60, 80);
             this.ctx_2d.font = '700 90px Arial';
             this.ctx_2d.fillStyle = '#eeeeee';
             this.ctx_2d.textAlign = "left";
-            this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 120);
+            this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 160);
 
-            if(this.item_score_manager.n_doppiacroma > 0){
-                this.ctx_2d.font = '600 50px Arial';
-                this.ctx_2d.fillStyle = '#bbbbbb';
-                this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 190);
-            }
+
+            //mult
+            this.ctx_2d.font = '400 30px Arial';
+            this.ctx_2d.fillStyle = '#888888';
+            this.ctx_2d.textAlign = "left";
+            this.ctx_2d.fillText( "Multiplier:", 60, 240);
+            this.ctx_2d.font = '600 50px Arial';
+            this.ctx_2d.fillStyle = '#bbbbbb';
+            this.ctx_2d.textAlign = "left";
+            this.ctx_2d.fillText( "x" + this.item_score_manager.points_mult_factor, 60, 290);
+
+            //gravity
+            this.ctx_2d.font = '400 30px Arial';
+            this.ctx_2d.fillStyle = '#888888';
+            this.ctx_2d.textAlign = "left";
+            this.ctx_2d.fillText( "Gravity:", 60, 360);
             for(let i = 0; i < this.item_score_manager.n_diesis - this.item_score_manager.n_bemolle; i++){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "# ", 60 + i*30, 310);
+                this.ctx_2d.fillText( "# ", 60 + i*30, 410);
             }
             for(let i = 0; i < this.item_score_manager.n_bemolle - this.item_score_manager.n_diesis; i++){
                 this.ctx_2d.font = '600 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "b ", 60 + i*30, 380);
+                this.ctx_2d.fillText( "b ", 60 + i*30, 410);
             }
+
+
+            //powers
             if(this.item_score_manager.fly > 0){
-                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.font = '900 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "[FLY]", 60, 450);
+                this.ctx_2d.fillText( "FLY", 60, 500);
             }
             if(this.item_score_manager.jump > 0){
-                this.ctx_2d.font = '600 40px Arial';
+                this.ctx_2d.font = '900 40px Arial';
                 this.ctx_2d.fillStyle = '#bbbbbb';
                 this.ctx_2d.textAlign = "left";
-                this.ctx_2d.fillText( "[JUMP]", 60, 520);
+                this.ctx_2d.fillText( "JUMP", 60, 560);
             }
 
 

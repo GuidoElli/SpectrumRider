@@ -9,6 +9,10 @@
 	<canvas id="webgl"></canvas>
 	<canvas id="text2d"></canvas>
 </div>
+
+
+
+
 <div class="screen" id="menu" style="display: none">
 	<div id="menu_song_info">
 		<button class="div_button" id="app_name">Spectrum Rider</button>
@@ -16,10 +20,11 @@
 	</div>
 	<div id="menu_buttons">
 		<button id="start_button">Play!</button>
-		<button id="instructions_button">Instructions</button>
+		<button id="instructions_button">Help</button>
 	</div>
 </div>
 <div class="screen" id="instructions" style="display: none">
+	<img id="commands_img" src="program/IMG/commands.png" alt="image">
 	<button id="instructions_back_button">Back</button>
 </div>
 <div class="screen" id="game_over" style="display: none">
