@@ -550,7 +550,7 @@ class App {
         let x_index_cont = (this.player.position_x / this.audio_ground.scale_x + 0.5) * (n_vertex_per_row-1);
         let x_index = Math.round(x_index_cont);
 
-        let z_index_cont = -this.current_z / this.audio_ground.scale_z / song_duration_seconds * (n_rows-1);
+        let z_index_cont = -this.current_z / this.audio_ground.scale_z / song_duration_seconds * (n_rows-4);
         let z_index = Math.round(z_index_cont);
 
         if (z_index >= n_rows){

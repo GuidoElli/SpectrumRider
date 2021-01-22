@@ -1,7 +1,7 @@
 class Item_diesis extends Item{
     constructor(obj, position_x, position_y, position_z){
         super(obj, position_x, position_y, position_z);
-        this.expiration_time = 20e+3;
+        this.expiration_time = 10e+3;
         this.scale = 1.5;
         this.max_dist_take = 1.5;
 
