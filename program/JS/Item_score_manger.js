@@ -50,19 +50,24 @@ class Item_score_manger{
     }
 
     take_doppiacroma = (o) => {
-        this.mult_points(o.points_mult_factor);
+        if(this.points_mult_factor === 1){
+            this.points_mult_factor = 2;
+        }else{
+            this.points_mult_factor += o.points_mult_factor;
+        }
         this.n_doppiacroma++;
     }
     expired_doppiacroma = (o) => {
-        this.mult_points(1 / o.points_mult_factor);
+        if(this.points_mult_factor === 2){
+            this.points_mult_factor = 1;
+        }else{
+            this.points_mult_factor -= o.points_mult_factor;
+        }
         this.n_doppiacroma--;
     }
 
     add_points = (n) => {
         this.tot_points += this.points_mult_factor * n;
-    }
-    mult_points = (n) => {
-        this.points_mult_factor *= n;
     }
     mult_gravity = (n) => {
         this.gravity_mult_factor *= n;
