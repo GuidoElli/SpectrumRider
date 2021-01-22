@@ -23,7 +23,6 @@ class Obj {
         this.gl.useProgram(this.program);
 
         for(let i = 0; i < this.objects.length; ++i) {
-
             this.vaos[i] = this.gl.createVertexArray();
             this.gl.bindVertexArray(this.vaos[i]);
 

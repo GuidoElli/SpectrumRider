@@ -58,18 +58,12 @@ class Item_score_manger{
         this.n_doppiacroma--;
     }
 
-
-
-
-
     add_points = (n) => {
         this.tot_points += this.points_mult_factor * n;
     }
-
     mult_points = (n) => {
         this.points_mult_factor *= n;
     }
-
     mult_gravity = (n) => {
         this.gravity_mult_factor *= n;
     }

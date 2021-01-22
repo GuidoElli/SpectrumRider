@@ -3,9 +3,8 @@
 //Includes texture operations
 //Includes initInteraction() function
 
-var utils={
-
-	parseObjText: function(txt,flipYUV){
+const utils = {
+	parseObjText: function (txt, flipYUV) {
 		txt = txt.trim() + "\n"; //add newline to be able to access last line in the for loop
 
 		var line,				//Line text from obj file
@@ -24,12 +23,12 @@ var utils={
 			fIndex = [],		//Final Sorted index array
 			fIndexCnt = 0,		//Final count of unique vertices
 			posA = 0,
-			posB = txt.indexOf("\n",0);
+			posB = txt.indexOf("\n", 0);
 
-		while(posB > posA){
-			line = txt.substring(posA,posB).trim();
+		while (posB > posA) {
+			line = txt.substring(posA, posB).trim();
 
-			switch(line.charAt(0)){
+			switch (line.charAt(0)) {
 				//......................................................
 				// Cache Vertex Data for Index processing when going through face data
 				// Sample Data (x,y,z)
@@ -37,12 +36,19 @@ var utils={
 				// vt 0.000000 0.666667
 				// vn 0.000000 0.000000 -1.000000
 				case "v":
-					itm = line.split(" "); itm.shift();
+					itm = line.split(" ");
+					itm.shift();
 
-					switch(line.charAt(1)){
-						case " ": cVert.push(parseFloat(itm[0]) , parseFloat(itm[1]) , parseFloat(itm[2]) ); break;		//VERTEX
-						case "t": cUV.push( parseFloat(itm[0]) , parseFloat(itm[1]) );	break;							//UV
-						case "n": cNorm.push( parseFloat(itm[0]) , parseFloat(itm[1]) , parseFloat(itm[2]) ); break;	//NORMAL
+					switch (line.charAt(1)) {
+						case " ":
+							cVert.push(parseFloat(itm[0]), parseFloat(itm[1]), parseFloat(itm[2]));
+							break;		//VERTEX
+						case "t":
+							cUV.push(parseFloat(itm[0]), parseFloat(itm[1]));
+							break;							//UV
+						case "n":
+							cNorm.push(parseFloat(itm[0]), parseFloat(itm[1]), parseFloat(itm[2]));
+							break;	//NORMAL
 					}
 					break;
 
@@ -59,56 +65,56 @@ var utils={
 					itm.shift();
 					isQuad = false;
 
-					for(i=0; i < itm.length; i++){
+					for (i = 0; i < itm.length; i++) {
 						//--------------------------------
 						//In the event the face is a quad
-						if(i == 3 && !isQuad){
+						if (i == 3 && !isQuad) {
 							i = 2; //Last vertex in the first triangle is the start of the 2nd triangle in a quad.
 							isQuad = true;
 						}
 
 						//--------------------------------
 						//Has this vertex data been processed?
-						if(itm[i] in aCache){
-							fIndex.push( aCache[itm[i]] ); //it has, add its index to the list.
-						}else{
+						if (itm[i] in aCache) {
+							fIndex.push(aCache[itm[i]]); //it has, add its index to the list.
+						} else {
 							//New Unique vertex data, Process it.
 							ary = itm[i].split("/");
 
 							//Parse Vertex Data and save final version ordred correctly by index
-							ind = (parseInt(ary[0])-1) * 3;
-							fVert.push( cVert[ind] , cVert[ind+1] , cVert[ind+2] );
+							ind = (parseInt(ary[0]) - 1) * 3;
+							fVert.push(cVert[ind], cVert[ind + 1], cVert[ind + 2]);
 
 							//Parse Normal Data and save final version ordered correctly by index
-							ind = (parseInt(ary[2])-1) * 3;
-							fNorm.push( cNorm[ind] , cNorm[ind+1] , cNorm[ind+2] );
+							ind = (parseInt(ary[2]) - 1) * 3;
+							fNorm.push(cNorm[ind], cNorm[ind + 1], cNorm[ind + 2]);
 
 							//Parse Texture Data if available and save final version ordered correctly by index
-							if(ary[1] != ""){
-								ind = (parseInt(ary[1])-1) * 2;
-								fUV.push( cUV[ind] ,
-									(!flipYUV)? cUV[ind+1] : 1-cUV[ind+1]
+							if (ary[1] != "") {
+								ind = (parseInt(ary[1]) - 1) * 2;
+								fUV.push(cUV[ind],
+									(!flipYUV) ? cUV[ind + 1] : 1 - cUV[ind + 1]
 								);
 							}
 
 							//Cache the vertex item value and its new index.
 							//The idea is to create an index for each unique set of vertex data base on the face data
 							//So when the same item is found, just add the index value without duplicating vertex,normal and texture.
-							aCache[ itm[i] ] = fIndexCnt;
+							aCache[itm[i]] = fIndexCnt;
 							fIndex.push(fIndexCnt);
 							fIndexCnt++;
 						}
 
 						//--------------------------------
 						//In a quad, the last vertex of the second triangle is the first vertex in the first triangle.
-						if(i == 3 && isQuad) fIndex.push( aCache[itm[0]] );
+						if (i == 3 && isQuad) fIndex.push(aCache[itm[0]]);
 					}
 					break;
 			}
 
 			//Get Ready to parse the next line of the obj data.
-			posA = posB+1;
-			posB = txt.indexOf("\n",posA);
+			posA = posB + 1;
+			posB = txt.indexOf("\n", posA);
 		}
 
 		return {
@@ -118,59 +124,59 @@ var utils={
 		};
 	},
 
-create_program: function(gl, vs_text, fs_text) {
-	let vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, vs_text);
-	let fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, fs_text);
-	return utils.createProgram(gl, vertex_shader, fragment_shader);
-},
+	create_program: function (gl, vs_text, fs_text) {
+		let vertex_shader = utils.createShader(gl, gl.VERTEX_SHADER, vs_text);
+		let fragment_shader = utils.createShader(gl, gl.FRAGMENT_SHADER, fs_text);
+		return utils.createProgram(gl, vertex_shader, fragment_shader);
+	},
 
-createShader:function(gl, type, source) {
-  var shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-  var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {    
-    return shader;
-  }else{
-    console.log(gl.getShaderInfoLog(shader));  // eslint-disable-line
-    gl.deleteShader(shader);
-    throw "could not compile shader:" + gl.getShaderInfoLog(shader);
-  }
+	createShader: function (gl, type, source) {
+		var shader = gl.createShader(type);
+		gl.shaderSource(shader, source);
+		gl.compileShader(shader);
+		var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+		if (success) {
+			return shader;
+		} else {
+			console.log(gl.getShaderInfoLog(shader));  // eslint-disable-line
+			gl.deleteShader(shader);
+			throw "could not compile shader:" + gl.getShaderInfoLog(shader);
+		}
 
-},
+	},
 
-createProgram:function(gl, vertexShader, fragmentShader) {
-  var program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-  var success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }else{
-     throw ("program filed to link:" + gl.getProgramInfoLog (program));
-    console.log(gl.getProgramInfoLog(program));  // eslint-disable-line
-    gl.deleteProgram(program);
-    return undefined;
-  }
-},
+	createProgram: function (gl, vertexShader, fragmentShader) {
+		var program = gl.createProgram();
+		gl.attachShader(program, vertexShader);
+		gl.attachShader(program, fragmentShader);
+		gl.linkProgram(program);
+		var success = gl.getProgramParameter(program, gl.LINK_STATUS);
+		if (success) {
+			return program;
+		} else {
+			throw ("program filed to link:" + gl.getProgramInfoLog(program));
+			console.log(gl.getProgramInfoLog(program));  // eslint-disable-line
+			gl.deleteProgram(program);
+			return undefined;
+		}
+	},
 
- resizeCanvasToDisplaySize:function(canvas) {
-    const expandFullScreen = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    expandFullScreen();
-    // Resize screen when the browser has triggered the resize event
-    window.addEventListener('resize', expandFullScreen);
-},
+	resizeCanvasToDisplaySize: function (canvas) {
+		const expandFullScreen = () => {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		};
+		expandFullScreen();
+		// Resize screen when the browser has triggered the resize event
+		window.addEventListener('resize', expandFullScreen);
+	},
 //**** MODEL UTILS
 	// Function to load a 3D model in JSON format
-	get_json: function(url, func) {
+	get_json: function (url, func) {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", url, false); // if true == asynchronous...
-		xmlHttp.onreadystatechange = function() {
-			if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+		xmlHttp.onreadystatechange = function () {
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 				//the file is loaded. Parse it as JSON and launch function
 				func(JSON.parse(xmlHttp.responseText));
 			}
@@ -178,9 +184,9 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		//send the request
 		xmlHttp.send();
 	},
-	
-	//function to convert decimal value of colors 
-	decimalToHex: function(d, padding) {
+
+	//function to convert decimal value of colors
+	decimalToHex: function (d, padding) {
 		var hex = Number(d).toString(16);
 		padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
 
@@ -190,13 +196,9 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 
 		return hex;
 	},
-	
-	
-	
-	
-	
-	
-//*** SHADERS UTILS	
+
+
+//*** SHADERS UTILS
 	/*Function to load a shader's code, compile it and return the handle to it
 	Requires:
 		path to the shader's text (url)
@@ -211,23 +213,23 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		// Hook the event that gets called as the request progresses
 		request.onreadystatechange = function () {
 			// If the request is "DONE" (completed or failed) and if we got HTTP status 200 (OK)
-			
-				
+
+
 			if (request.readyState == 4 && request.status == 200) {
-					callback(request.responseText, data)
+				callback(request.responseText, data)
 				//} else { // Failed
 				//	errorCallback(url);
 			}
-			
+
 		};
 
-		request.send(null);    
+		request.send(null);
 	},
 
 	loadFiles: function (urls, callback, errorCallback) {
-    var numUrls = urls.length;
-    var numComplete = 0;
-    var result = [];
+		var numUrls = urls.length;
+		var numComplete = 0;
+		var result = [];
 
 		// Callback for a single file
 		function partialCallback(text, urlIndex) {
@@ -244,130 +246,132 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 			this.loadFile(urls[i], i, partialCallback, errorCallback);
 		}
 	},
-	
+
 // *** TEXTURE UTILS (to solve problems with non power of 2 textures in webGL
 
-	getTexture: function(context, image_URL){
+	getTexture: function (context, image_URL) {
 
-		var image=new Image();
-		image.webglTexture=false;
-		image.isLoaded=false;
+		var image = new Image();
+		image.webglTexture = false;
+		image.isLoaded = false;
 
-		image.onload=function(e) {
+		image.onload = function (e) {
 
-			var texture=context.createTexture();
-			
+			var texture = context.createTexture();
+
 			context.bindTexture(context.TEXTURE_2D, texture);
-			
+
 			context.texImage2D(context.TEXTURE_2D, 0, context.RGBA, context.RGBA, context.UNSIGNED_BYTE, image);
 			//context.pixelStorei(context.UNPACK_FLIP_Y_WEBGL, 1);
-			context.texParameteri(context.TEXTURE_2D, context.TEXTURE_WRAP_S, context.CLAMP_TO_EDGE); 
+			context.texParameteri(context.TEXTURE_2D, context.TEXTURE_WRAP_S, context.CLAMP_TO_EDGE);
 			context.texParameteri(context.TEXTURE_2D, context.TEXTURE_WRAP_T, context.CLAMP_TO_EDGE);
 			context.texParameteri(context.TEXTURE_2D, context.TEXTURE_MAG_FILTER, context.LINEAR);
 			context.texParameteri(context.TEXTURE_2D, context.TEXTURE_MIN_FILTER, context.NEAREST_MIPMAP_LINEAR);
 			context.generateMipmap(context.TEXTURE_2D);
-			
-			context.bindTexture(context.TEXTURE_2D, null);
-			image.webglTexture=texture;
-			image.isLoaded=true;
-		};
-		
-		image.src=image_URL;
 
-	return image;
+			context.bindTexture(context.TEXTURE_2D, null);
+			image.webglTexture = texture;
+			image.isLoaded = true;
+		};
+
+		image.src = image_URL;
+
+		return image;
 	},
 
 
-
-	isPowerOfTwo: function(x) {
+	isPowerOfTwo: function (x) {
 		return (x & (x - 1)) == 0;
 	},
 
-	nextHighestPowerOfTwo:function(x) {
+	nextHighestPowerOfTwo: function (x) {
 		--x;
 		for (var i = 1; i < 32; i <<= 1) {
 			x = x | x >> i;
 		}
 		return x + 1;
 	},
-		
-	
-//*** Interaction UTILS	
-	initInteraction: function(){
-		var keyFunction =function(e) {
-			
+
+
+//*** Interaction UTILS
+	initInteraction: function () {
+		var keyFunction = function (e) {
+
 			if (e.keyCode == 37) {	// Left arrow
-				cx-=delta;
+				cx -= delta;
 			}
 			if (e.keyCode == 39) {	// Right arrow
-				cx+=delta;
-			}	
+				cx += delta;
+			}
 			if (e.keyCode == 38) {	// Up arrow
-				cz-=delta;
+				cz -= delta;
 			}
 			if (e.keyCode == 40) {	// Down arrow
-				cz+=delta;
+				cz += delta;
 			}
 			if (e.keyCode == 107) {	// Add
-				cy+=delta;
+				cy += delta;
 			}
 			if (e.keyCode == 109) {	// Subtract
-				cy-=delta;
+				cy -= delta;
 			}
-			
+
 			if (e.keyCode == 65) {	// a
-				angle-=delta*10.0;
+				angle -= delta * 10.0;
 			}
 			if (e.keyCode == 68) {	// d
-				angle+=delta*10.0;
-			}	
+				angle += delta * 10.0;
+			}
 			if (e.keyCode == 87) {	// w
-				elevation+=delta*10.0;
+				elevation += delta * 10.0;
 			}
 			if (e.keyCode == 83) {	// s
-				elevation-=delta*10.0;
+				elevation -= delta * 10.0;
 			}
-			
+
 		}
 		//'window' is a JavaScript object (if "canvas", it will not work)
-		window.addEventListener("keyup", keyFunction, false);		
+		window.addEventListener("keyup", keyFunction, false);
 	},
-	
-	
-	
-	
-	
+
+
 //*** MATH LIBRARY
 
-	degToRad: function(angle){
-		return(angle*Math.PI/180);
+	degToRad: function (angle) {
+		return (angle * Math.PI / 180);
 	},
 
-	identityMatrix: function() {
-		return [1,0,0,0,
-				0,1,0,0,
-				0,0,1,0,
-				0,0,0,1];
+	identityMatrix: function () {
+		return [1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1];
 	},
 
-	identityMatrix3: function() {
-		return [1,0,0,
-				0,1,0,
-				0,0,1];
+	identityMatrix3: function () {
+		return [1, 0, 0,
+			0, 1, 0,
+			0, 0, 1];
 	},
 
 	// returns the 3x3 submatrix from a Matrix4x4
-	sub3x3from4x4: function(m){
+	sub3x3from4x4: function (m) {
 		out = [];
-		out[0] = m[0]; out[1] = m[1]; out[2] = m[2];
-		out[3] = m[4]; out[4] = m[5]; out[5] = m[6];
-		out[6] = m[8]; out[7] = m[9]; out[8] = m[10];
+		out[0] = m[0];
+		out[1] = m[1];
+		out[2] = m[2];
+		out[3] = m[4];
+		out[4] = m[5];
+		out[5] = m[6];
+		out[6] = m[8];
+		out[7] = m[9];
+		out[8] = m[10];
 		return out;
 	},
 
 	// Multiply the mat3 with a vec3.
-	multiplyMatrix3Vector3: function(m, a) {
-	
+	multiplyMatrix3Vector3: function (m, a) {
+
 		out = [];
 		var x = a[0], y = a[1], z = a[2];
 		out[0] = x * m[0] + y * m[1] + z * m[2];
@@ -375,13 +379,13 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[2] = x * m[6] + y * m[7] + z * m[8];
 		return out;
 	},
-	
+
 //Transpose the values of a mat3
 
-	transposeMatrix3 : function(a) {
+	transposeMatrix3: function (a) {
 
 		out = [];
-		
+
 		out[0] = a[0];
 		out[1] = a[3];
 		out[2] = a[6];
@@ -391,14 +395,14 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[6] = a[2];
 		out[7] = a[5];
 		out[8] = a[8];
-	 
-		
+
+
 		return out;
 	},
-	
-	invertMatrix3: function(m){
+
+	invertMatrix3: function (m) {
 		out = [];
-		
+
 		var a00 = m[0], a01 = m[1], a02 = m[2],
 			a10 = m[3], a11 = m[4], a12 = m[5],
 			a20 = m[6], a21 = m[7], a22 = m[8],
@@ -410,8 +414,8 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 			// Calculate the determinant
 			det = a00 * b01 + a01 * b11 + a02 * b21;
 
-		if (!det) { 
-			return null; 
+		if (!det) {
+			return null;
 		}
 		det = 1.0 / det;
 
@@ -423,65 +427,65 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[5] = (-a12 * a00 + a02 * a10) * det;
 		out[6] = b21 * det;
 		out[7] = (-a21 * a00 + a01 * a20) * det;
-		out[8] = (a11 * a00 - a01 * a10) * det;		
-		
+		out[8] = (a11 * a00 - a01 * a10) * det;
+
 		return out;
 	},
-	
+
 	//requires as a parameter a 4x4 matrix (array of 16 values)
-	invertMatrix: function(m){ 
-       
+	invertMatrix: function (m) {
+
 		var out = [];
 		var inv = [];
 		var det, i;
 
-		inv[0] = m[5]  * m[10] * m[15] - m[5]  * m[11] * m[14] - m[9]  * m[6]  * m[15] + 
-				 m[9]  * m[7]  * m[14] + m[13] * m[6]  * m[11] - m[13] * m[7]  * m[10];
+		inv[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] +
+			m[9] * m[7] * m[14] + m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
 
-		inv[4] = -m[4]  * m[10] * m[15] + m[4]  * m[11] * m[14] + m[8]  * m[6]  * m[15] - 
-				  m[8]  * m[7]  * m[14] - m[12] * m[6]  * m[11] + m[12] * m[7]  * m[10];
+		inv[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] -
+			m[8] * m[7] * m[14] - m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
 
-		inv[8] = m[4]  * m[9] * m[15] - m[4]  * m[11] * m[13] - m[8]  * m[5] * m[15] + 
-				 m[8]  * m[7] * m[13] + m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+		inv[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] +
+			m[8] * m[7] * m[13] + m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
 
-		inv[12] = -m[4]  * m[9] * m[14] + m[4]  * m[10] * m[13] + m[8]  * m[5] * m[14] - 
-				   m[8]  * m[6] * m[13] - m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
+		inv[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] -
+			m[8] * m[6] * m[13] - m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
 
-		inv[1] = -m[1]  * m[10] * m[15] + m[1]  * m[11] * m[14] + m[9]  * m[2] * m[15] - 
-				  m[9]  * m[3] * m[14] - m[13] * m[2] * m[11] +  m[13] * m[3] * m[10];
+		inv[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] -
+			m[9] * m[3] * m[14] - m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
 
-		inv[5] = m[0]  * m[10] * m[15] - m[0]  * m[11] * m[14] - m[8]  * m[2] * m[15] + 
-				 m[8]  * m[3] * m[14] + m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+		inv[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] +
+			m[8] * m[3] * m[14] + m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
 
-		inv[9] = -m[0]  * m[9] * m[15] + m[0]  * m[11] * m[13] + m[8]  * m[1] * m[15] - 
-				  m[8]  * m[3] * m[13] - m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+		inv[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] -
+			m[8] * m[3] * m[13] - m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
 
-		inv[13] = m[0]  * m[9] * m[14] - m[0]  * m[10] * m[13] - m[8]  * m[1] * m[14] + 
-				  m[8]  * m[2] * m[13] + m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+		inv[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] +
+			m[8] * m[2] * m[13] + m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
 
-		inv[2] = m[1]  * m[6] * m[15] - m[1]  * m[7] * m[14] - m[5]  * m[2] * m[15] + 
-				 m[5]  * m[3] * m[14] + m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+		inv[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] +
+			m[5] * m[3] * m[14] + m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
 
-		inv[6] = -m[0]  * m[6] * m[15] + m[0]  * m[7] * m[14] + m[4]  * m[2] * m[15] - 
-				  m[4]  * m[3] * m[14] - m[12] * m[2] * m[7] +  m[12] * m[3] * m[6];
+		inv[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] -
+			m[4] * m[3] * m[14] - m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
 
-		inv[10] = m[0]  * m[5] * m[15] - m[0]  * m[7] * m[13] - m[4]  * m[1] * m[15] + 
-				  m[4]  * m[3] * m[13] + m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+		inv[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] +
+			m[4] * m[3] * m[13] + m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
 
-		inv[14] = -m[0]  * m[5] * m[14] + m[0]  * m[6] * m[13] + m[4]  * m[1] * m[14] - 
-				   m[4]  * m[2] * m[13] - m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+		inv[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] -
+			m[4] * m[2] * m[13] - m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
 
-		inv[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - 
-				  m[5] * m[3] * m[10] - m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+		inv[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] -
+			m[5] * m[3] * m[10] - m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
 
-		inv[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + 
-				 m[4] * m[3] * m[10] + m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+		inv[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] +
+			m[4] * m[3] * m[10] + m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
 
-		inv[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - 
-				   m[4] * m[3] * m[9] - m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+		inv[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] -
+			m[4] * m[3] * m[9] - m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
 
-		inv[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + 
-				  m[4] * m[2] * m[9] + m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+		inv[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] +
+			m[4] * m[2] * m[9] + m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
 		det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
 
@@ -490,56 +494,56 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 
 		det = 1.0 / det;
 
-		for (i = 0; i < 16; i++){
+		for (i = 0; i < 16; i++) {
 			out[i] = inv[i] * det;
 		}
-		
+
 		return out;
 	},
-	
-	transposeMatrix: function(m){
-		var out = []; 
-		
+
+	transposeMatrix: function (m) {
+		var out = [];
+
 		var row, column, row_offset;
-		
-		row_offset=0;
+
+		row_offset = 0;
 		for (row = 0; row < 4; ++row) {
 			row_offset = row * 4;
-			for (column = 0; column < 4; ++column){
+			for (column = 0; column < 4; ++column) {
 				out[row_offset + column] = m[row + column * 4];
-			  }    
+			}
 		}
-		return out;        
+		return out;
 	},
-	
-	multiplyMatrices: function(m1, m2){
-	// Perform matrix product  { out = m1 * m2;}
-		var out = [];  
-		
+
+	multiplyMatrices: function (m1, m2) {
+		// Perform matrix product  { out = m1 * m2;}
+		var out = [];
+
 		var row, column, row_offset;
-		
-		row_offset=0;
+
+		row_offset = 0;
 		for (row = 0; row < 4; ++row) {
 			row_offset = row * 4;
-			for (column = 0; column < 4; ++column){
+			for (column = 0; column < 4; ++column) {
 				out[row_offset + column] =
 					(m1[row_offset + 0] * m2[column + 0]) +
 					(m1[row_offset + 1] * m2[column + 4]) +
 					(m1[row_offset + 2] * m2[column + 8]) +
 					(m1[row_offset + 3] * m2[column + 12]);
-			  }    
+			}
 		}
-		return out; 
-	},	
+		return out;
+	},
 
-	multiplyMatrixVector: function(m, v){
-       /* Mutiplies a matrix [m] by a vector [v] */
-       
-		var out = [];  
-		
+	multiplyMatrixVector: function (m, v) {
+		/* Mutiplies a matrix [m] by a vector [v] */
+
+		var out = [];
+
 		var row, row_offset;
-		
-		row_offset=0;
+
+		row_offset = 0;
 		for (row = 0; row < 4; ++row) {
 			row_offset = row * 4;
 
@@ -548,35 +552,29 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 				(m[row_offset + 1] * v[1]) +
 				(m[row_offset + 2] * v[2]) +
 				(m[row_offset + 3] * v[3]);
-				 
+
 		}
-		return out;        
+		return out;
 	},
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 //*** MODEL MATRIX OPERATIONS
 
 
-	MakeTranslateMatrix: function(dx, dy, dz) {
-	// Create a transform matrix for a translation of ({dx}, {dy}, {dz}).
+	MakeTranslateMatrix: function (dx, dy, dz) {
+		// Create a transform matrix for a translation of ({dx}, {dy}, {dz}).
 
 		var out = this.identityMatrix();
 
-		out[3]  = dx;
-		out[7]  = dy;
+		out[3] = dx;
+		out[7] = dy;
 		out[11] = dz;
-		return out; 
+		return out;
 	},
 
-	
-	MakeRotateXMatrix: function(a) {
-	// Create a transform matrix for a rotation of {a} along the X axis.
+
+	MakeRotateXMatrix: function (a) {
+		// Create a transform matrix for a rotation of {a} along the X axis.
 
 		var out = this.identityMatrix();
 
@@ -588,16 +586,16 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[6] = -s;
 		out[9] = s;
 
-		return out; 
+		return out;
 	},
 
-	MakeRotateYMatrix: function(a) {
-	// Create a transform matrix for a rotation of {a} along the Y axis.
+	MakeRotateYMatrix: function (a) {
+		// Create a transform matrix for a rotation of {a} along the Y axis.
 
 		var out = this.identityMatrix();
 
 		var adeg = this.degToRad(a);
-		
+
 		var c = Math.cos(adeg);
 		var s = Math.sin(adeg);
 
@@ -605,11 +603,11 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[2] = -s;
 		out[8] = s;
 
-		return out; 
+		return out;
 	},
 
-	MakeRotateZMatrix: function(a) {                                            
-	// Create a transform matrix for a rotation of {a} along the Z axis.
+	MakeRotateZMatrix: function (a) {
+		// Create a transform matrix for a rotation of {a} along the Z axis.
 
 		var out = this.identityMatrix();
 
@@ -621,50 +619,50 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		out[4] = -s;
 		out[1] = s;
 
-		return out; 
+		return out;
 	},
 
-	MakeScaleMatrix: function(sx, sy, sz) {
-	// Create a scale matrix
-        
-        
-		var out = this.identityMatrix();                                               
+	MakeScaleMatrix: function (sx, sy, sz) {
+		// Create a scale matrix
+
+
+		var out = this.identityMatrix();
 		out[0] = sx;
-        out[5] = sy;
-        out[10] = sz;
-		return out; 
+		out[5] = sy;
+		out[10] = sz;
+		return out;
 	},
 
 
 //***Projection Matrix operations
-	MakeWorld: function(tx, ty, tz, rx, ry, rz, sx, sy, sz){
-	//Creates a world matrix for an object.
+	MakeWorld: function (tx, ty, tz, rx, ry, rz, sx, sy, sz) {
+		//Creates a world matrix for an object.
 
 		var Rx = this.MakeRotateXMatrix(rx);
 		var Ry = this.MakeRotateYMatrix(ry);
-		var Rz = this.MakeRotateZMatrix(rz);  
-		var S  = this.MakeScaleMatrix(sx, sy, sz);
-		var T =  this.MakeTranslateMatrix(tx, ty, tz);         
-		   
+		var Rz = this.MakeRotateZMatrix(rz);
+		var S = this.MakeScaleMatrix(sx, sy, sz);
+		var T = this.MakeTranslateMatrix(tx, ty, tz);
+
 		out = this.multiplyMatrices(Rz, S);
 		out = this.multiplyMatrices(Ry, out);
-		out = this.multiplyMatrices(Rx, out);  
+		out = this.multiplyMatrices(Rx, out);
 		out = this.multiplyMatrices(T, out);
 
 		return out;
 	},
 
-	MakeView: function(cx, cy, cz, elev, ang) {
-	// Creates in {out} a view matrix. The camera is centerd in ({cx}, {cy}, {cz}).
-	// It looks {ang} degrees on y axis, and {elev} degrees on the x axis.
-		
+	MakeView: function (cx, cy, cz, elev, ang) {
+		// Creates in {out} a view matrix. The camera is centerd in ({cx}, {cy}, {cz}).
+		// It looks {ang} degrees on y axis, and {elev} degrees on the x axis.
+
 		var T = [];
 		var Rx = [];
 		var Ry = [];
 		var tmp = [];
 		var out = [];
 
-		T =  this.MakeTranslateMatrix(-cx, -cy, -cz);
+		T = this.MakeTranslateMatrix(-cx, -cy, -cz);
 		Rx = this.MakeRotateXMatrix(-elev);
 		Ry = this.MakeRotateYMatrix(-ang);
 
@@ -674,14 +672,14 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		return out;
 	},
 
-	MakePerspective:function(fovy, a, n, f) {
-	// Creates the perspective projection matrix. The matrix is returned.
-	// {fovy} contains the vertical field-of-view in degrees. {a} is the aspect ratio.
-	// {n} is the distance of the near plane, and {f} is the far plane.
+	MakePerspective: function (fovy, a, n, f) {
+		// Creates the perspective projection matrix. The matrix is returned.
+		// {fovy} contains the vertical field-of-view in degrees. {a} is the aspect ratio.
+		// {n} is the distance of the near plane, and {f} is the far plane.
 
 		var perspective = this.identityMatrix();
 
-		var halfFovyRad = this.degToRad(fovy/2);	// stores {fovy/2} in radiants
+		var halfFovyRad = this.degToRad(fovy / 2);	// stores {fovy/2} in radiants
 		var ct = 1.0 / Math.tan(halfFovyRad);			// cotangent of {fov/2}
 
 		perspective[0] = ct / a;
@@ -689,10 +687,9 @@ createProgram:function(gl, vertexShader, fragmentShader) {
 		perspective[10] = (f + n) / (n - f);
 		perspective[11] = 2.0 * f * n / (n - f);
 		perspective[14] = -1.0;
-		perspective[15] = 0.0;	
+		perspective[15] = 0.0;
 
 		return perspective;
 	}
 
-}
-
+};

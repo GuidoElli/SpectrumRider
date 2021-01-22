@@ -1,5 +1,8 @@
 class App {
     constructor() {
+        window.onerror = function myErrorHandler(errorMsg) {
+            alert("Error: " + errorMsg);
+        }
 
         // DOM Elements
         this.menu = document.getElementById("menu");
@@ -405,7 +408,7 @@ class App {
             this.ctx_2d.fillText(this.item_score_manager.tot_points, 60, 160);
 
 
-            //mult
+            //multiplier
             this.ctx_2d.font = '400 30px Arial';
             this.ctx_2d.fillStyle = '#888888';
             this.ctx_2d.textAlign = "left";
@@ -492,10 +495,7 @@ class App {
             this.ctx_2d.font = '500 12px Arial';
             this.ctx_2d.fillText("CTRL + [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 260);
             this.ctx_2d.fillText("CTRL + [A]/[S]", this.ctx_2d.canvas.width - 60 - 5, 320);
-
-
         }
-
         this.last_update_time = this.current_time;
         window.requestAnimationFrame(this.draw_scene);
     }
@@ -701,10 +701,7 @@ class App {
         this.gl_clear_color.g = this.gl_clear_color.r
         this.gl_clear_color.b = this.gl_clear_color.r
 
-
         this.item_score_manager.update();
-
-
     }
 
     on_song_time_update = () => {
@@ -763,7 +760,7 @@ class App {
 
         this.playing = false;
 
-        switch (s){
+        switch (s) {
             case "menu":
                 this.menu.style.display = "block";
                 break;
@@ -785,10 +782,6 @@ class App {
                 break;
         }
     }
-
 }
 
-window.onerror = function myErrorHandler(errorMsg) {
-    alert("Error: " + errorMsg);
-}
 let app = new App();
