@@ -51,7 +51,7 @@ def build_song_data(mp3_path, path):
 	first_high_band = 4
 
 	upsample_freq = 5
-	upsample_time = 3
+	upsample_time = 5
 
 	sanity_ground = 1.3
 	sanity_lights = 1.9
@@ -61,8 +61,8 @@ def build_song_data(mp3_path, path):
 	# program
 	win_length_samples = int(win_length_time * fs)
 	n_frames = int(len(audio) / win_length_samples) - 1
-	song_duration_seconds = win_length_time * n_frames
 	z_init_matrix = np.zeros((n_frames, n_bands))
+
 	for f in tqdm(range(n_frames)):
 		frame = audio[(f * win_length_samples): np.min([f * win_length_samples + win_length_samples, len(audio)])]
 		for b in range(n_bands):
@@ -93,7 +93,8 @@ def build_song_data(mp3_path, path):
 
 	n_rows = interp_data.shape[0]
 	n_vertex_per_row = interp_data.shape[1]
-	vertex_sample_rate = n_frames*upsample_time / song_duration_seconds
+	song_duration_seconds = win_length_time * (n_frames-1)
+	vertex_sample_rate = (n_rows) / song_duration_seconds
 
 	for i in range(n_rows):
 		for j in range(n_vertex_per_row):
@@ -134,10 +135,10 @@ def build_song_data(mp3_path, path):
 			current_vertex = i * n_vertex_per_row + j
 			# vertex
 			vertices += "{0:.7f}, {1:.7f}, {2:.7f}".format(
-				grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0] * len(audio) / fs)
+				grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0] * song_duration_seconds)
 			if is_last_block_row:
 				last_row_vertices += "{0:.7f}, {1:.7f}, {2:.7f}".format(
-					grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0] * len(audio) / fs)
+					grid_y[0, j] - 0.5, interp_data[i, j], -grid_x[i, 0] * song_duration_seconds)
 			if j != n_vertex_per_row - 1:
 				vertices += ","
 				if is_last_block_row:
@@ -160,9 +161,9 @@ def build_song_data(mp3_path, path):
 			forth = np.array([0, 0, 0])
 			forth2 = np.array([0, 0, 0])
 			if i != 0:
-				forth = np.array([0, grid_x[1, 1] * len(audio) / fs, interp_data[i, j] - interp_data[i - 1, j]])
+				forth = np.array([0, grid_x[1, 1] * song_duration_seconds, interp_data[i, j] - interp_data[i - 1, j]])
 			if i != n_rows - 1:
-				forth2 = np.array([0, grid_x[1, 1] * len(audio) / fs, interp_data[i + 1, j] - interp_data[i, j]])
+				forth2 = np.array([0, grid_x[1, 1] * song_duration_seconds, interp_data[i + 1, j] - interp_data[i, j]])
 			if j != 0:
 				left = np.array([-grid_y[1, 1], 0, interp_data[i, j - 1] - interp_data[i, j]])
 			if j != n_vertex_per_row - 1:
@@ -412,6 +413,10 @@ class App:
 		labels = []
 		play_buttons = []
 		frames = []
+
+		new_song_button = tk.Button(self.frame, text="New Song", command=self.open_new_song_screen)
+		new_song_button.pack()
+
 		for i in range(len(folders)):
 			frames.append(tk.Frame(self.frame, width=300, height=100))
 			frames[i].pack()
@@ -421,9 +426,6 @@ class App:
 
 			play_buttons.append(tk.Button(frames[i], text="Play", command=partial(open_song, "SONGDATA/" + folders[i])))
 			play_buttons[i].pack(fill=tk.Y, side=tk.LEFT)
-
-		new_song_button = tk.Button(self.frame, text="New Song", command=self.open_new_song_screen)
-		new_song_button.pack()
 
 
 class New_song:

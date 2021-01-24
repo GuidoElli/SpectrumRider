@@ -5,7 +5,7 @@ class Player extends Component{
     }
     get_world_matrix = () => {
         return utils.MakeWorld(
-           this.position_x, this.position_y + 0.25, this.position_z-0.07,
+           this.position_x, this.position_y + 0.35, this.position_z-0.03,
            this.rotation_x, this.rotation_y, this.rotation_z,
            this.scale_x, this.scale_y, this.scale_z);
     }

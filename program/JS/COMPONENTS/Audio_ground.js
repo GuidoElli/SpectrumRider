@@ -3,6 +3,6 @@ class Audio_ground extends Component{
         super(obj);
         this.scale_x = 7;
         this.scale_y = 1;
-        this.scale_z = 6;
+        this.scale_z = 8;
     }
 }

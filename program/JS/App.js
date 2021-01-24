@@ -64,7 +64,6 @@ class App {
 
         //Parameters
         this.max_delta_t_ms = 100;
-        this.stretch_correction = 1;
         this.time_correction = 0;
         this.seconds_to_see = 12;
         this.gravity = 15; // unitary mass (no acceleration parameters)
@@ -300,7 +299,7 @@ class App {
                     e.preventDefault();
                     if(this.synchronized){
                         if(e.ctrlKey){
-                            this.time_correction += 10;
+                            this.time_correction += 100;
                         }
                     }
                     break;
@@ -309,27 +308,7 @@ class App {
                     e.preventDefault();
                     if(this.synchronized){
                         if(e.ctrlKey){
-                            this.time_correction -= 10;
-                        }
-                    }
-                    break;
-                case "s":
-                case "S":
-                    e.preventDefault();
-                    if(this.synchronized){
-                        if(e.ctrlKey){
-                            this.stretch_correction += 0.00001;
-                        }
-                    }
-                    break;
-                case "a":
-                case "A":
-                    e.preventDefault();
-                    if(this.synchronized){
-                        if(this.synchronized){
-                            if(e.ctrlKey){
-                                this.stretch_correction -= 0.00001;
-                            }
+                            this.time_correction -= 100;
                         }
                     }
                     break;
@@ -377,7 +356,6 @@ class App {
         if(this.synchronized) {
             this.update();
 
-            this.current_song_percentage = this.elapsed_time / song_duration_seconds * .001 * this.stretch_correction;
             this.gl.clearColor(this.gl_clear_color.r, this.gl_clear_color.g, this.gl_clear_color.b, 1.0);
             this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 
@@ -495,11 +473,9 @@ class App {
             this.ctx_2d.fillStyle = 'rgba(150, 150, 150, 0.5)';
             this.ctx_2d.textAlign = "right";
             this.ctx_2d.font = '100 15px Arial';
-            this.ctx_2d.fillText("Time-Shift: " + this.time_correction + "ms", this.ctx_2d.canvas.width - 60 - 5, 240);
-            this.ctx_2d.fillText("Time-Stretch: " + (this.stretch_correction * 100).toFixed(3) + "%", this.ctx_2d.canvas.width - 60 - 5, 300);
+            this.ctx_2d.fillText("Time-Shift Correction: " + this.time_correction + "ms", this.ctx_2d.canvas.width - 60 - 5, 240);
             this.ctx_2d.font = '500 12px Arial';
             this.ctx_2d.fillText("CTRL + [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 260);
-            this.ctx_2d.fillText("CTRL + [A]/[S]", this.ctx_2d.canvas.width - 60 - 5, 320);
         }
         this.last_update_time = this.current_time;
         window.requestAnimationFrame(this.draw_scene);
@@ -508,6 +484,8 @@ class App {
     update = () => {
         this.current_time = (new Date).getTime();
         this.elapsed_time = this.current_time-this.song_start_time+this.time_correction;
+        this.current_song_percentage = this.elapsed_time / song_duration_seconds * .001;
+
         let delta_t;
         if (this.last_update_time){
             if(this.player.vel_y < 0){
@@ -518,7 +496,8 @@ class App {
         }else{
             delta_t = 0;
         }
-        this.current_z = -(this.current_time-this.song_start_time+this.time_correction) * .001 * this.audio_ground.scale_z * this.stretch_correction;
+
+        this.current_z = -this.current_song_percentage * song_duration_seconds * this.audio_ground.scale_z;
 
         //player
         //compute force
@@ -550,7 +529,7 @@ class App {
         let x_index_cont = (this.player.position_x / this.audio_ground.scale_x + 0.5) * (n_vertex_per_row-1);
         let x_index = Math.round(x_index_cont);
 
-        let z_index_cont = -this.current_z / this.audio_ground.scale_z / song_duration_seconds * (n_rows-4);
+        let z_index_cont = this.current_song_percentage * (n_rows-1);
         let z_index = Math.round(z_index_cont);
 
         if (z_index >= n_rows){
