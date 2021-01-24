@@ -13,8 +13,7 @@ To load a custom song:
 - select an MP3 file
 - insert the title and the artist's name
 - click on "Load Song"
-
-Once it has finished loading, click on "Play" in the Python interface, or open the corresponding HTML file.
+- once it has finished loading, click on "Play" in the Python interface, or open the corresponding HTML file to play the song.
 
 You can find all the instructions inside the game.
 
