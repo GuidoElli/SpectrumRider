@@ -9,6 +9,7 @@ To play a song:
 
 To load a custom song:
 - run the file "program/main.py" in a Python virtual enviroment (install all the required libraries)
+- click on "New Song"
 - select an MP3 file
 - insert the title and the artist's name
 - click on "Load Song"
