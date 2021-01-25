@@ -298,18 +298,14 @@ class App {
                 case "x":
                     e.preventDefault();
                     if(this.synchronized){
-                        if(e.ctrlKey){
-                            this.time_correction += 100;
-                        }
+                        this.time_correction += 10;
                     }
                     break;
                 case "Z":
                 case "z":
                     e.preventDefault();
                     if(this.synchronized){
-                        if(e.ctrlKey){
-                            this.time_correction -= 100;
-                        }
+                        this.time_correction -= 10;
                     }
                     break;
                 case "+":
@@ -473,9 +469,9 @@ class App {
             this.ctx_2d.fillStyle = 'rgba(150, 150, 150, 0.5)';
             this.ctx_2d.textAlign = "right";
             this.ctx_2d.font = '100 15px Arial';
-            this.ctx_2d.fillText("Time-Shift Correction: " + this.time_correction + "ms", this.ctx_2d.canvas.width - 60 - 5, 240);
+            this.ctx_2d.fillText("Time-Shift: " + this.time_correction + "ms", this.ctx_2d.canvas.width - 60 - 5, 240);
             this.ctx_2d.font = '500 12px Arial';
-            this.ctx_2d.fillText("CTRL + [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 260);
+            this.ctx_2d.fillText("Press [Z]/[X]", this.ctx_2d.canvas.width - 60 - 5, 260);
         }
         this.last_update_time = this.current_time;
         window.requestAnimationFrame(this.draw_scene);
